@@ -15,7 +15,7 @@ Trực quan hóa kết quả: Tự động vẽ và lưu lại các biểu đồ
 ## Cài đặt 🛠️
 Sao chép (Clone) dự án:
 
-git clone [https://github.com/your-username/your-repository-name.git](https://github.com/Min-1210/road_segmentation.git)
+git clone https://github.com/Min-1210/road_segmentation.git
 
 cd your-repository-name
 
