@@ -18,7 +18,9 @@ Sao chép (Clone) dự án:
 Bash
 
 git clone [https://github.com/your-username/your-repository-name.git](https://github.com/Min-1210/road_segmentation.git)
+
 cd your-repository-name
+
 Tạo môi trường ảo (Khuyến khích):
 
 Bash
