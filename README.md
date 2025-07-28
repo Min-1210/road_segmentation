@@ -45,25 +45,41 @@ Tên_Dự_Án/
 │       │   │   ├── 0002.png
 
 │       │   │   └── ...
+
 │       │   └── Val/
 
 │       │       ├── 0100.png
+
 │       │       ├── 0101.png
+
 │       │       └── ...
 │       │
 │       └── mask/
 │           ├── Train/
+
 │           │   ├── 0001.png  # Tên file phải khớp với file ảnh
+
 │           │   ├── 0002.png
+
 │           │   └── ...
+
 │           └── Val/
+
 │               ├── 0100.png  # Tên file phải khớp với file ảnh
+
 │               ├── 0101.png
+
 │               └── ...
 │
 ├── config.yaml
+
 ├── train.py
-└── ... (các file .py khác)
+
+├── utils.py
+
+├── plot.py
+
+└── dataset.py
 ### Giải thích:
 images/: Thư mục chứa tất cả các ảnh gốc.
 
