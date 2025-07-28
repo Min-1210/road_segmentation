@@ -67,3 +67,29 @@ mask/: Thư mục chứa tất cả các ảnh mặt nạ (ground truth).
 Train/: Chứa mặt nạ tương ứng với ảnh huấn luyện.
 
 Val/: Chứa mặt nạ tương ứng với ảnh kiểm định.
+
+#!/bin/bash
+
+# Script để tự động tạo cấu trúc thư mục cho dự án Road Segmentation
+
+echo "🚀 Bắt đầu tạo cấu trúc dự án..."
+
+# Tạo các thư mục chính
+mkdir -p dataset/Train
+mkdir -p dataset/Validation
+mkdir -p plots
+mkdir -p weights
+
+# Tạo các file Python rỗng
+touch dataset.py
+touch plot.py
+touch train.py
+utils.py
+
+# Tạo các file cấu hình và tài liệu
+touch config.yaml
+touch requirements.txt
+touch README.md
+touch .gitignore
+
+echo "✅ Cấu trúc dự án đã được tạo thành công!"
