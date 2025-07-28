@@ -1,4 +1,5 @@
 import glob
+import os # Thêm thư viện os
 from torch.utils.data import Dataset, DataLoader
 from torchvision import transforms
 from PIL import Image
@@ -45,17 +46,21 @@ def get_dataloaders(config):
     ])
     mask_transform = transforms.ToTensor()
 
-    train_image_paths = sorted(glob.glob(config['data']['train_image_path']))
-    train_mask_paths = sorted(glob.glob(config['data']['train_mask_path']))
-    val_image_paths = sorted(glob.glob(config['data']['val_image_path']))
-    val_mask_paths = sorted(glob.glob(config['data']['val_mask_path']))
+    base_dir = config['data']['base_dir']
+    dataset_name = config['data']['dataset_name']
+    dataset_root = os.path.join(base_dir, dataset_name)
 
-    assert len(train_image_paths) > 0, "Không tìm thấy ảnh trong thư mục train!"
+    train_image_paths = sorted(glob.glob(os.path.join(dataset_root, "images/Train/*.png")))
+    train_mask_paths = sorted(glob.glob(os.path.join(dataset_root, "mask/Train/*.png")))
+    val_image_paths = sorted(glob.glob(os.path.join(dataset_root, "images/Val/*.png")))
+    val_mask_paths = sorted(glob.glob(os.path.join(dataset_root, "mask/Val/*.png")))
+
+    assert len(train_image_paths) > 0, f"Không tìm thấy ảnh trong thư mục train! Đường dẫn kiểm tra: {os.path.join(dataset_root, 'images/Train/*.png')}"
     assert len(train_image_paths) == len(train_mask_paths), "Số lượng ảnh và mask không khớp!"
-    assert len(val_image_paths) > 0, "Không tìm thấy ảnh trong thư mục val!"
+    assert len(val_image_paths) > 0, f"Không tìm thấy ảnh trong thư mục val! Đường dẫn kiểm tra: {os.path.join(dataset_root, 'images/Val/*.png')}"
     assert len(val_image_paths) == len(val_mask_paths), "Số lượng ảnh và mask trong tập val không khớp!"
 
-    print(f"🔍 Tìm thấy {len(train_image_paths)} ảnh trong tập train và {len(val_image_paths)} ảnh trong tập val.")
+    print(f"🔍 Tìm thấy {len(train_image_paths)} ảnh trong tập train và {len(val_image_paths)} ảnh trong tập val từ bộ dữ liệu '{dataset_name}'.")
 
     train_dataset = CustomDataset(
         image_paths=train_image_paths,
