@@ -29,17 +29,24 @@ def main(config_path='config.yaml'):
 
     print(f"Mô hình: {config['model']['name']} ({config['model']['encoder_name']})")
     print(f"Hàm loss: {config['loss']['name']}")
-    print(f"Số lớp: {config['model']['classes']}")
+    num_classes = config['model']['classes']
+    print(f"Số lớp: {num_classes}")
     print(f"Huấn luyện trên thiết bị: {device}")
 
+    # --- PHẦN ĐƯỢC CẬP NHẬT ---
+    # Tự động chọn chế độ 'binary' hoặc 'multiclass' cho metrics
+    loss_mode = "binary" if num_classes == 1 else "multiclass"
     metrics_to_track = {
         "iou_score": smp.metrics.iou_score,
         "f1_score": smp.metrics.f1_score,
-        "dice_loss": smp.losses.DiceLoss(mode="binary"),
-        "jaccard_loss": smp.losses.JaccardLoss(mode="binary"),
-        "bce_loss": torch.nn.BCEWithLogitsLoss(),
-        "focal_loss": smp.losses.FocalLoss(mode="binary")
+        "dice_loss": smp.losses.DiceLoss(mode=loss_mode),
+        "jaccard_loss": smp.losses.JaccardLoss(mode=loss_mode),
+        "focal_loss": smp.losses.FocalLoss(mode=loss_mode)
     }
+    # BCE chỉ hoạt động ở chế độ binary với đầu ra 1 kênh
+    if num_classes == 1:
+        metrics_to_track["bce_loss"] = torch.nn.BCEWithLogitsLoss()
+    # -------------------------
 
     history = {"train_loss": [], "val_loss": []}
     metric_names = ["accuracy"] + list(metrics_to_track.keys())
@@ -78,8 +85,6 @@ def main(config_path='config.yaml'):
                 running_val_loss += loss.item()
             history["val_loss"].append(running_val_loss / len(val_loader))
 
-            num_classes = config['model']['classes']
-
             for loader_name, loader, epoch_metrics in [('train', train_loader, train_epoch_metrics),
                                                        ('val', val_loader, val_epoch_metrics)]:
                 for images, masks in loader:
@@ -87,19 +92,26 @@ def main(config_path='config.yaml'):
                     outputs = model(images)
 
                     if num_classes == 1:
-                        tp, fp, fn, tn = smp.metrics.get_stats(outputs, masks.long(), mode='binary')
+                        pred_masks = (torch.sigmoid(outputs) > 0.5).long()
+                        tp, fp, fn, tn = smp.metrics.get_stats(pred_masks, masks.long(), mode='binary')
                     else:
-                        tp, fp, fn, tn = smp.metrics.get_stats(outputs, masks.long(), mode='multiclass',
+                        pred_masks = torch.argmax(outputs, dim=1)
+                        tp, fp, fn, tn = smp.metrics.get_stats(pred_masks, masks.long(), mode='multiclass',
                                                                num_classes=num_classes)
 
                     epoch_metrics["accuracy"] += pixel_accuracy(outputs, masks)
+
+                    # --- PHẦN ĐƯỢC CẬP NHẬT ---
                     for name, func in metrics_to_track.items():
                         if "loss" in name:
-                            # smp losses work on predictions, not raw outputs
-                            pred_for_loss = torch.argmax(outputs, dim=1) if num_classes > 1 else outputs
-                            epoch_metrics[name] += func(pred_for_loss, masks).item()
-                        else:
+                            # Luôn dùng raw `outputs` (logits) cho các hàm loss-metric
+                            if name == 'bce_loss':
+                                epoch_metrics[name] += func(outputs, masks.float()).item()
+                            else:
+                                epoch_metrics[name] += func(outputs, masks.long()).item()
+                        else:  # Các metrics như IoU, F1-score dùng tp, fp, fn, tn
                             epoch_metrics[name] += func(tp, fp, fn, tn).sum().item()
+                    # -------------------------
 
         for name in metric_names:
             history[f"train_{name}"].append(train_epoch_metrics[name] / len(train_loader))
