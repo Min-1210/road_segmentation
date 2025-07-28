@@ -34,13 +34,19 @@ Bạn cần tạo một thư mục chính cho dữ liệu (ví dụ: Satellite_D
 
 Tên_Dự_Án/
 ├── Satellite_Datasets/
+
 │   └── TGRS_Road/
+
 │       ├── images/
 │       │   ├── Train/
+
 │       │   │   ├── 0001.png
+
 │       │   │   ├── 0002.png
+
 │       │   │   └── ...
 │       │   └── Val/
+
 │       │       ├── 0100.png
 │       │       ├── 0101.png
 │       │       └── ...
