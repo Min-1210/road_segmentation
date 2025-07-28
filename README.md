@@ -23,7 +23,52 @@ cd your-repository-name
 
 Tạo môi trường ảo (Khuyến khích):
 
-Bash
-
 python -m venv venv
+
 source venv/bin/activate  # Trên Windows: venv\Scripts\activate
+
+Sau đó chạy lệnh:
+
+pip install -r requirements.txt
+
+## Cấu trúc Thư mục Dữ liệu 📁
+Bạn cần tạo một thư mục chính cho dữ liệu (ví dụ: Satellite_Datasets), và bên trong đó tổ chức các file như sau:
+
+Tên_Dự_Án/
+├── Satellite_Datasets/
+│   └── TGRS_Road/
+│       ├── images/
+│       │   ├── Train/
+│       │   │   ├── 0001.png
+│       │   │   ├── 0002.png
+│       │   │   └── ...
+│       │   └── Val/
+│       │       ├── 0100.png
+│       │       ├── 0101.png
+│       │       └── ...
+│       │
+│       └── mask/
+│           ├── Train/
+│           │   ├── 0001.png  # Tên file phải khớp với file ảnh
+│           │   ├── 0002.png
+│           │   └── ...
+│           └── Val/
+│               ├── 0100.png  # Tên file phải khớp với file ảnh
+│               ├── 0101.png
+│               └── ...
+│
+├── config.yaml
+├── train.py
+└── ... (các file .py khác)
+### Giải thích:
+images/: Thư mục chứa tất cả các ảnh gốc.
+
+Train/: Chứa ảnh dùng để huấn luyện.
+
+Val/: Chứa ảnh dùng để kiểm định (validation).
+
+mask/: Thư mục chứa tất cả các ảnh mặt nạ (ground truth).
+
+Train/: Chứa mặt nạ tương ứng với ảnh huấn luyện.
+
+Val/: Chứa mặt nạ tương ứng với ảnh kiểm định.
