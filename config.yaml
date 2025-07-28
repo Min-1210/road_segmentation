@@ -22,7 +22,7 @@ model:
 # Các lựa chọn: CombinedLoss, DiceLoss, JaccardLoss, BCEWithLogitsLoss, FocalLoss, CrossEntropyLoss
 loss:
   name: "CrossEntropyLoss"
-  #Nếu dùng loss ngoài CombinedLoss thì comment lại 3 dòng dưới
+  #Nếu dùng loss ngoài CombinedLoss thì comment lại 3 dòng dưới, dùng CombinedLoss thì bỏ commentt
 #  params:
 #    weight_bce: 0.5   # Tham số này chỉ dùng cho CombinedLoss
 #    weight_dice: 0.5  # Tham số này chỉ dùng cho CombinedLoss
