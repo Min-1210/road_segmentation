@@ -32,54 +32,27 @@ pip install -r requirements.txt
 ## Cấu trúc Thư mục Dữ liệu 📁
 Bạn cần tạo một thư mục chính cho dữ liệu (ví dụ: Satellite_Datasets), và bên trong đó tổ chức các file như sau:
 
-Tên_Dự_Án/
-├── Satellite_Datasets/
-
-│   └── TGRS_Road/
-
-│       ├── images/
-│       │   ├── Train/
-
-│       │   │   ├── 0001.png
-
-│       │   │   ├── 0002.png
-
-│       │   │   └── ...
-
-│       │   └── Val/
-
-│       │       ├── 0100.png
-
-│       │       ├── 0101.png
-
-│       │       └── ...
-│       │
-│       └── mask/
-│           ├── Train/
-
-│           │   ├── 0001.png  # Tên file phải khớp với file ảnh
-
-│           │   ├── 0002.png
-
-│           │   └── ...
-
-│           └── Val/
-
-│               ├── 0100.png  # Tên file phải khớp với file ảnh
-
-│               ├── 0101.png
-
-│               └── ...
+road-segmentation/
+├── dataset/                    # Thư mục chứa toàn bộ dữ liệu
+│   ├── Train/
+│   └── Validation/
 │
-├── config.yaml
-
-├── train.py
-
-├── utils.py
-
-├── plot.py
-
-└── dataset.py
+├── plots/                      # Thư mục lưu biểu đồ và lịch sử huấn luyện
+│   ├── training_metrics_summary.png
+│   ├── train_losses.npy
+│   └── ...
+│
+├── weights/                    # Thư mục lưu các trọng số đã huấn luyện
+│   └── model_refactored.pt
+│
+├── .gitignore                  # Khai báo các file/thư mục mà Git sẽ bỏ qua
+├── config.yaml                 # File cấu hình chính (tham số, đường dẫn, mô hình)
+├── dataset.py                  # Lớp Dataset và các hàm tải dữ liệu
+├── plot.py                     # Hàm vẽ và lưu biểu đồ kết quả
+├── README.md                   # File giới thiệu dự án (hướng dẫn, mô tả)
+├── requirements.txt            # Danh sách các thư viện Python cần thiết
+├── train.py                    # Script chính để bắt đầu huấn luyện mô hình
+└── utils.py                    # Các hàm tiện ích (lấy model, loss, optimizer...)
 ### Giải thích:
 images/: Thư mục chứa tất cả các ảnh gốc.
 
