@@ -2,10 +2,8 @@ seed: 42
 device: 'cuda' #(cpu)
 
 data:
-  train_image_path: "Satellite_Datasets/TGRS_Road/images/Train/*.png"
-  train_mask_path: "Satellite_Datasets/TGRS_Road/mask/Train/*.png"
-  val_image_path: "Satellite_Datasets/TGRS_Road/images/Val/*.png"
-  val_mask_path: "Satellite_Datasets/TGRS_Road/mask/Val/*.png"
+  base_dir: "Satellite_Datasets"
+  dataset_name: "Massachusetts"
 
 training:
   batch_size: 4
