@@ -33,8 +33,6 @@ def main(config_path='config.yaml'):
     print(f"Số lớp: {num_classes}")
     print(f"Huấn luyện trên thiết bị: {device}")
 
-    # --- PHẦN ĐƯỢC CẬP NHẬT ---
-    # Tự động chọn chế độ 'binary' hoặc 'multiclass' cho metrics
     loss_mode = "binary" if num_classes == 1 else "multiclass"
     metrics_to_track = {
         "iou_score": smp.metrics.iou_score,
@@ -43,13 +41,15 @@ def main(config_path='config.yaml'):
         "jaccard_loss": smp.losses.JaccardLoss(mode=loss_mode),
         "focal_loss": smp.losses.FocalLoss(mode=loss_mode)
     }
-    # BCE chỉ hoạt động ở chế độ binary với đầu ra 1 kênh
     if num_classes == 1:
         metrics_to_track["bce_loss"] = torch.nn.BCEWithLogitsLoss()
-    # -------------------------
 
     history = {"train_loss": [], "val_loss": []}
     metric_names = ["accuracy"] + list(metrics_to_track.keys())
+    # Bỏ bce_loss khỏi history nếu không dùng
+    if num_classes > 1 and "bce_loss" in metric_names:
+        metric_names.remove("bce_loss")
+        
     for name in metric_names:
         history[f"train_{name}"] = []
         history[f"val_{name}"] = []
@@ -62,7 +62,7 @@ def main(config_path='config.yaml'):
 
         model.train()
         running_train_loss = 0.0
-        for images, masks in tqdm(train_loader, desc=f"Epoch {epoch + 1} Train"):
+        for images, masks in tqdm(train_loader, desc=f"Epoch {epoch + 1:02d}/{config['training']['num_epochs']} Train"):
             images, masks = images.to(device), masks.to(device)
             optimizer.zero_grad()
             outputs = model(images)
@@ -101,17 +101,18 @@ def main(config_path='config.yaml'):
 
                     epoch_metrics["accuracy"] += pixel_accuracy(outputs, masks)
 
-                    # --- PHẦN ĐƯỢC CẬP NHẬT ---
                     for name, func in metrics_to_track.items():
                         if "loss" in name:
-                            # Luôn dùng raw `outputs` (logits) cho các hàm loss-metric
                             if name == 'bce_loss':
                                 epoch_metrics[name] += func(outputs, masks.float()).item()
                             else:
                                 epoch_metrics[name] += func(outputs, masks.long()).item()
-                        else:  # Các metrics như IoU, F1-score dùng tp, fp, fn, tn
-                            epoch_metrics[name] += func(tp, fp, fn, tn).sum().item()
-                    # -------------------------
+                        else:
+                            score = func(tp, fp, fn, tn)
+                            if num_classes > 1:
+                                epoch_metrics[name] += score[1].item() # Chỉ lấy score của lớp 1
+                            else:
+                                epoch_metrics[name] += score.item()
 
         for name in metric_names:
             history[f"train_{name}"].append(train_epoch_metrics[name] / len(train_loader))
