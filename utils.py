@@ -77,7 +77,6 @@ def get_model(config):
 
 
 def get_optimizer(model, config):
-    """Factory để lấy optimizer dựa trên cấu hình."""
     name = config['optimizer']['name']
     lr = config['optimizer']['lr']
 
@@ -88,7 +87,6 @@ def get_optimizer(model, config):
 
 
 def get_scheduler(optimizer, config):
-    """Factory để lấy scheduler dựa trên cấu hình."""
     name = config['scheduler']['name']
     params = config['scheduler'].get('params', {})
 
@@ -99,7 +97,6 @@ def get_scheduler(optimizer, config):
 
 
 def pixel_accuracy(outputs, masks):
-    """Tính toán độ chính xác pixel, tự động hỗ trợ binary và multiclass."""
     if outputs.shape[1] == 1:
         outputs = torch.sigmoid(outputs)
         preds = (outputs > 0.5)
