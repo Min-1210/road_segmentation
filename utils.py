@@ -34,16 +34,21 @@ def get_loss_function(config):
     name = config['loss']['name']
     params = config['loss'].get('params', {})
 
+    num_classes = config['model']['classes']
+    loss_mode = "binary" if num_classes == 1 else "multiclass"
+
     if name == "CombinedLoss":
         return CombinedLoss(**params)
     elif name == "DiceLoss":
-        return smp.losses.DiceLoss(mode="binary", **params)
+        return smp.losses.DiceLoss(mode=loss_mode, **params)
     elif name == "JaccardLoss":
-        return smp.losses.JaccardLoss(mode="binary", **params)
+        return smp.losses.JaccardLoss(mode=loss_mode, **params)
     elif name == "BCEWithLogitsLoss":
+        if num_classes > 1:
+            raise ValueError("BCEWithLogitsLoss chỉ có thể được sử dụng với classes=1.")
         return torch.nn.BCEWithLogitsLoss()
     elif name == "FocalLoss":
-        return smp.losses.FocalLoss(mode="binary", **params)
+        return smp.losses.FocalLoss(mode=loss_mode, **params)
     elif name == "CrossEntropyLoss":
         return torch.nn.CrossEntropyLoss(**params)
     else:
