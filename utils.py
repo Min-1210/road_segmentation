@@ -65,6 +65,8 @@ def get_model(config):
         return smp.FPN(**model_params)
     elif model_name == "DeepLabV3":
         return smp.DeepLabV3(**model_params)
+    elif model_name == "LinkNet":
+        return smp.Linknet(**model_params)
     else:
         raise ValueError(f"Mô hình '{model_name}' không được hỗ trợ.")
 
