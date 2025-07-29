@@ -12,7 +12,7 @@ training:
   plot_dir: "plots_refactored"      #Thay đổi tên chứa plot
 
 model:
-  name: "DeepLabV3Plus" #Unet, FPN, DeeplabV3, Deeplabv3+
+  name: "DeepLabV3Plus" #Unet, FPN, DeeplabV3, Deeplabv3+, LinkNet
   encoder_name: "resnet50" # resnet50, resnet101
   encoder_weights: "imagenet"
   in_channels: 3
