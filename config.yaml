@@ -36,4 +36,4 @@ scheduler:
   params:
     mode: 'min'
     factor: 0.1
-    patience: 5
+    patience: 5 #sau mỗi 5 epoch loss ko thay đổi thì lr sẽ * với 0.1
