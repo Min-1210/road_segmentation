@@ -87,6 +87,7 @@ def get_optimizer(model, config):
 
 
 def get_scheduler(optimizer, config):
+    """Factory để lấy scheduler dựa trên cấu hình."""
     name = config['scheduler']['name']
     params = config['scheduler'].get('params', {})
 
