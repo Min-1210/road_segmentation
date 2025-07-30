@@ -16,7 +16,7 @@ model:
   encoder_name: "resnet50" # resnet50, resnet101
   encoder_weights: "imagenet"
   in_channels: 3
-  classes: 2 #2 với loss CrossEntropyLoss
+  classes: 2 #2 với loss CrossEntropyLoss, 1 đối với các hàm loss còn lại
   activation: null
 
 # Các lựa chọn: CombinedLoss, DiceLoss, JaccardLoss, BCEWithLogitsLoss, FocalLoss, CrossEntropyLoss
@@ -29,7 +29,7 @@ loss:
 
 optimizer:
   name: "Adam"
-  lr: 0.001
+  lr: 0.001 # có thể thay đổi
 
 scheduler:
   name: "ReduceLROnPlateau"
