@@ -1,4 +1,4 @@
-# road_segmentation
+<img width="1400" height="1000" alt="training_metrics_summary" src="https://github.com/user-attachments/assets/a4e9168f-3044-4c78-bc98-f3a2878d732c" /># road_segmentation
 Dự án này sử dụng các mô hình Deep Learning để thực hiện bài toán phân vùng ngữ nghĩa (semantic segmentation), nhằm mục tiêu xác định và khoanh vùng các đối tượng đường đi trong ảnh vệ tinh.
 ## Tính năng nổi bật ✨
 Nhiều kiến trúc mô hình: Dễ dàng chuyển đổi giữa các kiến trúc segmentation phổ biến như Unet, FPN, DeepLabV3, và DeepLabV3+.
@@ -12,6 +12,46 @@ Cấu hình tập trung: Toàn bộ quá trình huấn luyện, từ đường d
 Đánh giá toàn diện: Tự động tính toán và theo dõi nhiều chỉ số quan trọng như IoU (Jaccard score), F1-score, và pixel accuracy cho cả tập huấn luyện và tập kiểm định.
 
 Trực quan hóa kết quả: Tự động vẽ và lưu lại các biểu đồ chi tiết về quá trình huấn luyện, giúp dễ dàng phân tích và so sánh kết quả.
+
+## Cấu trúc dự án
+```bash
+Python 3.11.13
+road_segmentation/          # Dataset folders (Train / Validation / Test)
+├── Satellite_Datasets
+│   ├── Massachusetts/
+│       ├── images/               
+│           ├── train/
+│           ├── val/
+│           └── test/
+│       ├── images/
+│           ├── train/
+│           ├── val/
+│           └── test/
+│
+├── dataset.py
+├── train.py    
+├── utils.py
+├── plot.py
+├── config.yaml
+├── train_continuous.py
+├── run_parameters.py
+├── model/                   
+│   ├── training_model.pt
+├── plot/
+│   ├── epoch_results.csv
+│   ├── train_accuracy.npy
+│   ├── train_f1_score.npy
+│   ├── train_iou_score.npy
+│   ├── train_loss.npy
+│   ├── training.log
+│   └── training_metrics_summary.png
+│   ├── training_times.txt
+│   ├── val_accuracy.npy
+│   ├── val_f1_score.npy
+│   ├── val_iou_score.npy
+│   ├── val_loss.npy
+├── __pycache__/            # Python bytecode cache (auto-generated)
+```
 ## Sử dụng 🛠️
 1. Tải source code về máy tính của bạn
 ```bash
