@@ -2,6 +2,8 @@ import torch
 import random
 import numpy as np
 import segmentation_models_pytorch as smp
+import logging
+import os
 
 
 def set_seed(seed_value=42):
@@ -72,6 +74,12 @@ def get_model(config):
         return smp.DeepLabV3(**model_params)
     elif model_name == "LinkNet":
         return smp.Linknet(**model_params)
+    elif model_name == "UNet++":
+        return smp.UnetPlusPlus(**model_params)
+    elif model_name == "DPT":
+        return smp.DPT(**model_params)
+    elif model_name == "SegFormer":
+        return smp.Segformer(**model_params)
     else:
         raise ValueError(f"Mô hình '{model_name}' không được hỗ trợ.")
 
@@ -87,7 +95,6 @@ def get_optimizer(model, config):
 
 
 def get_scheduler(optimizer, config):
-    """Factory để lấy scheduler dựa trên cấu hình."""
     name = config['scheduler']['name']
     params = config['scheduler'].get('params', {})
 
@@ -107,3 +114,19 @@ def pixel_accuracy(outputs, masks):
     correct = (preds == masks.squeeze(1).long()).float()
     acc = correct.sum() / correct.numel()
     return acc.item()
+
+def setup_logging(config):
+    log_dir = config['training']['plot_dir']
+    log_file = os.path.join(log_dir, 'training.log')
+
+    for handler in logging.root.handlers[:]:
+        logging.root.removeHandler(handler)
+
+    logging.basicConfig(
+        level=logging.INFO,
+        format='%(asctime)s [%(levelname)s] - %(message)s',
+        handlers=[
+            logging.FileHandler(log_file, mode='w', encoding='utf-8'),
+            logging.StreamHandler()
+        ]
+    )
