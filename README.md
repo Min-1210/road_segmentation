@@ -35,8 +35,10 @@ road_segmentation/          # Dataset folders (Train / Validation / Test)
 ├── config.yaml
 ├── train_continuous.py
 ├── run_parameters.py
+│ 
 ├── model/                   
 │   ├── training_model.pt
+│ 
 ├── plot/
 │   ├── epoch_results.csv
 │   ├── train_accuracy.npy
@@ -50,6 +52,7 @@ road_segmentation/          # Dataset folders (Train / Validation / Test)
 │   ├── val_f1_score.npy
 │   ├── val_iou_score.npy
 │   ├── val_loss.npy
+│ 
 ├── __pycache__/            # Python bytecode cache (auto-generated)
 ```
 ## Sử dụng 🛠️
