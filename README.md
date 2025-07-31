@@ -13,5 +13,6 @@ Cấu hình tập trung: Toàn bộ quá trình huấn luyện, từ đường d
 
 Trực quan hóa kết quả: Tự động vẽ và lưu lại các biểu đồ chi tiết về quá trình huấn luyện, giúp dễ dàng phân tích và so sánh kết quả.
 ## Cài đặt 🛠️
+1. Cài đặt thư viện
 ```bash
-pip install opencv-python dlib face_recognition
+pip install -r requirements.txt
