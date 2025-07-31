@@ -12,7 +12,15 @@ Cấu hình tập trung: Toàn bộ quá trình huấn luyện, từ đường d
 Đánh giá toàn diện: Tự động tính toán và theo dõi nhiều chỉ số quan trọng như IoU (Jaccard score), F1-score, và pixel accuracy cho cả tập huấn luyện và tập kiểm định.
 
 Trực quan hóa kết quả: Tự động vẽ và lưu lại các biểu đồ chi tiết về quá trình huấn luyện, giúp dễ dàng phân tích và so sánh kết quả.
-## Cài đặt 🛠️
+## Sử dụng 🛠️
 1. Cài đặt thư viện
 ```bash
 pip install -r requirements.txt
+```
+
+2. Thay đổi tham số ở file config
+
+3. Chạy file train
+```bash
+python train.py
+```
