@@ -71,4 +71,4 @@ def save_training_plots(history, config):
     plot_path = os.path.join(plot_dir, "training_metrics_summary.png")
     plt.savefig(plot_path)
     print(f"Biểu đồ tổng hợp đã được lưu tại: {plot_path}")
-    plt.show()
+    # plt.show()
