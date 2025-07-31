@@ -14,6 +14,7 @@ from datetime import datetime
 from utils import set_seed, get_model, get_loss_function, get_optimizer, get_scheduler, pixel_accuracy, setup_logging
 from dataset import get_dataloaders
 
+
 def log_training_times(plot_dir, epoch_times, total_time):
     time_log_path = os.path.join(plot_dir, "training_times.txt")
     with open(time_log_path, 'w', encoding='utf-8') as f:
@@ -43,22 +44,28 @@ def save_training_plots(history, config):
         'IoU Score': ('train_iou_score', 'val_iou_score'),
         'F1-Score': ('train_f1_score', 'val_f1_score'),
         'Pixel Accuracy': ('train_accuracy', 'val_accuracy'),
+        'Dice Loss (val)': 'val_dice_loss',
+        'Focal Loss (val)': 'val_focal_loss',
     }
 
     available_plots = {title: keys for title, keys in plot_pairs.items() if
-                       (isinstance(keys, tuple) and keys[0] in history) or (isinstance(keys, str) and keys in history)}
+                       (isinstance(keys, tuple) and keys[0] in history and keys[1] in history) or (
+                                   isinstance(keys, str) and keys in history)}
     num_plots = len(available_plots)
-    num_cols = 2
+    num_cols = 3
     num_rows = math.ceil(num_plots / num_cols)
 
-    fig, axes = plt.subplots(num_rows, num_cols, figsize=(num_cols * 7, num_rows * 5))
+    fig, axes = plt.subplots(num_rows, num_cols, figsize=(num_cols * 6, num_rows * 5))
     fig.suptitle('Kết quả Huấn luyện Mô hình', fontsize=16, y=0.97)
     axes = axes.flatten()
 
     for i, (title, keys) in enumerate(available_plots.items()):
         ax = axes[i]
-        ax.plot(epochs_range, history[keys[0]], 'o-', label=f'Train')
-        ax.plot(epochs_range, history[keys[1]], 'o-', label=f'Validation')
+        if isinstance(keys, tuple):
+            ax.plot(epochs_range, history[keys[0]], 'o-', label=f'Train')
+            ax.plot(epochs_range, history[keys[1]], 'o-', label=f'Validation')
+        else:
+            ax.plot(epochs_range, history[keys], 'o-', label=f'Validation')
         ax.set_title(title)
         ax.set_xlabel('Epoch')
         ax.set_ylabel('Giá trị')
@@ -81,15 +88,13 @@ def main(config):
 
     set_seed(config.get('seed', 42))
     device = torch.device(config.get('device', 'cuda' if torch.cuda.is_available() else 'cpu'))
-
     os.makedirs(config['training']['plot_dir'], exist_ok=True)
     os.makedirs(os.path.dirname(config['training']['model_path']), exist_ok=True)
-
     setup_logging(config)
 
     csv_log_path = os.path.join(config['training']['plot_dir'], 'epoch_results.csv')
-    csv_headers = ['timestamp', 'epoch', 'val_loss', 'val_iou', 'val_f1', 'val_accuracy', 'train_loss', 'train_iou',
-                   'train_f1', 'train_accuracy', 'epoch_time_s']
+    csv_headers = ['timestamp', 'epoch', 'val_loss', 'val_iou', 'val_f1', 'val_accuracy', 'val_dice_loss',
+                   'val_focal_loss', 'train_loss', 'train_iou', 'train_f1', 'train_accuracy', 'epoch_time_s']
     with open(csv_log_path, 'w', newline='', encoding='utf-8') as f:
         writer = csv.writer(f)
         writer.writerow(csv_headers)
@@ -108,8 +113,13 @@ def main(config):
     scheduler = get_scheduler(optimizer, config)
 
     loss_mode = "binary" if config['model']['classes'] == 1 else "multiclass"
+
+    dice_loss_fn = smp.losses.DiceLoss(mode=loss_mode)
+    focal_loss_fn = smp.losses.FocalLoss(mode=loss_mode)
+
     history = {"train_loss": [], "val_loss": [], "train_iou_score": [], "val_iou_score": [], "train_f1_score": [],
-               "val_f1_score": [], "train_accuracy": [], "val_accuracy": []}
+               "val_f1_score": [], "train_accuracy": [], "val_accuracy": [], "val_dice_loss": [], "val_focal_loss": []}
+
     best_val_iou = 0.0
     start_time = time.time()
     epoch_times = []
@@ -147,13 +157,19 @@ def main(config):
 
         model.eval()
         running_val_loss = 0.0
+        val_dice_loss_sum = 0.0
+        val_focal_loss_sum = 0.0
         total_val_tp, total_val_fp, total_val_fn = 0, 0, 0
         val_accuracy_sum = 0.0
         with torch.no_grad():
             for images, masks in tqdm(val_loader, desc=f"Epoch {epoch + 1} Val ({config['model']['encoder_name']})"):
                 images, masks = images.to(device), masks.to(device)
                 outputs = model(images)
+
                 running_val_loss += loss_fn(outputs, masks).item()
+                val_dice_loss_sum += dice_loss_fn(outputs, masks).item()  # CẬP NHẬT
+                val_focal_loss_sum += focal_loss_fn(outputs, masks).item()  # CẬP NHẬT
+
                 val_accuracy_sum += pixel_accuracy(outputs, masks) * images.size(0)
                 preds = torch.argmax(outputs, dim=1) if loss_mode == "multiclass" else (torch.sigmoid(outputs) > 0.5)
                 tp, fp, fn, _ = smp.metrics.get_stats(preds.long(), masks.long(), mode=loss_mode,
@@ -164,6 +180,8 @@ def main(config):
                 total_val_fn += fn.sum()
 
         history['val_loss'].append(running_val_loss / len(val_loader))
+        history['val_dice_loss'].append(val_dice_loss_sum / len(val_loader))
+        history['val_focal_loss'].append(val_focal_loss_sum / len(val_loader))
         history['val_accuracy'].append(val_accuracy_sum / len(val_loader.dataset))
         current_val_iou = smp.metrics.iou_score(total_val_tp, total_val_fp, total_val_fn, 0).item()
         history['val_iou_score'].append(current_val_iou)
@@ -178,11 +196,15 @@ def main(config):
         epoch_times.append(epoch_time)
 
         timestamp_now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        epoch_data_row = [timestamp_now, epoch + 1, f"{history['val_loss'][-1]:.4f}",
-                          f"{history['val_iou_score'][-1]:.4f}", f"{history['val_f1_score'][-1]:.4f}",
-                          f"{history['val_accuracy'][-1]:.4f}", f"{history['train_loss'][-1]:.4f}",
-                          f"{history['train_iou_score'][-1]:.4f}", f"{history['train_f1_score'][-1]:.4f}",
-                          f"{history['train_accuracy'][-1]:.4f}", f"{epoch_time:.2f}"]
+        epoch_data_row = [
+            timestamp_now, epoch + 1,
+            f"{history['val_loss'][-1]:.4f}", f"{history['val_iou_score'][-1]:.4f}",
+            f"{history['val_f1_score'][-1]:.4f}", f"{history['val_accuracy'][-1]:.4f}",
+            f"{history['val_dice_loss'][-1]:.4f}", f"{history['val_focal_loss'][-1]:.4f}",  # Thêm dữ liệu mới
+            f"{history['train_loss'][-1]:.4f}", f"{history['train_iou_score'][-1]:.4f}",
+            f"{history['train_f1_score'][-1]:.4f}", f"{history['train_accuracy'][-1]:.4f}",
+            f"{epoch_time:.2f}"
+        ]
         with open(csv_log_path, 'a', newline='', encoding='utf-8') as f:
             writer = csv.writer(f)
             writer.writerow(epoch_data_row)
@@ -200,7 +222,6 @@ def main(config):
 
     save_training_plots(history, config)
     logging.info(f"\n{' KẾT THÚC THÍ NGHIỆM '.center(80, '=')}\n")
-
 
 if __name__ == '__main__':
     with open('config.yaml', 'r', encoding='utf-8') as f:
