@@ -1,5 +1,5 @@
 import glob
-import os # Thêm thư viện os
+import os
 from torch.utils.data import Dataset, DataLoader
 from torchvision import transforms
 from PIL import Image
@@ -54,6 +54,7 @@ def get_dataloaders(config):
     train_mask_paths = sorted(glob.glob(os.path.join(dataset_root, "mask/Train/*.png")))
     val_image_paths = sorted(glob.glob(os.path.join(dataset_root, "images/Val/*.png")))
     val_mask_paths = sorted(glob.glob(os.path.join(dataset_root, "mask/Val/*.png")))
+    # --- Kết thúc phần cập nhật ---
 
     assert len(train_image_paths) > 0, f"Không tìm thấy ảnh trong thư mục train! Đường dẫn kiểm tra: {os.path.join(dataset_root, 'images/Train/*.png')}"
     assert len(train_image_paths) == len(train_mask_paths), "Số lượng ảnh và mask không khớp!"
