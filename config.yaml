@@ -3,13 +3,13 @@ device: 'cuda' #(cpu)
 
 data:
   base_dir: "Satellite_Datasets"
-  dataset_name: "Massachusetts"
+  dataset_name: "Massachusetts" #Đổi tên dataset trong base_dir
 
 training:
   batch_size: 4
   num_epochs: 30
-  model_path: "model_refactored.pt" #Thay đổi tên với mỗi mô hình
-  plot_dir: "plots_refactored"      #Thay đổi tên chứa plot
+  # model_path: "model_refactored.pt" #Thay đổi tên với mỗi mô hình
+  # plot_dir: "plots_refactored"      #Thay đổi tên chứa plot
 
 model:
   name: "DeepLabV3Plus" #Unet, FPN, DeeplabV3, Deeplabv3+, LinkNet
