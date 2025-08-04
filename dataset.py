@@ -7,14 +7,13 @@ import torch
 
 
 class CustomDataset(Dataset):
-
     def __init__(self, image_paths, mask_paths, image_transform=None, mask_transform=None, config=None):
         self.image_paths = image_paths
         self.mask_paths = mask_paths
         self.image_transform = image_transform
         self.mask_transform = mask_transform
         if config is None:
-            raise ValueError("Config phải được cung cấp cho CustomDataset")
+            raise ValueError("Config must be provided to CustomDataset")
         self.num_classes = config['model']['classes']
 
     def __len__(self):
@@ -22,7 +21,7 @@ class CustomDataset(Dataset):
 
     def __getitem__(self, idx):
         image = Image.open(self.image_paths[idx]).convert("RGB")
-        mask = Image.open(self.mask_paths[idx]).convert("L")
+        mask = Image.open(self.mask_paths[idx]).convert("L") # Grayscale
 
         if self.image_transform:
             image = self.image_transform(image)
@@ -31,15 +30,14 @@ class CustomDataset(Dataset):
             mask = self.mask_transform(mask)
 
         if self.num_classes == 1:
-            mask = (mask > 0).float()
+            mask = (mask > 0).float() # Binary mask [0, 1]
         else:
-            mask = (mask > 0).long().squeeze(0)
+            mask = (mask > 0).long().squeeze(0) # Multiclass mask [0, 1, 2...]
 
         return image, mask
 
 
 def get_dataloaders(config):
-
     image_transform = transforms.Compose([
         transforms.ToTensor(),
         transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
@@ -54,14 +52,13 @@ def get_dataloaders(config):
     train_mask_paths = sorted(glob.glob(os.path.join(dataset_root, "mask/Train/*.png")))
     val_image_paths = sorted(glob.glob(os.path.join(dataset_root, "images/Val/*.png")))
     val_mask_paths = sorted(glob.glob(os.path.join(dataset_root, "mask/Val/*.png")))
-    # --- Kết thúc phần cập nhật ---
 
-    assert len(train_image_paths) > 0, f"Không tìm thấy ảnh trong thư mục train! Đường dẫn kiểm tra: {os.path.join(dataset_root, 'images/Train/*.png')}"
-    assert len(train_image_paths) == len(train_mask_paths), "Số lượng ảnh và mask không khớp!"
-    assert len(val_image_paths) > 0, f"Không tìm thấy ảnh trong thư mục val! Đường dẫn kiểm tra: {os.path.join(dataset_root, 'images/Val/*.png')}"
-    assert len(val_image_paths) == len(val_mask_paths), "Số lượng ảnh và mask trong tập val không khớp!"
+    assert len(train_image_paths) > 0, f"No images found in train directory! Path checked: {os.path.join(dataset_root, 'images/Train/*.png')}"
+    assert len(train_image_paths) == len(train_mask_paths), "Number of train images and masks do not match!"
+    assert len(val_image_paths) > 0, f"No images found in val directory! Path checked: {os.path.join(dataset_root, 'images/Val/*.png')}"
+    assert len(val_image_paths) == len(val_mask_paths), "Number of val images and masks do not match!"
 
-    print(f"🔍 Tìm thấy {len(train_image_paths)} ảnh trong tập train và {len(val_image_paths)} ảnh trong tập val từ bộ dữ liệu '{dataset_name}'.")
+    print(f"🔍 Found {len(train_image_paths)} images in the train set and {len(val_image_paths)} images in the val set from the '{dataset_name}' dataset.")
 
     train_dataset = CustomDataset(
         image_paths=train_image_paths,
