@@ -3,37 +3,37 @@ device: 'cuda' #(cpu)
 
 data:
   base_dir: "Satellite_Datasets"
-  dataset_name: "Massachusetts" #Đổi tên dataset trong base_dir
+  dataset_name: "Massachusetts"
 
 training:
   batch_size: 4
   num_epochs: 30
-  # model_path: "model_refactored.pt" #Thay đổi tên với mỗi mô hình
-  # plot_dir: "plots_refactored"      #Thay đổi tên chứa plot
+#  model_path: "model/model_mc_DLv3+.pt" #Thay đổi tên với mỗi mô hình
+#  plot_dir: "plot/plots_mc_DLv3+"      #Thay đổi tên chứa plot
 
 model:
-  name: "DeepLabV3Plus" #Unet, FPN, DeeplabV3, Deeplabv3+, LinkNet
-  encoder_name: "resnet50" # resnet50, resnet101
+  name: "DeepLabV3Plus" #Unet, FPN, DeepLabV3, DeepLabV3Plus, Unet++, DPT, SegFormer
+  encoder_name: "efficientnet-b3" # resnet18, resnet50, vgg11, vgg13, densenet121, densenet169, efficientnet-b1,b2,b3, mobileone_s0,s1,s2,s3,s4
   encoder_weights: "imagenet"
   in_channels: 3
-  classes: 2 #2 với loss CrossEntropyLoss, 1 đối với các hàm loss còn lại
+  classes: 2 #2 với loss CrossEntropyLoss
   activation: null
 
 # Các lựa chọn: CombinedLoss, DiceLoss, JaccardLoss, BCEWithLogitsLoss, FocalLoss, CrossEntropyLoss
 loss:
   name: "CrossEntropyLoss"
-  #Nếu dùng loss ngoài CombinedLoss thì comment lại 3 dòng dưới, dùng CombinedLoss thì bỏ commentt
+  #Nếu dùng loss ngoài CombinedLoss thì comment lại 3 dòng dưới
 #  params:
 #    weight_bce: 0.5   # Tham số này chỉ dùng cho CombinedLoss
 #    weight_dice: 0.5  # Tham số này chỉ dùng cho CombinedLoss
 
 optimizer:
   name: "Adam"
-  lr: 0.001 # có thể thay đổi
+  lr: 0.001
 
 scheduler:
   name: "ReduceLROnPlateau"
   params:
     mode: 'min'
     factor: 0.1
-    patience: 5 #sau mỗi 5 epoch loss ko thay đổi thì lr sẽ * với 0.1
+    patience: 5
