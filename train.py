@@ -27,6 +27,7 @@ def log_training_times(plot_dir, epoch_times, total_time):
         f.write(f"Total training time: {total_time / 60:.2f} minutes ({total_time:.2f} seconds)\n")
     logging.info(f"📄 Time report saved at: {time_log_path}")
 
+
 def save_confusion_matrix(stats, path):
     tp, fp, fn, tn = stats['tp'], stats['fp'], stats['fn'], stats['tn']
     total_tp, total_fp, total_fn, total_tn = tp.item(), fp.item(), fn.item(), tn.item()
@@ -96,6 +97,7 @@ def save_training_plots(history, config):
     plt.savefig(plot_path)
     logging.info(f"Summary plot saved at: {plot_path}")
     plt.close()
+
 
 def main(config_path='config.yaml'):
     with open(config_path, 'r', encoding='utf-8') as f:
@@ -177,6 +179,7 @@ def main(config_path='config.yaml'):
                 total_train_tp += tp.sum()
                 total_train_fp += fp.sum()
                 total_train_fn += fn.sum()
+                total_train_tn += tn.sum()
                 train_accuracy_sum += pixel_accuracy(outputs, masks) * images.size(0)
 
         history['train_loss'].append(running_train_loss / len(train_loader))
@@ -184,9 +187,11 @@ def main(config_path='config.yaml'):
         history['train_focal_loss'].append(train_focal_loss_sum / len(train_loader))
         history['train_accuracy'].append(train_accuracy_sum / len(train_loader.dataset))
         history['train_iou_score'].append(
-            smp.metrics.iou_score(total_train_tp, total_train_fp, total_train_fn, reduction='micro').item())
+            smp.metrics.iou_score(total_train_tp, total_train_fp, total_train_fn, total_train_tn,
+                                  reduction='micro').item())
         history['train_f1_score'].append(
-            smp.metrics.f1_score(total_train_tp, total_train_fp, total_train_fn, reduction='micro').item())
+            smp.metrics.f1_score(total_train_tp, total_train_fp, total_train_fn, total_train_tn,
+                                 reduction='micro').item())
 
         model.eval()
         running_val_loss, val_dice_loss_sum, val_focal_loss_sum = 0.0, 0.0, 0.0
@@ -213,10 +218,11 @@ def main(config_path='config.yaml'):
         history['val_dice_loss'].append(val_dice_loss_sum / len(val_loader))
         history['val_focal_loss'].append(val_focal_loss_sum / len(val_loader))
         history['val_accuracy'].append(val_accuracy_sum / len(val_loader.dataset))
-        current_val_iou = smp.metrics.iou_score(total_val_tp, total_val_fp, total_val_fn, reduction='micro').item()
+        current_val_iou = smp.metrics.iou_score(total_val_tp, total_val_fp, total_val_fn, total_val_tn,
+                                                reduction='micro').item()
         history['val_iou_score'].append(current_val_iou)
         history['val_f1_score'].append(
-            smp.metrics.f1_score(total_val_tp, total_val_fp, total_val_fn, reduction='micro').item())
+            smp.metrics.f1_score(total_val_tp, total_val_fp, total_val_fn, total_val_tn, reduction='micro').item())
         scheduler.step(history["val_loss"][-1])
 
         if current_val_iou > best_val_iou:
@@ -261,7 +267,6 @@ def main(config_path='config.yaml'):
     if best_epoch_stats:
         cm_path = os.path.join(config['training']['plot_dir'], 'confusion_matrix.png')
         save_confusion_matrix(best_epoch_stats, cm_path)
-
 
 if __name__ == '__main__':
     main()
