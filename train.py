@@ -177,6 +177,7 @@ def main(config_path='config.yaml'):
     logging.info(f"✅ Mô hình tốt nhất đã được lưu tại: {config['training']['model_path']}")
     logging.info(f"📊 Kết quả từng epoch đã được lưu tại: {csv_log_path}")
 
+    save_training_plots_updated(history, config)
 
 def save_training_plots_updated(history, config):
     plot_dir = config['training']['plot_dir']
@@ -236,3 +237,4 @@ def save_training_plots_updated(history, config):
 
 if __name__ == '__main__':
     main()
+
