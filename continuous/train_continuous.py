@@ -7,6 +7,7 @@ import segmentation_models_pytorch as smp
 from tqdm import tqdm
 import numpy as np
 import matplotlib.pyplot as plt
+import seaborn as sns
 import math
 import csv
 from datetime import datetime
@@ -18,13 +19,36 @@ from dataset import get_dataloaders
 def log_training_times(plot_dir, epoch_times, total_time):
     time_log_path = os.path.join(plot_dir, "training_times.txt")
     with open(time_log_path, 'w', encoding='utf-8') as f:
-        f.write("BÁO CÁO THỜI GIAN HUẤN LUYỆN\n")
+        f.write("TRAINING TIME REPORT\n")
         f.write("=" * 30 + "\n")
         for i, t in enumerate(epoch_times):
-            f.write(f"Thời gian Epoch {i + 1:02d}: {t:.2f} giây\n")
+            f.write(f"Epoch {i + 1:02d} Time: {t:.2f} seconds\n")
         f.write("=" * 30 + "\n")
-        f.write(f"Tổng thời gian huấn luyện: {total_time / 60:.2f} phút ({total_time:.2f} giây)\n")
-    logging.info(f"📄 Báo cáo thời gian đã được lưu tại: {time_log_path}")
+        f.write(f"Total training time: {total_time / 60:.2f} minutes ({total_time:.2f} seconds)\n")
+    logging.info(f"📄 Time report saved at: {time_log_path}")
+
+
+def save_confusion_matrix(stats, path):
+    tp, fp, fn, tn = stats['tp'], stats['fp'], stats['fn'], stats['tn']
+    total_tp, total_fp, total_fn, total_tn = tp.item(), fp.item(), fn.item(), tn.item()
+    matrix = np.array([[total_tp, total_fp], [total_fn, total_tn]])
+
+    group_counts = [f"{value:,.0f}" for value in matrix.flatten()]
+    total_pixels = matrix.sum()
+    group_percentages = [f"{value / total_pixels:.2%}" for value in matrix.flatten()]
+    labels = [f"{v1}\n{v2}" for v1, v2 in zip(group_counts, group_percentages)]
+    labels = np.asarray(labels).reshape(2, 2)
+
+    plt.figure(figsize=(8, 6))
+    sns.heatmap(matrix, annot=labels, fmt='', cmap='Blues',
+                xticklabels=['Predicted Road', 'Predicted Background'],
+                yticklabels=['Actual Road', 'Actual Background'])
+    plt.xlabel('Model Prediction')
+    plt.ylabel('Actual Value')
+    plt.title('Confusion Matrix for Best Epoch', fontsize=14)
+    plt.savefig(path)
+    plt.close()
+    logging.info(f"📈 Confusion matrix saved at: {path}")
 
 
 def save_training_plots(history, config):
@@ -34,52 +58,45 @@ def save_training_plots(history, config):
 
     for key, value in history.items():
         np.save(os.path.join(plot_dir, f'{key}.npy'), np.array(value))
-    logging.info(f"\nLịch sử huấn luyện đã được lưu vào thư mục '{plot_dir}'")
+    logging.info(f"\nTraining history saved to '{plot_dir}' directory.")
 
     epochs_range = range(1, num_epochs + 1)
     plt.style.use('seaborn-v0_8-whitegrid')
 
     plot_pairs = {
-        f'Loss (chính: {config["loss"]["name"]})': ('train_loss', 'val_loss'),
+        f'Loss (Main: {config["loss"]["name"]})': ('train_loss', 'val_loss'),
         'IoU Score': ('train_iou_score', 'val_iou_score'),
         'F1-Score': ('train_f1_score', 'val_f1_score'),
         'Pixel Accuracy': ('train_accuracy', 'val_accuracy'),
-        'Dice Loss (val)': 'val_dice_loss',
-        'Focal Loss (val)': 'val_focal_loss',
+        'Dice Loss': ('train_dice_loss', 'val_dice_loss'),
+        'Focal Loss': ('train_focal_loss', 'val_focal_loss'),
     }
 
-    available_plots = {title: keys for title, keys in plot_pairs.items() if
-                       (isinstance(keys, tuple) and keys[0] in history and keys[1] in history) or (
-                                   isinstance(keys, str) and keys in history)}
-    num_plots = len(available_plots)
+    num_plots = len(plot_pairs)
     num_cols = 3
     num_rows = math.ceil(num_plots / num_cols)
 
     fig, axes = plt.subplots(num_rows, num_cols, figsize=(num_cols * 6, num_rows * 5))
-    fig.suptitle('Kết quả Huấn luyện Mô hình', fontsize=16, y=0.97)
+    fig.suptitle('Model Training Results', fontsize=16, y=0.97)
     axes = axes.flatten()
 
-    for i, (title, keys) in enumerate(available_plots.items()):
+    for i, (title, keys) in enumerate(plot_pairs.items()):
         ax = axes[i]
-        if isinstance(keys, tuple):
-            ax.plot(epochs_range, history[keys[0]], 'o-', label=f'Train')
-            ax.plot(epochs_range, history[keys[1]], 'o-', label=f'Validation')
-        else:
-            ax.plot(epochs_range, history[keys], 'o-', label=f'Validation')
+        ax.plot(epochs_range, history[keys[0]], 'o-', label='Train')
+        ax.plot(epochs_range, history[keys[1]], 'o-', label='Validation')
         ax.set_title(title)
         ax.set_xlabel('Epoch')
-        ax.set_ylabel('Giá trị')
+        ax.set_ylabel('Value')
         ax.legend()
 
-    for i in range(len(available_plots), len(axes)):
+    for i in range(len(plot_pairs), len(axes)):
         axes[i].axis('off')
 
     plt.tight_layout(rect=[0, 0, 1, 0.95])
     plot_path = os.path.join(plot_dir, "training_metrics_summary.png")
     plt.savefig(plot_path)
-    logging.info(f"Biểu đồ tổng hợp đã được lưu tại: {plot_path}")
+    logging.info(f"Summary plot saved at: {plot_path}")
     plt.close()
-
 
 def main(config):
     file_suffix = f"{config['data']['dataset_name']}_{config['loss']['name']}_{config['model']['name']}_{config['model']['encoder_name']}"
@@ -93,34 +110,39 @@ def main(config):
     setup_logging(config)
 
     csv_log_path = os.path.join(config['training']['plot_dir'], 'epoch_results.csv')
-    csv_headers = ['timestamp', 'epoch', 'val_loss', 'val_iou', 'val_f1', 'val_accuracy', 'val_dice_loss',
-                   'val_focal_loss', 'train_loss', 'train_iou', 'train_f1', 'train_accuracy', 'epoch_time_s']
+    csv_headers = [
+        'timestamp', 'epoch', 'val_loss', 'val_iou', 'val_f1', 'val_accuracy', 'val_dice_loss', 'val_focal_loss',
+        'train_loss', 'train_iou', 'train_f1', 'train_accuracy', 'train_dice_loss', 'train_focal_loss', 'epoch_time_s'
+    ]
     with open(csv_log_path, 'w', newline='', encoding='utf-8') as f:
         writer = csv.writer(f)
         writer.writerow(csv_headers)
 
-    logging.info(f"\n{' BẮT ĐẦU THÍ NGHIỆM MỚI '.center(80, '=')}")
-    logging.info(f"Cấu hình: {file_suffix}")
+    logging.info(f"\n{' STARTING NEW EXPERIMENT '.center(80, '=')}")
+    logging.info(f"Configuration: {file_suffix}")
     logging.info(f"{'='.center(80, '=')}")
 
-    logging.info("🔄 Tải dữ liệu...")
+    logging.info("🔄 Loading data...")
     train_loader, val_loader = get_dataloaders(config)
 
-    logging.info("🔧 Khởi tạo mô hình, hàm loss, và optimizer...")
+    logging.info("🔧 Initializing model, loss function, and optimizer...")
     model = get_model(config).to(device)
     loss_fn = get_loss_function(config)
     optimizer = get_optimizer(model, config)
     scheduler = get_scheduler(optimizer, config)
 
     loss_mode = "binary" if config['model']['classes'] == 1 else "multiclass"
-
     dice_loss_fn = smp.losses.DiceLoss(mode=loss_mode)
     focal_loss_fn = smp.losses.FocalLoss(mode=loss_mode)
 
-    history = {"train_loss": [], "val_loss": [], "train_iou_score": [], "val_iou_score": [], "train_f1_score": [],
-               "val_f1_score": [], "train_accuracy": [], "val_accuracy": [], "val_dice_loss": [], "val_focal_loss": []}
+    history = {
+        "train_loss": [], "val_loss": [], "train_iou_score": [], "val_iou_score": [],
+        "train_f1_score": [], "val_f1_score": [], "train_accuracy": [], "val_accuracy": [],
+        "train_dice_loss": [], "val_dice_loss": [], "train_focal_loss": [], "val_focal_loss": []
+    }
 
     best_val_iou = 0.0
+    best_epoch_stats = {}
     start_time = time.time()
     epoch_times = []
 
@@ -128,9 +150,10 @@ def main(config):
         epoch_start = time.time()
 
         model.train()
-        running_train_loss = 0.0
-        total_train_tp, total_train_fp, total_train_fn = 0, 0, 0
+        running_train_loss, train_dice_loss_sum, train_focal_loss_sum = 0.0, 0.0, 0.0
+        total_train_tp, total_train_fp, total_train_fn, total_train_tn = 0, 0, 0, 0
         train_accuracy_sum = 0.0
+
         for images, masks in tqdm(train_loader, desc=f"Epoch {epoch + 1} Train ({config['model']['encoder_name']})"):
             images, masks = images.to(device), masks.to(device)
             optimizer.zero_grad()
@@ -138,59 +161,64 @@ def main(config):
             loss = loss_fn(outputs, masks)
             loss.backward()
             optimizer.step()
+
             running_train_loss += loss.item()
             with torch.no_grad():
+                train_dice_loss_sum += dice_loss_fn(outputs, masks).item()
+                train_focal_loss_sum += focal_loss_fn(outputs, masks).item()
                 preds = torch.argmax(outputs, dim=1) if loss_mode == "multiclass" else (torch.sigmoid(outputs) > 0.5)
-                tp, fp, fn, _ = smp.metrics.get_stats(preds.long(), masks.long(), mode=loss_mode,
-                                                      num_classes=config['model'][
-                                                          'classes'] if loss_mode == "multiclass" else None)
+                tp, fp, fn, tn = smp.metrics.get_stats(preds.long(), masks.long(), mode=loss_mode,
+                                                       num_classes=config['model'][
+                                                           'classes'] if loss_mode == "multiclass" else None)
                 total_train_tp += tp.sum()
                 total_train_fp += fp.sum()
                 total_train_fn += fn.sum()
                 train_accuracy_sum += pixel_accuracy(outputs, masks) * images.size(0)
 
         history['train_loss'].append(running_train_loss / len(train_loader))
+        history['train_dice_loss'].append(train_dice_loss_sum / len(train_loader))
+        history['train_focal_loss'].append(train_focal_loss_sum / len(train_loader))
         history['train_accuracy'].append(train_accuracy_sum / len(train_loader.dataset))
         history['train_iou_score'].append(
-            smp.metrics.iou_score(total_train_tp, total_train_fp, total_train_fn, 0).item())
-        history['train_f1_score'].append(smp.metrics.f1_score(total_train_tp, total_train_fp, total_train_fn, 0).item())
+            smp.metrics.iou_score(total_train_tp, total_train_fp, total_train_fn, reduction='micro').item())
+        history['train_f1_score'].append(
+            smp.metrics.f1_score(total_train_tp, total_train_fp, total_train_fn, reduction='micro').item())
 
         model.eval()
-        running_val_loss = 0.0
-        val_dice_loss_sum = 0.0
-        val_focal_loss_sum = 0.0
-        total_val_tp, total_val_fp, total_val_fn = 0, 0, 0
+        running_val_loss, val_dice_loss_sum, val_focal_loss_sum = 0.0, 0.0, 0.0
+        total_val_tp, total_val_fp, total_val_fn, total_val_tn = 0, 0, 0, 0
         val_accuracy_sum = 0.0
         with torch.no_grad():
             for images, masks in tqdm(val_loader, desc=f"Epoch {epoch + 1} Val ({config['model']['encoder_name']})"):
                 images, masks = images.to(device), masks.to(device)
                 outputs = model(images)
-
                 running_val_loss += loss_fn(outputs, masks).item()
-                val_dice_loss_sum += dice_loss_fn(outputs, masks).item()  # CẬP NHẬT
-                val_focal_loss_sum += focal_loss_fn(outputs, masks).item()  # CẬP NHẬT
-
+                val_dice_loss_sum += dice_loss_fn(outputs, masks).item()
+                val_focal_loss_sum += focal_loss_fn(outputs, masks).item()
                 val_accuracy_sum += pixel_accuracy(outputs, masks) * images.size(0)
                 preds = torch.argmax(outputs, dim=1) if loss_mode == "multiclass" else (torch.sigmoid(outputs) > 0.5)
-                tp, fp, fn, _ = smp.metrics.get_stats(preds.long(), masks.long(), mode=loss_mode,
-                                                      num_classes=config['model'][
-                                                          'classes'] if loss_mode == "multiclass" else None)
+                tp, fp, fn, tn = smp.metrics.get_stats(preds.long(), masks.long(), mode=loss_mode,
+                                                       num_classes=config['model'][
+                                                           'classes'] if loss_mode == "multiclass" else None)
                 total_val_tp += tp.sum()
                 total_val_fp += fp.sum()
                 total_val_fn += fn.sum()
+                total_val_tn += tn.sum()
 
         history['val_loss'].append(running_val_loss / len(val_loader))
         history['val_dice_loss'].append(val_dice_loss_sum / len(val_loader))
         history['val_focal_loss'].append(val_focal_loss_sum / len(val_loader))
         history['val_accuracy'].append(val_accuracy_sum / len(val_loader.dataset))
-        current_val_iou = smp.metrics.iou_score(total_val_tp, total_val_fp, total_val_fn, 0).item()
+        current_val_iou = smp.metrics.iou_score(total_val_tp, total_val_fp, total_val_fn, reduction='micro').item()
         history['val_iou_score'].append(current_val_iou)
-        history['val_f1_score'].append(smp.metrics.f1_score(total_val_tp, total_val_fp, total_val_fn, 0).item())
+        history['val_f1_score'].append(
+            smp.metrics.f1_score(total_val_tp, total_val_fp, total_val_fn, reduction='micro').item())
         scheduler.step(history["val_loss"][-1])
 
         if current_val_iou > best_val_iou:
             best_val_iou = current_val_iou
             torch.save(model.state_dict(), config['training']['model_path'])
+            best_epoch_stats = {'tp': total_val_tp, 'fp': total_val_fp, 'fn': total_val_fn, 'tn': total_val_tn}
 
         epoch_time = time.time() - epoch_start
         epoch_times.append(epoch_time)
@@ -200,9 +228,10 @@ def main(config):
             timestamp_now, epoch + 1,
             f"{history['val_loss'][-1]:.4f}", f"{history['val_iou_score'][-1]:.4f}",
             f"{history['val_f1_score'][-1]:.4f}", f"{history['val_accuracy'][-1]:.4f}",
-            f"{history['val_dice_loss'][-1]:.4f}", f"{history['val_focal_loss'][-1]:.4f}",  # Thêm dữ liệu mới
+            f"{history['val_dice_loss'][-1]:.4f}", f"{history['val_focal_loss'][-1]:.4f}",
             f"{history['train_loss'][-1]:.4f}", f"{history['train_iou_score'][-1]:.4f}",
             f"{history['train_f1_score'][-1]:.4f}", f"{history['train_accuracy'][-1]:.4f}",
+            f"{history['train_dice_loss'][-1]:.4f}", f"{history['train_focal_loss'][-1]:.4f}",
             f"{epoch_time:.2f}"
         ]
         with open(csv_log_path, 'a', newline='', encoding='utf-8') as f:
@@ -214,14 +243,19 @@ def main(config):
 
     end_time = time.time()
     total_training_time = end_time - start_time
-    logging.info(f"\n--- Huấn luyện cho {file_suffix} hoàn tất ---")
+    logging.info(f"\n--- Training for {file_suffix} complete ---")
     log_training_times(config['training']['plot_dir'], epoch_times, total_training_time)
 
-    logging.info(f"✅ Mô hình tốt nhất đã được lưu tại: {config['training']['model_path']}")
-    logging.info(f"📊 Kết quả từng epoch đã được lưu tại: {csv_log_path}")
+    logging.info(f"✅ Best model saved at: {config['training']['model_path']}")
+    logging.info(f"📊 Per-epoch results saved at: {csv_log_path}")
 
     save_training_plots(history, config)
-    logging.info(f"\n{' KẾT THÚC THÍ NGHIỆM '.center(80, '=')}\n")
+
+    if best_epoch_stats:
+        cm_path = os.path.join(config['training']['plot_dir'], 'confusion_matrix.png')
+        save_confusion_matrix(best_epoch_stats, cm_path)
+
+    logging.info(f"\n{' EXPERIMENT FINISHED '.center(80, '=')}\n")
 
 if __name__ == '__main__':
     with open('config.yaml', 'r', encoding='utf-8') as f:
