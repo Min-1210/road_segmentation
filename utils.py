@@ -31,7 +31,6 @@ class CombinedLoss(torch.nn.Module):
         dice = self.dice_loss(outputs, masks)
         return self.weight_bce * bce + self.weight_dice * dice
 
-
 def get_loss_function(config):
     name = config['loss']['name']
     params = config['loss'].get('params', {})
@@ -47,14 +46,14 @@ def get_loss_function(config):
         return smp.losses.JaccardLoss(mode=loss_mode, **params)
     elif name == "BCEWithLogitsLoss":
         if num_classes > 1:
-            raise ValueError("BCEWithLogitsLoss chỉ có thể được sử dụng với classes=1.")
+            raise ValueError("BCEWithLogitsLoss can only be used with classes=1.")
         return torch.nn.BCEWithLogitsLoss()
     elif name == "FocalLoss":
         return smp.losses.FocalLoss(mode=loss_mode, **params)
     elif name == "CrossEntropyLoss":
         return torch.nn.CrossEntropyLoss(**params)
     else:
-        raise ValueError(f"Hàm loss '{name}' không được hỗ trợ.")
+        raise ValueError(f"Loss function '{name}' is not supported.")
 
 
 def get_model(config):
@@ -64,24 +63,22 @@ def get_model(config):
     if model_params.get('activation') == 'null':
         model_params['activation'] = None
 
-    if model_name == "DeepLabV3Plus":
-        return smp.DeepLabV3Plus(**model_params)
-    elif model_name == "Unet":
-        return smp.Unet(**model_params)
-    elif model_name == "FPN":
-        return smp.FPN(**model_params)
-    elif model_name == "DeepLabV3":
-        return smp.DeepLabV3(**model_params)
-    elif model_name == "LinkNet":
-        return smp.Linknet(**model_params)
-    elif model_name == "UNet++":
-        return smp.UnetPlusPlus(**model_params)
-    elif model_name == "DPT":
-        return smp.DPT(**model_params)
-    elif model_name == "SegFormer":
-        return smp.Segformer(**model_params)
+    model_map = {
+        "DeepLabV3Plus": smp.DeepLabV3Plus,
+        "Unet": smp.Unet,
+        "FPN": smp.FPN,
+        "DeepLabV3": smp.DeepLabV3,
+        "LinkNet": smp.Linknet,
+        "UNet++": smp.UnetPlusPlus,
+        "DPT": smp.DPT,
+        "SegFormer": smp.Segformer,
+    }
+
+    model_class = model_map.get(model_name)
+    if model_class:
+        return model_class(**model_params)
     else:
-        raise ValueError(f"Mô hình '{model_name}' không được hỗ trợ.")
+        raise ValueError(f"Model '{model_name}' is not supported.")
 
 
 def get_optimizer(model, config):
@@ -91,7 +88,7 @@ def get_optimizer(model, config):
     if name == "Adam":
         return torch.optim.Adam(model.parameters(), lr=lr)
     else:
-        raise ValueError(f"Optimizer '{name}' không được hỗ trợ.")
+        raise ValueError(f"Optimizer '{name}' is not supported.")
 
 
 def get_scheduler(optimizer, config):
@@ -101,19 +98,19 @@ def get_scheduler(optimizer, config):
     if name == "ReduceLROnPlateau":
         return torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, **params)
     else:
-        raise ValueError(f"Scheduler '{name}' không được hỗ trợ.")
+        raise ValueError(f"Scheduler '{name}' is not supported.")
 
 
 def pixel_accuracy(outputs, masks):
-    if outputs.shape[1] == 1:
-        outputs = torch.sigmoid(outputs)
-        preds = (outputs > 0.5)
+    if outputs.shape[1] == 1:  # Binary case
+        preds = (torch.sigmoid(outputs) > 0.5)
     else:
         preds = torch.argmax(outputs, dim=1)
 
     correct = (preds == masks.squeeze(1).long()).float()
     acc = correct.sum() / correct.numel()
     return acc.item()
+
 
 def setup_logging(config):
     log_dir = config['training']['plot_dir']
