@@ -94,7 +94,7 @@ Có thể thay đổi các thông số trừ model: name và encoder_name còn l
 ```bash
     model_name_to_test = "SegFormer"
     encoders_to_test = [
-        "resnet50",
+        "resnet50",  # Thông số cần thay đổi
         "resnet18",
         "vgg11",
         "vgg13",
