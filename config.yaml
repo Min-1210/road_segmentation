@@ -21,6 +21,7 @@ model:
 
 overplay:
   model_path: Result\DeepGlobal\DeepLabV3Plus\model\model_DeepGlobal_CrossEntropyLoss_DeepLabV3Plus_mobileone_s0.pt
+  # Chuyển đến đường dẫn chứa fiel weight sau đó đổi model theo weight
 
 # Các lựa chọn: CombinedLoss, DiceLoss, JaccardLoss, BCEWithLogitsLoss, FocalLoss, CrossEntropyLoss
 loss:
@@ -40,3 +41,4 @@ scheduler:
     mode: 'min'
     factor: 0.1
     patience: 5
+
