@@ -116,4 +116,6 @@ if __name__ == "__main__":
     main(config_path=args.config, image_path=args.image_path, folder_path=args.folder_path)
 
     # python overplay.py --image_path test.jpg
+
     # python overplay.py --folder_path ./test_images
+    # Example: python overplay.py --image_path "Satellite_Datasets\Test\images\Test\image (67).png"
