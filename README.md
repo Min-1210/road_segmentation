@@ -26,9 +26,11 @@ Các kịch bản sử dụng đầy đủ: Cung cấp các script riêng biệt
 │       ├── images/
 │       │   ├── Train/
 │       │   └── Val/
+│       │   └── Test/
 │       └── mask/
 │           ├── Train/
 │           └── Val/
+│           └── Test/
 ├── model/                    # Thư mục chứa các file model đã huấn luyện (.pt)
 ├── plot/                     # Thư mục chứa kết quả (biểu đồ, log, ma trận nhầm lẫn)
 ├── config.yaml               # File cấu hình chính của dự án
@@ -42,52 +44,16 @@ Các kịch bản sử dụng đầy đủ: Cung cấp các script riêng biệt
 ├── utils.py                  # Các hàm tiện ích (lấy model, loss, optimizer...)
 └── README.md                 # File hướng dẫn
 ```
-```bash
-Python 3.11.13
-road_segmentation/          # Dataset folders (Train / Validation / Test)
-├── Satellite_Datasets
-│   ├── Massachusetts/
-│       ├── images/               
-│           ├── train/
-│           ├── val/
-│           └── test/
-│       ├── images/
-│           ├── train/
-│           ├── val/
-│           └── test/
-│
-├── dataset.py
-├── train.py    
-├── utils.py
-├── plot.py
-├── config.yaml
-├── train_continuous.py
-├── run_parameters.py
-│ 
-├── model/                   
-│   ├── training_model.pt
-│ 
-├── plot/
-│   ├── epoch_results.csv
-│   ├── train_accuracy.npy
-│   ├── train_f1_score.npy
-│   ├── train_iou_score.npy
-│   ├── train_loss.npy
-│   ├── training.log
-│   └── training_metrics_summary.png
-│   ├── training_times.txt
-│   ├── val_accuracy.npy
-│   ├── val_f1_score.npy
-│   ├── val_iou_score.npy
-│   ├── val_loss.npy
-│ 
-├── __pycache__/            # Python bytecode cache (auto-generated)
-```
 ## Sử dụng 🛠️
-1. Tải source code về máy tính của bạn
+1. Chuẩn bị môi trường:
+   Clone repository này về máy:
 ```bash
 git clone https://github.com/Min-1210/road_segmentation.git
 ```
+```bash
+cd road_segmentation
+```
+    Tạo  
 2. Cài đặt thư viện
 ```bash
 pip install -r requirements.txt
