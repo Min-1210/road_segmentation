@@ -44,7 +44,7 @@ Các kịch bản sử dụng đầy đủ: Cung cấp các script riêng biệt
 ├── utils.py                  # Các hàm tiện ích (lấy model, loss, optimizer...)
 └── README.md                 # File hướng dẫn
 ```
-## Sử dụng 🛠️
+## Bắt đầu
 1. Chuẩn bị môi trường:
    Clone repository này về máy:
 ```bash
@@ -53,37 +53,93 @@ git clone https://github.com/Min-1210/road_segmentation.git
 ```bash
 cd road_segmentation
 ```
-    Tạo  
-2. Cài đặt thư viện
+   Tạo và kích hoạt môn trường ảo:
+```bash
+
+```
+
+   Cài đặt thư viện
 ```bash
 pip install -r requirements.txt
 ```
+2. Chuẩn bị Dataset
+```bash
+Satellite_Datasets/
+└── Tên_Dataset_Của_Bạn/  (ví dụ: DeepGlobal)
+    ├── images/
+    │   ├── Train/
+    │   │   ├── image1.png
+    │   │   └── ...
+    │   ├── Val/
+    │   │   ├── image2.png
+    │   │   └── ...
+    │   └── Test/ (Tùy chọn, dùng cho test.py)
+    │       ├── image3.png
+    │       └── ...
+    └── mask/
+        ├── Train/
+        │   ├── image1.png
+        │   └── ...
+        ├── Val/
+        │   ├── image2.png
+        │   └── ...
+        └── Test/ (Tùy chọn, dùng cho test.py)
+            ├── image3.png
+            └── ...
+```
+Lưu ý: Tên của ảnh và mask tương ứng phải giống hệt nhau.
 
-3. Thay đổi tham số ở file config
+## Sử dụng ⚙️
+Sử dụng để train một kiến trúc với nhiều backbone không cần thay đổi sau mỗi lần train xong
+1. Cấu hình thử nghiệm (config.yaml)
+Mở file config.yaml và chỉnh sửa các tham số cho phù hợp.
 
-4. Chạy file train
+data: Chỉ định tên bộ dữ liệu bạn muốn sử dụng (phải khớp với tên thư mục trong Satellite_Datasets).
+
+model: Chọn name (kiến trúc model) và encoder_name bạn muốn thử nghiệm.
+
+training: Thiết lập batch_size, num_epochs.
+
+loss, optimizer, scheduler: Chọn các hàm và tham số tương ứng.
+
+2. Huấn luyện một mô hình
+Để bắt đầu quá trình huấn luyện với cấu hình trong config.yaml, chạy lệnh:
 ```bash
 python train.py
 ```
-## Sử dụng Continuous 🛠️
-Sử dụng để train một kiến trúc với nhiều backbone không cần thay đổi sau mỗi lần train xong
+Quá trình huấn luyện sẽ bắt đầu. Model tốt nhất (dựa trên Val IoU) và các kết quả sẽ được lưu vào thư mục model/ và plot/ với tên được tạo tự động dựa trên cấu hình.
 
-1. Tải source code về máy tính của bạn
-```bash
-git clone https://github.com/Min-1210/road_segmentation.git
+3. Đánh giá mô hình trên tập Test
+Sau khi huấn luyện, bạn có thể đánh giá hiệu năng của model trên tập dữ liệu test.
+
+Ví dụ:
+```Bash
+python test.py "model/model_DeepGlobal_CrossEntropyLoss_UNet++_mobileone_s4.pt" "Satellite_Datasets/DeepGlobal" --output-dir "test_results/UNet++_s4"
 ```
+4. Dự đoán trên ảnh mới (overplay.py)
+Sử dụng script overplay.py để áp dụng model đã huấn luyện lên một ảnh hoặc một thư mục ảnh. Script này được thiết kế để chạy độc lập và tự động nhận diện cấu hình từ tên file model.
 
-2. Cài đặt thư viện
-```bash
-pip install -r requirements.txt
+Dự đoán một ảnh:
+```Bash
+python overplay.py --model_path "đường/dẫn/tới/model.pt" --image_path "ảnh/cần/dự/đoán.jpg"
 ```
-3. Chuyển train_continuous.py và run_parameters.py từ Continuous ra ngoài không gian làm việc
+Dự đoán cả thư mục:
+```Bash
+python overplay.py --model_path "đường/dẫn/tới/model.pt" --folder_path "thư/mục/chứa/ảnh"
+```
+5. Chạy hàng loạt thử nghiệm
+Script run_parameters.py là một công cụ mạnh mẽ để tự động huấn luyện và so sánh nhiều encoder cho một kiến trúc model nhất định.
 
-4. Thay đổi file config.yaml
+Mở file run_parameters.py.
 
-Có thể thay đổi các thông số trừ model: name và encoder_name còn lại có thể thay đổi được
+Chỉnh sửa model_name_to_test và danh sách encoders_to_test.
 
-5. Thay đổi thông số trong file run_parameters.py
+Chạy script:
+
+```Bash
+python run_parameters.py
+```
+Script sẽ lần lượt chạy qua từng encoder trong danh sách, mỗi lần chạy là một quy trình huấn luyện đầy đủ.
 
 ```bash
     model_name_to_test = "SegFormer"
@@ -108,9 +164,19 @@ Thay đổi "model_name_to_test" với các kiến trúc như: Unet, FPN, DeepLa
 
 Thay đổi "encoders_to_test" với các backbone muốn sử dụng
 
-6. Train model
-```bash
-python run_parameters.py
-```
+#### 📊 Kết quả đầu ra
+Sau khi chạy huấn luyện, các file sau sẽ được tự động tạo ra trong thư mục plot/plot_<tên_cấu_hình>:
+
+training.log: Log chi tiết toàn bộ quá trình.
+
+epoch_results.csv: Bảng tổng hợp kết quả của từng epoch.
+
+training_metrics_summary.png: Biểu đồ so sánh các chỉ số train/val.
+
+confusion_matrix.png: Ma trận nhầm lẫn của epoch tốt nhất.
+
+training_times.txt: Báo cáo thời gian huấn luyện.
+
+Model tốt nhất sẽ được lưu tại model/model_<tên_cấu_hình>.pt.
 
 
