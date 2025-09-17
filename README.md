@@ -48,10 +48,10 @@ Các kịch bản sử dụng đầy đủ: Cung cấp các script riêng biệt
 1. Chuẩn bị môi trường:
    Clone repository này về máy:
 ```bash
-git clone https://github.com/Min-1210/road_segmentation.git
+   git clone https://github.com/Min-1210/road_segmentation.git
 ```
 ```bash
-cd road_segmentation
+   cd road_segmentation
 ```
    Tạo và kích hoạt môn trường ảo:
 ```bash
