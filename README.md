@@ -1,19 +1,47 @@
 # road_segmentation
-Dự án này sử dụng các mô hình Deep Learning để thực hiện bài toán phân vùng ngữ nghĩa (semantic segmentation), nhằm mục tiêu xác định và khoanh vùng các đối tượng đường đi trong ảnh vệ tinh.
+Dự án này là một quy trình hoàn chỉnh để huấn luyện và đánh giá các mô hình phân vùng ảnh (Image Segmentation) sử dụng PyTorch và thư viện Segmentation Models PyTorch (SMP). Project được thiết kế để có tính module hóa cao, dễ dàng cấu hình và mở rộng cho các bộ dữ liệu và kiến trúc mô hình khác nhau, đặc biệt là ảnh vệ tinh.
+
 ## Tính năng nổi bật ✨
-Nhiều kiến trúc mô hình: Dễ dàng chuyển đổi giữa các kiến trúc segmentation phổ biến như Unet, FPN, DeepLabV3, và DeepLabV3+.
+Cấu hình linh hoạt: Toàn bộ tham số được quản lý tập trung trong file config.yaml, giúp việc thử nghiệm trở nên dễ dàng mà không cần sửa code.
 
-Encoder mạnh mẽ: Hỗ trợ các bộ mã hóa (encoder) được tiền huấn luyện trên ImageNet như ResNet50, ResNet101 để tăng hiệu suất.
+Hỗ trợ nhiều kiến trúc: Dễ dàng chuyển đổi giữa các kiến trúc segmentation phổ biến (UNet, UNet++, DeepLabV3+, FPN...) và các encoder khác nhau (ResNet, EfficientNet, MobileOne...) từ thư viện SMP.
 
-Đa dạng Hàm Loss: Lựa chọn linh hoạt giữa các hàm loss như DiceLoss, JaccardLoss, BCEWithLogitsLoss, FocalLoss, hoặc một CombinedLoss tùy chỉnh (kết hợp BCE và Dice).
+Quy trình huấn luyện toàn diện:
 
-Cấu hình tập trung: Toàn bộ quá trình huấn luyện, từ đường dẫn dữ liệu đến các siêu tham số, đều được quản lý trong một file config.yaml duy nhất.
+Theo dõi đa chỉ số (IoU, F1-score, Accuracy, Dice Loss, Focal Loss).
 
-Đánh giá toàn diện: Tự động tính toán và theo dõi nhiều chỉ số quan trọng như IoU (Jaccard score), F1-score, và pixel accuracy cho cả tập huấn luyện và tập kiểm định.
+Lưu lại model có kết quả tốt nhất trên tập validation.
 
-Trực quan hóa kết quả: Tự động vẽ và lưu lại các biểu đồ chi tiết về quá trình huấn luyện, giúp dễ dàng phân tích và so sánh kết quả.
+Tự động tạo biểu đồ, ma trận nhầm lẫn (confusion matrix) và file log chi tiết (.csv, .log, .txt).
+
+Tự động hóa thử nghiệm: Script run_parameters.py cho phép tự động huấn luyện và đánh giá hàng loạt mô hình với các encoder khác nhau.
+
+Các kịch bản sử dụng đầy đủ: Cung cấp các script riêng biệt cho Huấn luyện, Đánh giá, và Dự đoán trên ảnh mới.
 
 ## Cấu trúc dự án
+```bash
+.
+├── Satellite_Datasets/       # Thư mục chứa các bộ dữ liệu
+│   └── DeepGlobal/
+│       ├── images/
+│       │   ├── Train/
+│       │   └── Val/
+│       └── mask/
+│           ├── Train/
+│           └── Val/
+├── model/                    # Thư mục chứa các file model đã huấn luyện (.pt)
+├── plot/                     # Thư mục chứa kết quả (biểu đồ, log, ma trận nhầm lẫn)
+├── config.yaml               # File cấu hình chính của dự án
+├── dataset.py                # Định nghĩa lớp Dataset và DataLoader
+├── overplay.py               # Script để chạy dự đoán trên ảnh mới
+├── plot.py                   # (Hàm vẽ biểu đồ phụ trợ)
+├── run_parameters.py         # Script tự động chạy nhiều thử nghiệm
+├── test.py                   # Script đánh giá model trên tập test
+├── train.py                  # Script huấn luyện chính (chạy đơn lẻ)
+├── train_continuous.py       # Script huấn luyện (dùng cho run_parameters.py)
+├── utils.py                  # Các hàm tiện ích (lấy model, loss, optimizer...)
+└── README.md                 # File hướng dẫn
+```
 ```bash
 Python 3.11.13
 road_segmentation/          # Dataset folders (Train / Validation / Test)
