@@ -55,9 +55,23 @@ cd road_segmentation
 ```
    Tạo và kích hoạt môn trường ảo:
 ```bash
+# Dành cho Linux/macOS
+python3 -m venv venv
+source venv/bin/activate
 
+# Dành cho Windows
+python -m venv venv
+.\venv\Scripts\activate
 ```
-
+Môi trường conda:
+1.1. Tạo một môi trường mới (ví dụ: segmentation_env) với phiên bản Python phù hợp:
+```bash
+conda create --name segmentation_env python=3.11 -y
+```
+1.2. Kích hoạt môi trường vừa tạo
+```bash
+conda activate segmentation_env
+```
    Cài đặt thư viện
 ```bash
 pip install -r requirements.txt
