@@ -125,6 +125,7 @@ def main(config_path='config.yaml'):
         writer.writerow(csv_headers)
 
     logging.info(f"Config loaded from: {config_path}")
+    logging.info(f"The device used: {device}")
     logging.info(f"Starting training for: {file_suffix}")
 
     logging.info("🔄 Loading data...")
@@ -270,3 +271,4 @@ def main(config_path='config.yaml'):
 
 if __name__ == '__main__':
     main()
+
