@@ -3,7 +3,7 @@ device: 'cuda' #(cpu)
 
 data:
   base_dir: "Satellite_Datasets"
-  dataset_name: "DeepGlobal"
+  dataset_name: "TGRS_Road"
 
 training:
   batch_size: 4
@@ -12,16 +12,15 @@ training:
 #  plot_dir: "plot/plots_mc_DLv3+"      #Thay đổi tên chứa plot
 
 model:
-  name: "DeepLabV3Plus" #Unet, FPN, DeepLabV3, DeepLabV3Plus, UNet++, DPT, SegFormer
+  name: "UPerNet" #DeepLabV3Plus, Unet, FPN, DeepLabV3, LinkNet, UNet++, DPT, SegFormer, MAnet, PAN, UPerNet, PSPNet
   encoder_name: "mobileone_s0" # resnet18, resnet50, vgg11, vgg13, densenet121, densenet169, efficientnet-b1,b2,b3, mobileone_s0,s1,s2,s3,s4
   encoder_weights: "imagenet"
   in_channels: 3
-  classes: 2 #2 với loss CrossEntropyLoss
+  classes: 2
   activation: null
 
 overplay:
   model_path: Result\DeepGlobal\DeepLabV3Plus\model\model_DeepGlobal_CrossEntropyLoss_DeepLabV3Plus_mobileone_s0.pt
-  # Chuyển đến đường dẫn chứa fiel weight sau đó đổi model theo weight
 
 # Các lựa chọn: CombinedLoss, DiceLoss, JaccardLoss, BCEWithLogitsLoss, FocalLoss, CrossEntropyLoss
 loss:
@@ -41,4 +40,3 @@ scheduler:
     mode: 'min'
     factor: 0.1
     patience: 5
-
