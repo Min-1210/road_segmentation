@@ -120,6 +120,7 @@ def main(config):
         writer.writerow(csv_headers)
 
     logging.info(f"\n{' STARTING NEW EXPERIMENT '.center(80, '=')}")
+    logging.info(f"The device used: {device}")
     logging.info(f"Configuration: {file_suffix}")
     logging.info(f"{'='.center(80, '=')}")
 
