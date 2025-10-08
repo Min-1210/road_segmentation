@@ -72,6 +72,10 @@ def get_model(config):
         "UNet++": smp.UnetPlusPlus,
         "DPT": smp.DPT,
         "SegFormer": smp.Segformer,
+        "MAnet": smp.MAnet,
+        "PAN": smp.PAN,
+        "UPerNet": smp.UPerNet,
+        "PSPNet": smp.PSPNet,
     }
 
     model_class = model_map.get(model_name)
