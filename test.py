@@ -119,7 +119,7 @@ def evaluate_model(config_path, model_path, data_dir, output_dir):
     print("🔄 Loading model...")
     model_name, encoder_name = parse_config_from_filename(model_path)
     if model_name and encoder_name:
-        print(f"   -> Auto identify config from file cònig: {model_name} | {encoder_name}")
+        print(f"   -> Auto identify config from file cònig: {model_name} | {encoder_name} | {data_dir}")
         config['model']['name'] = model_name
         config['model']['encoder_name'] = encoder_name
     else:
@@ -187,14 +187,14 @@ def evaluate_model(config_path, model_path, data_dir, output_dir):
             total_fn += fn.sum()
             total_tn += tn.sum()
 
-            if i < 5:
-                save_prediction_examples(images[0], masks[0], pred_masks[0], output_dir, i)
+            # if i < 5:
+            #     save_prediction_examples(images[0], masks[0], pred_masks[0], output_dir, i)
 
-            # for j in range(len(images)):
-            #     global_index = i * test_loader.batch_size + j
-            #
-            #     if global_index < 20:
-            #         save_prediction_examples(images[j], masks[j], pred_masks[j], output_dir, global_index)
+            for j in range(len(images)):
+                global_index = i * test_loader.batch_size + j
+
+                if global_index < 30:
+                    save_prediction_examples(images[j], masks[j], pred_masks[j], output_dir, global_index)
 
     iou_score = smp.metrics.iou_score(total_tp, total_fp, total_fn, total_tn, reduction='micro')
     f1_score = smp.metrics.f1_score(total_tp, total_fp, total_fn, total_tn, reduction='micro')

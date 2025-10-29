@@ -27,7 +27,6 @@ def log_training_times(plot_dir, epoch_times, total_time):
         f.write(f"Total training time: {total_time / 60:.2f} minutes ({total_time:.2f} seconds)\n")
     logging.info(f"📄 Time report saved at: {time_log_path}")
 
-
 def save_confusion_matrix(stats, path):
     tp, fp, fn, tn = stats['tp'], stats['fp'], stats['fn'], stats['tn']
     total_tp, total_fp, total_fn, total_tn = tp.item(), fp.item(), fn.item(), tn.item()
@@ -271,4 +270,3 @@ def main(config_path='config.yaml'):
 
 if __name__ == '__main__':
     main()
-

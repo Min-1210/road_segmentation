@@ -110,7 +110,7 @@ def predict_folder(model, model_config, folder_path, device, output_dir="outputs
 
 def main(args):
     model_config = {
-        "name": "UNet++",
+        "name": "DeepLabV3Plus",
         "encoder_name": "mobileone_s4",
         "encoder_weights": "imagenet",
         "in_channels": 3,
