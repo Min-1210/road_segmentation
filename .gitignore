@@ -1,0 +1,26 @@
+# Python cache
+__pycache__/
+
+# Datasets / results
+Satellite_Datasets/
+Result/
+data/
+dataset/
+*.npy
+*.pth
+*.pt
+*.ckpt
+*.onnx
+*.zip
+*.tar
+*.tar.gz
+
+# Logs / outputs
+logs/
+runs/
+outputs/
+
+# IDE / environment
+.vscode/
+.env
+.venv/
