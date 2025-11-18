@@ -6,8 +6,6 @@ Satellite_Datasets/
 Result/
 data/
 dataset/
-Efficient.ver
-smp.ver
 *.npy
 *.pth
 *.pt
