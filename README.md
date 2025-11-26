@@ -193,4 +193,12 @@ training_times.txt: Báo cáo thời gian huấn luyện.
 
 Model tốt nhất sẽ được lưu tại model/model_<tên_cấu_hình>.pt.
 
+```bash
+python demo_efficientvit_seg_model.py \
+    --model "efficientvit-seg-l1-ade20k" \
+    --weight_path "/home/weed/Pictures/road_segmentation/model/model_TGRS_Road_CrossEntropyLoss_EfficientViT-Seg_l1.pt" \
+    --image_path "/home/weed/Pictures/road_segmentation/Satellite_Datasets/TGRS_Road/images/Test/image (65).png" \
+    --output_path "/home/weed/Pictures/road_segmentation/prediction.png"
+```
+
 
