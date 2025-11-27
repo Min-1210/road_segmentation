@@ -1,0 +1,6 @@
+python demo_efficientvit_seg_model.py \
+    --model "efficientvit-seg-l1-ade20k" \
+    --weight_path "/home/weed/Pictures/road_segmentation/model/model_All_CrossEntropyLoss_EfficientViT-Seg_l1.pt" \
+    --image_path "/home/weed/Pictures/road_segmentation/Satellite_Datasets/Test/images/Test/image (72).png" \
+    --output_path "/home/weed/Pictures/road_segmentation/prediction.png"
+

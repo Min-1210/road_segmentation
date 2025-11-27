@@ -12,6 +12,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 from tqdm import tqdm
+from plot import save_training_plots
 import segmentation_models_pytorch as smp
 
 from utils import (
@@ -43,55 +44,6 @@ def _save_confusion_matrix(stats, path,
     plt.savefig(path)
     plt.close()
     logging.info(f"📈 Confusion matrix saved at: {path}")
-
-def _save_training_plots(history, config):
-    plot_dir = config['training']['plot_dir']
-    num_epochs = len(history['train_loss'])
-    os.makedirs(plot_dir, exist_ok=True)
-
-    for key, value in history.items():
-        np.save(os.path.join(plot_dir, f'{key}.npy'), np.array(value))
-    logging.info(f"\nTraining history saved to '{plot_dir}' directory.")
-
-    epochs_range = range(1, num_epochs + 1)
-    plt.style.use('seaborn-v0_8-whitegrid')
-
-    plot_pairs = {
-        f'Loss (Main: {config["loss"]["name"]})': ('train_loss', 'val_loss'),
-        'IoU Score': ('train_iou_score', 'val_iou_score'),
-        'F1-Score': ('train_f1_score', 'val_f1_score'),
-        'Pixel Accuracy': ('train_accuracy', 'val_accuracy'),
-        'Dice Loss': ('train_dice_loss', 'val_dice_loss'),
-        'Focal Loss': ('train_focal_loss', 'val_focal_loss'),
-    }
-
-    num_plots = len(plot_pairs)
-    num_cols = 3
-    num_rows = math.ceil(num_plots / num_cols)
-
-    fig, axes = plt.subplots(num_rows, num_cols, figsize=(num_cols * 6, num_rows * 5))
-    fig.suptitle('Model Training Results', fontsize=16, y=0.97)
-    axes = axes.flatten()
-
-    for i, (title, keys) in enumerate(plot_pairs.items()):
-        ax = axes[i]
-        x = list(epochs_range)
-        for series_key, label in [(keys[0], 'Train'), (keys[1], 'Validation')]:
-            if series_key in history:
-                ax.plot(x, history[series_key], 'o-', label=label)
-        ax.set_title(title)
-        ax.set_xlabel('Epoch')
-        ax.set_ylabel('Value')
-        ax.legend()
-
-    for i in range(len(plot_pairs), len(axes)):
-        axes[i].axis('off')
-
-    plt.tight_layout(rect=[0, 0, 1, 0.95])
-    plot_path = os.path.join(plot_dir, "training_metrics_summary.png")
-    plt.savefig(plot_path)
-    logging.info(f"Summary plot saved at: {plot_path}")
-    plt.close()
 
 def _log_training_times(plot_dir, epoch_times, total_time):
     time_log_path = os.path.join(plot_dir, "training_times.txt")
@@ -164,6 +116,11 @@ def train_once(config: dict) -> dict:
     start_time = time.time()
     epoch_times = []
 
+    if config['model']['name'] == "EfficientViT-Seg":
+        model_display_name = config['model'].get('efficientvit_params', {}).get('model_zoo_name', 'EfficientViT')
+    else:
+        model_display_name = config['model'].get('encoder_name', 'encoder')
+
     num_epochs = config['training']['num_epochs']
     for epoch in range(num_epochs):
         epoch_start = time.time()
@@ -173,7 +130,7 @@ def train_once(config: dict) -> dict:
         total_train_tp, total_train_fp, total_train_fn, total_train_tn = 0, 0, 0, 0
         train_accuracy_sum = 0.0
 
-        for images, masks in tqdm(train_loader, desc=f"Epoch {epoch + 1} Train ({config['model'].get('encoder_name', '')})"):
+        for images, masks in tqdm(train_loader, desc=f"Epoch {epoch + 1} Train ({model_display_name})"):
             images, masks = images.to(device), masks.to(device)
             optimizer.zero_grad()
             outputs = model(images)
@@ -224,7 +181,7 @@ def train_once(config: dict) -> dict:
         val_accuracy_sum = 0.0
 
         with torch.no_grad():
-            for images, masks in tqdm(val_loader, desc=f"Epoch {epoch + 1} Val ({config['model'].get('encoder_name', '')})"):
+            for images, masks in tqdm(val_loader, desc=f"Epoch {epoch + 1} Val ({model_display_name})"):
                 images, masks = images.to(device), masks.to(device)
                 outputs = model(images)
                 if config['model']['name'] == "EfficientViT-Seg" and outputs.shape[-2:] != masks.shape[-2:]:
@@ -297,7 +254,7 @@ def train_once(config: dict) -> dict:
 
     total_training_time = time.time() - start_time
     _log_training_times(config['training']['plot_dir'], epoch_times, total_training_time)
-    _save_training_plots(history, config)
+    save_training_plots(history, config)  # dùng hàm từ plot.py
 
     if best_epoch_stats:
         cm_path = os.path.join(config['training']['plot_dir'], 'confusion_matrix.png')

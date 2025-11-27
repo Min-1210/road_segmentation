@@ -102,7 +102,8 @@ def main():
     data = transform({"data": data, "label": np.ones_like(data)})["data"]
 
     print(f"Creating model: {args.model} with {args.num_classes} classes.")
-    model = create_efficientvit_seg_model(args.model, num_classes=args.num_classes, weight_url=None).cuda()
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    model = create_efficientvit_seg_model(args.model, num_classes=args.num_classes, weight_url=None, pretrained=False).to(device)
 
     print(f"Loading custom weights from {args.weight_path}")
     state_dict = torch.load(args.weight_path, map_location="cpu")
@@ -128,7 +129,7 @@ def main():
 
     os.makedirs(os.path.dirname(args.output_path), exist_ok=True)
     with torch.inference_mode():
-        data = torch.unsqueeze(data, dim=0).cuda()
+        data = torch.unsqueeze(data, dim=0).to(model.parameters().__next__().device) 
         output = model(data)
         
         if output.shape[-2:] != image.shape[:2]:

@@ -18,7 +18,7 @@ from dataset import CustomDataset
 
 MODEL_NAME_PART = [
     "DeepLabV3Plus", "Unet", "FPN", "DeepLabV3", "LinkNet",
-    "UNet++", "DPT", "SegFormer", "MAnet", "PAN", "UPerNet"
+    "UNet++", "DPT", "SegFormer", "MAnet", "PAN", "UPerNet", "PSPNet"
 ]
 
 def parse_config_from_filename(filename):
@@ -162,6 +162,7 @@ def evaluate_model(config_path, model_path, data_dir, output_dir):
 
     total_tp, total_fp, total_fn, total_tn = 0, 0, 0, 0
     total_pixel_accuracy = 0.0
+    total_samples = 0
     num_classes = config['model']['classes']
     loss_mode = "binary" if num_classes == 1 else "multiclass"
 
@@ -171,8 +172,10 @@ def evaluate_model(config_path, model_path, data_dir, output_dir):
             images, masks = images.to(device), masks.to(device)
             outputs = model(images)
 
-            batch_accuracy = pixel_accuracy(outputs, masks)
-            total_pixel_accuracy += batch_accuracy
+            batch_acc = pixel_accuracy(outputs, masks)
+            batch_size = images.size(0)
+            total_pixel_accuracy += batch_acc * batch_size
+            total_samples += batch_size
 
             if num_classes == 1:
                 pred_masks = (torch.sigmoid(outputs) > 0.5).long()
@@ -198,7 +201,7 @@ def evaluate_model(config_path, model_path, data_dir, output_dir):
 
     iou_score = smp.metrics.iou_score(total_tp, total_fp, total_fn, total_tn, reduction='micro')
     f1_score = smp.metrics.f1_score(total_tp, total_fp, total_fn, total_tn, reduction='micro')
-    final_pixel_accuracy = total_pixel_accuracy / len(test_loader)
+    final_pixel_accuracy = total_pixel_accuracy / total_samples
 
     print("\n--- Evaluation Results ---")
     print(f"📊 Pixel Accuracy: {final_pixel_accuracy:.4f}")

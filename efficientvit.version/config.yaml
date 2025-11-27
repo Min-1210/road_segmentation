@@ -12,7 +12,7 @@ training:
 #  plot_dir: "plot/plots_mc_DLv3+"      #Thay đổi tên chứa plot
 
 model:
-  name: "FPN" #DeepLabV3Plus, Unet, FPN, DeepLabV3, LinkNet, UNet++, DPT, SegFormer, MAnet, PAN, UPerNet, PSPNet
+  name: "FPN" #DeepLabV3Plus, Unet, FPN, DeepLabV3, LinkNet, UNet++, DPT, SegFormer, MAnet, PAN, UPerNet, PSPNet, EfficientViT-Seg
 
   in_channels: 3
   classes: 2
@@ -22,11 +22,8 @@ model:
   activation: null
 
   efficientvit_params:
-    model_zoo_name: "efficientvit-seg-l1-ade20k"
-    pretrained_seg_weights: "/home/weed/Pictures/road_segmentation/assets/efficientvit_seg/efficientvit_seg_l1_ade20k.pt"
-
-overplay:
-  model_path: Result\DeepGlobal\DeepLabV3Plus\model\model_DeepGlobal_CrossEntropyLoss_DeepLabV3Plus_mobileone_s0.pt
+    model_zoo_name: "efficientvit-seg-l2-ade20k"
+    pretrained_seg_weights: "/home/weed/Pictures/road_segmentation/assets/efficientvit_seg/efficientvit_seg_l2_ade20k.pt"
 
 # Các lựa chọn: CombinedLoss, DiceLoss, JaccardLoss, BCEWithLogitsLoss, FocalLoss, CrossEntropyLoss
 loss:
