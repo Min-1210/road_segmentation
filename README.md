@@ -264,6 +264,45 @@ python overplay.py --model_path "model.pt" --image_path "image.jpg"
 
 The EfficientViT version is optimized for **lightweight and fast inference** models.
 
+#### Configure Training
+
+Edit `config.yaml` to customize model parameters:
+
+```yaml
+data:
+  base_dir: "Satellite_Datasets"
+  dataset_name: "TGRS_Road"  # Your dataset folder name
+
+training:
+  batch_size: 1
+  num_epochs: 1
+
+model:
+  name: "PFN"                     # Available models in efficientvit
+  in_channels: 3
+  classes: 2
+  encoder_name: "mobileone_s0"   # Backbone encoder
+  encoder_weights: "imagenet"
+
+loss:
+  name: "CrossEntropyLoss"
+  # weight_bce: 0.5  # For CombinedLoss
+
+optimizer:
+  name: "Adam"
+  lr: 0.001
+
+scheduler:
+  name: "CosineAnnealingLR"
+```
+
+**Common Configuration Parameters**:
+- `dataset_name`: Name of your dataset folder
+- `batch_size`: Batch size for training
+- `num_epochs`: Number of training epochs
+- `encoder_name`: Choose from available backbones (resnet18, resnet50, efficientnet-b1, mobileone_s0, etc.)
+- `lr`: Learning rate for optimizer
+
 #### Setup
 
 ```bash
