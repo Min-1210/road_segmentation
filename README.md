@@ -113,7 +113,7 @@ Lưu ý: Tên của ảnh và mask tương ứng phải giống hệt nhau.
 
    https://huggingface.co/han-cai/efficientvit-seg/resolve/main/efficientvit_seg_l2_ade20k.pt
 
-Tạo file ```bash efficientvit-seg ```trong  ```assets ```rồi thêm các checkpoint vào. 
+Tạo file ```bash efficientvit-seg``` trong ```assets``` rồi thêm các checkpoint vào. 
 
 ## Sử dụng ⚙️
 Sử dụng để train một kiến trúc với nhiều backbone không cần thay đổi sau mỗi lần train xong
