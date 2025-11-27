@@ -258,7 +258,7 @@ After training, these files are automatically generated:
 
 - [Segmentation Models PyTorch](https://github.com/qubvel/segmentation_models.pytorch)
 - [PyTorch Documentation](https://pytorch.org/docs/)
-- [EfficientViT](https://github.com/microsoft/Cream/tree/main/EfficientViT)
+- [EfficientViT]([https://github.com/microsoft/Cream/tree/main/EfficientViT](https://github.com/mit-han-lab/efficientvit/blob/master/applications/efficientvit_seg/README.md))
 - [Image Segmentation Metrics](https://www.jeremyjordan.me/evaluating-image-segmentation-models/)
 
 ---
