@@ -241,6 +241,98 @@ After training, these files are automatically generated:
 
 ---
 
+
+## 🔶 Detailed Version Guides
+
+### Using SMP Version (`smp.version/`)
+
+The SMP version uses **Segmentation Models PyTorch** and supports multiple architectures:
+
+```bash
+cd smp.version
+python train.py              # Train with SMP
+python test.py "model_path" "dataset_path"
+python overplay.py --model_path "model.pt" --image_path "image.jpg"
+```
+
+**Supported Models**: UNet, DeepLabV3+, FPN, SegFormer, DPT, and more  
+**Best for**: Rapid prototyping and comparing multiple architectures
+
+---
+
+### Using EfficientViT Version (`efficientvit.version/`)
+
+The EfficientViT version is optimized for **lightweight and fast inference** models.
+
+#### Setup
+
+```bash
+cd efficientvit.version
+pip install -r requirements.txt
+```
+
+#### Prepare Model Checkpoints
+
+Download EfficientViT-Seg checkpoints from HuggingFace:
+
+```bash
+cd efficientvit/model_zoo
+wget https://huggingface.co/han-cai/efficientvit-seg/resolve/main/efficientvit_seg_l1_ade20k.pt
+wget https://huggingface.co/han-cai/efficientvit-seg/resolve/main/efficientvit_seg_l2_ade20k.pt
+wget https://huggingface.co/han-cai/efficientvit-seg/resolve/main/efficientvit_seg_l1_cityscapes.pt
+wget https://huggingface.co/han-cai/efficientvit-seg/resolve/main/efficientvit_seg_l2_cityscapes.pt
+cd ../..
+```
+
+#### Training
+
+```bash
+python train.py
+```
+
+#### Evaluation
+
+```bash
+python eval_efficientvit_seg_model.py
+```
+
+#### Prediction on New Images
+
+```bash
+python overplay.py --model_path "efficientvit/path_to_model.pt" --image_path "image.jpg"
+```
+
+#### Demo with Pre-trained Model
+
+```bash
+python demo_efficientvit_seg_model.py \\
+  --model "efficientvit-seg-l1-ade20k" \\
+  --weight_path "efficientvit/model_zoo/efficientvit_seg_l1_ade20k.pt" \\
+  --image_path "/path/to/image.jpg" \\
+  --output_path "/path/to/output.png"
+```
+
+**Features**:
+- ⚡ **Fast Inference**: Optimized for edge devices and real-time applications
+- 📋 **Lightweight**: Low memory footprint suitable for mobile/embedded systems
+- 📊 **Multiple Sizes**: L0, L1, L2 variants with different performance/accuracy trade-offs
+- 🎹 **Pre-trained**: Ready-to-use models on ADE20K and Cityscapes datasets
+
+---
+
+### Comparison Table
+
+| Feature | SMP Version | EfficientViT Version |
+|---------|------------|----------------------|
+| **Architectures** | 10+ (UNet, DeepLabV3+, FPN, SegFormer, etc.) | EfficientViT-Seg (L0, L1, L2) |
+| **Model Size** | Large (100-500MB) | Small (20-50MB) |
+| **Inference Speed** | ~200-500ms/image | ~50-150ms/image |
+| **Best Use Case** | Accuracy-focused | Speed & efficiency-focused |
+| **Hardware** | GPU (NVIDIA/AMD) | CPU/GPU/Edge devices |
+| **Training** | From scratch | Fine-tuning or transfer learning |
+| **Pre-trained Models** | Many encoders available | Pre-trained on ADE20K, Cityscapes |
+
+---
 ## 🔧 Troubleshooting
 
 | Problem | Solution |
