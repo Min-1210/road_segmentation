@@ -103,7 +103,8 @@ Satellite_Datasets/
 ```
 Lưu ý: Tên của ảnh và mask tương ứng phải giống hệt nhau.
 
-3. Tải checkpoint
+3. Tải checkpoint:
+
    https://huggingface.co/han-cai/efficientvit-seg/resolve/main/efficientvit_seg_l1_cityscapes.pt
    
    https://huggingface.co/han-cai/efficientvit-seg/resolve/main/efficientvit_seg_l2_cityscapes.pt
