@@ -4,8 +4,6 @@ __pycache__/
 # Datasets / results
 Satellite_Datasets/
 Result/
-data/
-dataset/
 *.npy
 *.pth
 *.pt
@@ -24,3 +22,4 @@ outputs/
 .vscode/
 .env
 .venv/
+.idea/

@@ -1,6 +1,5 @@
 import os
 import time
-import math
 import csv
 import yaml
 import logging
@@ -8,42 +7,15 @@ import argparse
 from datetime import datetime
 import torch
 import torch.nn.functional as F
-import numpy as np
-import matplotlib.pyplot as plt
-import seaborn as sns
 from tqdm import tqdm
-from plot import save_training_plots
 import segmentation_models_pytorch as smp
 
 from utils import (
     set_seed, get_model, get_loss_function, get_optimizer,
-    get_scheduler, pixel_accuracy, setup_logging)
+    get_scheduler, pixel_accuracy, setup_logging
+)
 from dataset import get_dataloaders
-
-def _save_confusion_matrix(stats, path,
-                           class_labels=('Predicted Road', 'Predicted Background'),
-                           true_labels=('Actual Road', 'Actual Background')):
-    tp, fp, fn, tn = stats['tp'], stats['fp'], stats['fn'], stats['tn']
-    total_tp, total_fp, total_fn, total_tn = tp.item(), fp.item(), fn.item(), tn.item()
-    matrix = np.array([[total_tp, total_fp], [total_fn, total_tn]])
-
-    group_counts = [f"{value:,.0f}" for value in matrix.flatten()]
-    total_pixels = matrix.sum()
-    group_percentages = [f"{value / total_pixels:.2%}" for value in matrix.flatten()]
-    labels = [f"{v1}\n{v2}" for v1, v2 in zip(group_counts, group_percentages)]
-    labels = np.asarray(labels).reshape(2, 2)
-
-    plt.figure(figsize=(8, 6))
-    sns.heatmap(matrix, annot=labels, fmt='', cmap='Blues',
-                xticklabels=list(class_labels),
-                yticklabels=list(true_labels))
-    plt.xlabel('Model Prediction')
-    plt.ylabel('Actual Value')
-    plt.title('Confusion Matrix for Best Epoch', fontsize=14)
-    os.makedirs(os.path.dirname(path), exist_ok=True)
-    plt.savefig(path)
-    plt.close()
-    logging.info(f"📈 Confusion matrix saved at: {path}")
+from plot import save_training_plots, save_confusion_matrix
 
 def _log_training_times(plot_dir, epoch_times, total_time):
     time_log_path = os.path.join(plot_dir, "training_times.txt")
@@ -66,13 +38,10 @@ def _suffix_from_config(config):
         encoder_name = config['model'].get('encoder_name', 'no_encoder')
         return f"{config['data']['dataset_name']}_{config['loss']['name']}_{model_name}_{encoder_name}"
 
-
 def train_once(config: dict) -> dict:
     file_suffix = _suffix_from_config(config)
-    config['training']['model_path'] = config['training'].get('model_path',
-        f"model/model_{file_suffix}.pt")
-    config['training']['plot_dir'] = config['training'].get('plot_dir',
-        f"plot/plot_{file_suffix}")
+    config['training']['model_path'] = config['training'].get('model_path', f"model/model_{file_suffix}.pt")
+    config['training']['plot_dir'] = config['training'].get('plot_dir', f"plot/plot_{file_suffix}")
 
     os.makedirs(config['training']['plot_dir'], exist_ok=True)
     os.makedirs(os.path.dirname(config['training']['model_path']), exist_ok=True)
@@ -80,6 +49,7 @@ def train_once(config: dict) -> dict:
     set_seed(config.get('seed', 42))
     device = torch.device(config.get('device', 'cuda' if torch.cuda.is_available() else 'cpu'))
     setup_logging(config)
+    
     logging.info(f"Config suffix: {file_suffix}")
     logging.info(f"Device: {device}")
 
@@ -116,12 +86,8 @@ def train_once(config: dict) -> dict:
     start_time = time.time()
     epoch_times = []
 
-    if config['model']['name'] == "EfficientViT-Seg":
-        model_display_name = config['model'].get('efficientvit_params', {}).get('model_zoo_name', 'EfficientViT')
-    else:
-        model_display_name = config['model'].get('encoder_name', 'encoder')
-
     num_epochs = config['training']['num_epochs']
+    
     for epoch in range(num_epochs):
         epoch_start = time.time()
 
@@ -130,10 +96,11 @@ def train_once(config: dict) -> dict:
         total_train_tp, total_train_fp, total_train_fn, total_train_tn = 0, 0, 0, 0
         train_accuracy_sum = 0.0
 
-        for images, masks in tqdm(train_loader, desc=f"Epoch {epoch + 1} Train ({model_display_name})"):
+        for images, masks in tqdm(train_loader, desc=f"Epoch {epoch + 1} Train ({config['model'].get('encoder_name', '')})"):
             images, masks = images.to(device), masks.to(device)
             optimizer.zero_grad()
             outputs = model(images)
+            
             if config['model']['name'] == "EfficientViT-Seg" and outputs.shape[-2:] != masks.shape[-2:]:
                 outputs = F.interpolate(outputs, size=masks.shape[-2:], mode='bilinear', align_corners=False)
 
@@ -181,9 +148,10 @@ def train_once(config: dict) -> dict:
         val_accuracy_sum = 0.0
 
         with torch.no_grad():
-            for images, masks in tqdm(val_loader, desc=f"Epoch {epoch + 1} Val ({model_display_name})"):
+            for images, masks in tqdm(val_loader, desc=f"Epoch {epoch + 1} Val ({config['model'].get('encoder_name', '')})"):
                 images, masks = images.to(device), masks.to(device)
                 outputs = model(images)
+                
                 if config['model']['name'] == "EfficientViT-Seg" and outputs.shape[-2:] != masks.shape[-2:]:
                     outputs = F.interpolate(outputs, size=masks.shape[-2:], mode='bilinear', align_corners=False)
 
@@ -248,17 +216,17 @@ def train_once(config: dict) -> dict:
             f"Val Loss: {history['val_loss'][-1]:.4f} | Val IoU: {history['val_iou_score'][-1]:.4f} | "
             f"🕒 {epoch_time:.2f}s"
         )
-
+        
         if torch.cuda.is_available():
             torch.cuda.empty_cache()
 
     total_training_time = time.time() - start_time
     _log_training_times(config['training']['plot_dir'], epoch_times, total_training_time)
-    save_training_plots(history, config)  # dùng hàm từ plot.py
-
+    
+    save_training_plots(history, config)
     if best_epoch_stats:
         cm_path = os.path.join(config['training']['plot_dir'], 'confusion_matrix.png')
-        _save_confusion_matrix(best_epoch_stats, cm_path)
+        save_confusion_matrix(best_epoch_stats, cm_path)
 
     summary = {
         "best_val_iou": best_val_iou,
@@ -267,7 +235,7 @@ def train_once(config: dict) -> dict:
         "csv_log_path": csv_log_path
     }
     logging.info(f"✅ Best model saved at: {summary['model_path']}")
-    logging.info(f"📊 Per-epoch results saved at: {summary['csv_log_path']}")
+    logging.info(f"📊 Results saved at: {summary['plot_dir']}")
     return summary
 
 
@@ -299,7 +267,6 @@ def main():
     for enc, iou in results:
         print(f"{enc}: best IoU = {iou:.4f}" if iou is not None else f"{enc}: failed")
     return results
-
 
 if __name__ == '__main__':
     main()
