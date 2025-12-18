@@ -1,4 +1,4 @@
-# Phân Đoạn Đường Bộ với PyTorch
+# Road Segmentation with PyTorch
 
 <div align="center">
 
@@ -7,81 +7,81 @@
 ![License](https://img.shields.io/badge/License-MIT-green)
 ![Status](https://img.shields.io/badge/Status-Active-brightgreen)
 
-Pipeline hoàn chỉnh để huấn luyện và đánh giá các mô hình phân đoạn đường bộ trên ảnh vệ tinh sử dụng PyTorch và Segmentation Models PyTorch.
+A comprehensive pipeline for training and evaluating road segmentation models on satellite imagery using PyTorch and Segmentation Models PyTorch.
 
 </div>
 
 ---
 
-## 📌 Tổng Quan
+## 📌 Overview
 
-Dự án này cung cấp một pipeline đầy đủ để huấn luyện và đánh giá các mô hình phân đoạn đường bộ (road segmentation) từ ảnh vệ tinh. Thiết kế modular và dễ dàng cấu hình thông qua file YAML, hỗ trợ nhiều kiến trúc mô hình và encoder khác nhau.
+This project provides a complete pipeline for training and evaluating road segmentation models from satellite imagery. Designed with modularity and easy configuration through YAML files, it supports multiple model architectures and encoders.
 
-**Đặc điểm chính:**
-- 🎯 Hỗ trợ nhiều kiến trúc: UNet, UNet++, DeepLabV3+, FPN, SegFormer, DPT, EfficientViT-Seg
-- 🔧 Cấu hình linh hoạt qua file `config.yaml`
-- 📊 Theo dõi nhiều chỉ số: IoU, F1-score, Accuracy, Dice Loss, Focal Loss
-- 💾 Tự động lưu mô hình tốt nhất và kết quả huấn luyện
-- 🚀 Hỗ trợ GPU/CPU tự động phát hiện
-- 📈 Visualizations và báo cáo chi tiết
+**Key Features:**
+- 🎯 Support for multiple architectures: UNet, UNet++, DeepLabV3+, FPN, SegFormer, DPT, EfficientViT-Seg
+- 🔧 Flexible configuration via `config.yaml`
+- 📊 Track multiple metrics: IoU, F1-score, Accuracy, Dice Loss, Focal Loss
+- 💾 Automatic model checkpointing and training results
+- 🚀 Automatic GPU/CPU detection
+- 📈 Comprehensive visualizations and reports
 
 ---
 
-## 🚀 Bắt Đầu Nhanh
+## 🚀 Quick Start
 
-### 1. Cài Đặt
+### 1. Installation
 
 ```bash
-# Clone repository
+# Clone the repository
 git clone https://github.com/Min-1210/road_segmentation.git
 cd road_segmentation
 
-# Tạo môi trường ảo
+# Create virtual environment
 python -m venv venv
 source venv/bin/activate  # Linux/macOS
-# hoặc
+# or
 venv\\Scripts\\activate  # Windows
 
-# Cài đặt thư viện
+# Install dependencies
 pip install -r requirements.txt
 ```
 
-### 2. Chuẩn Bị Dữ Liệu
+### 2. Prepare Data
 
-Tổ chức dữ liệu theo cấu trúc sau:
+Organize your data as follows:
 
 ```
 Satellite_Datasets/
-└── <tên_dataset>/
+└── <dataset_name>/
     ├── images/
-    │   ├── Train/  # Ảnh huấn luyện
-    │   ├── Val/    # Ảnh validation
-    │   └── Test/   # Ảnh test
+    │   ├── Train/  # Training images
+    │   ├── Val/    # Validation images
+    │   └── Test/   # Test images
     └── mask/
-        ├── Train/  # Mask huấn luyện
-        ├── Val/    # Mask validation
-        └── Test/   # Mask test
+        ├── Train/  # Training masks
+        ├── Val/    # Validation masks
+        └── Test/   # Test masks
 ```
 
-**Lưu ý:** Tất cả ảnh phải là file `.png`
+**Note:** All images must be `.png` files.
 
-### 3. Cấu Hình Huấn Luyện
+### 3. Configure Training
 
-Chỉnh sửa file `config.yaml`:
+Edit `config.yaml`:
 
 ```yaml
 data:
-  base_dir: "/đường/dẫn/đến/Satellite_Datasets"
-  dataset_name: "TGRS_Road"  # Tên thư mục dataset của bạn
+  base_dir: "/path/to/Satellite_Datasets"
+  dataset_name: "TGRS_Road"  # Your dataset folder name
 
 training:
   batch_size: 16
   num_epochs: 50
 
 model:
-  name: "DeepLabV3Plus"  # Kiến trúc model
+  name: "DeepLabV3Plus"  # Model architecture
   encoder_name: "resnet50"  # Backbone encoder
-  classes: 2  # Số lớp (2 cho binary: đường/không phải đường)
+  classes: 2  # Number of classes (2 for binary: road/non-road)
 
 loss:
   name: "CrossEntropyLoss"
@@ -94,34 +94,34 @@ scheduler:
   name: "ReduceLROnPlateau"
 ```
 
-### 4. Huấn Luyện
+### 4. Train Model
 
 ```bash
 python train.py
 ```
 
-Kết quả sẽ được lưu tại:
-- Model tốt nhất: `model/model_<config_name>.pt`
+Results will be saved to:
+- Best model: `model/model_<config_name>.pt`
 - Logs: `plot/plot_<config_name>/training.log`
 - Metrics: `plot/plot_<config_name>/epoch_results.csv`
-- Biểu đồ: `plot/plot_<config_name>/training_metrics_summary.png`
+- Plots: `plot/plot_<config_name>/training_metrics_summary.png`
 
-### 5. Dự Đoán
+### 5. Make Predictions
 
-**Dự đoán một ảnh:**
+**Predict a single image:**
 ```bash
 python inference.py \
-  --input "/đường/dẫn/ảnh.jpg" \
+  --input "/path/to/image.jpg" \
   --weight "model/model_best.pt" \
   --arch "DeepLabV3Plus" \
   --encoder "resnet50" \
   --classes 2
 ```
 
-**Dự đoán cả thư mục:**
+**Predict on a folder:**
 ```bash
 python inference.py \
-  --input "/đường/dẫn/thư_mục_ảnh/" \
+  --input "/path/to/image_folder/" \
   --weight "model/model_best.pt" \
   --arch "DeepLabV3Plus" \
   --encoder "resnet50" \
@@ -130,55 +130,55 @@ python inference.py \
 
 ---
 
-## 📁 Cấu Trúc Dự Án
+## 📁 Project Structure
 
 ```
 road_segmentation/
-├── config.yaml              # File cấu hình chính
+├── config.yaml              # Main configuration file
 ├── dataset.py               # Dataset & DataLoader
-├── train.py                 # Script huấn luyện
-├── inference.py             # Script dự đoán
-├── test.py                  # Script đánh giá
-├── utils.py                 # Các hàm tiện ích
-├── plot.py                  # Vẽ biểu đồ
-├── requirements.txt         # Thư viện cần thiết
-├── Satellite_Datasets/      # Thư mục chứa dữ liệu
-├── model/                   # Mô hình đã huấn luyện
-└── plot/                    # Kết quả và biểu đồ
+├── train.py                 # Training script
+├── inference.py             # Inference script
+├── test.py                  # Evaluation script
+├── utils.py                 # Utility functions
+├── plot.py                  # Plotting functions
+├── requirements.txt         # Dependencies
+├── Satellite_Datasets/      # Data directory
+├── model/                   # Trained models
+└── plot/                    # Results and plots
 ```
 
 ---
 
-## ⚙️ Cấu Hình Chi Tiết
+## ⚙️ Advanced Configuration
 
-### Các Kiến Trúc Model Được Hỗ Trợ
+### Supported Model Architectures
 
-Trong `config.yaml`, bạn có thể chọn:
+In `config.yaml`, you can choose:
 
 ```yaml
 model:
   name: "UNet"  # UNet, UNet++, DeepLabV3Plus, FPN, SegFormer, DPT, EfficientViT-Seg
 ```
 
-### Các Encoder Được Hỗ Trợ
+### Supported Encoders
 
 ```yaml
 model:
   encoder_name: "resnet50"
-  # Lựa chọn: resnet18, resnet50, resnet101, efficientnet-b1, 
-  # mobileone_s0, vgg11, densenet121, v.v.
+  # Options: resnet18, resnet50, resnet101, efficientnet-b1, 
+  # mobileone_s0, vgg11, densenet121, etc.
 ```
 
-### Các Loss Function
+### Loss Functions
 
 ```yaml
 loss:
   name: "CrossEntropyLoss"
-  # Lựa chọn: CrossEntropyLoss, DiceLoss, JaccardLoss, 
+  # Options: CrossEntropyLoss, DiceLoss, JaccardLoss, 
   # FocalLoss, BCEWithLogitsLoss, CombinedLoss
 ```
 
-### Scheduler
+### Learning Rate Scheduler
 
 ```yaml
 scheduler:
@@ -191,24 +191,24 @@ scheduler:
 
 ---
 
-## 📊 Kết Quả Đầu Ra
+## 📊 Output Results
 
-Sau khi huấn luyện, các file sau sẽ được tạo tự động:
+After training, the following files are automatically generated:
 
-| File | Mô tả |
-|------|-------|
-| `training.log` | Log chi tiết quá trình huấn luyện |
-| `epoch_results.csv` | Bảng metrics theo từng epoch |
-| `training_metrics_summary.png` | Biểu đồ metrics train/val |
-| `confusion_matrix.png` | Ma trận nhầm lẫn |
-| `training_times.txt` | Thời gian huấn luyện |
-| `model_<name>.pt` | Model tốt nhất (dựa trên Val IoU) |
+| File | Description |
+|------|-------------|
+| `training.log` | Detailed training logs |
+| `epoch_results.csv` | Metrics for each epoch |
+| `training_metrics_summary.png` | Train/Val metrics plots |
+| `confusion_matrix.png` | Confusion matrix visualization |
+| `training_times.txt` | Training duration |
+| `model_<name>.pt` | Best model (based on Val IoU) |
 
 ---
 
-## 🔧 Đánh Giá Model
+## 🔧 Evaluate Model
 
-Để đánh giá model trên tập test:
+To evaluate your model on the test set:
 
 ```bash
 python test.py \
@@ -219,9 +219,9 @@ python test.py \
 
 ---
 
-## 💡 Ví Dụ Sử Dụng
+## 💡 Usage Examples
 
-### Ví dụ 1: Huấn luyện với EfficientViT-Seg
+### Example 1: Train with EfficientViT-Seg
 
 ```yaml
 # config.yaml
@@ -229,20 +229,20 @@ model:
   name: "EfficientViT-Seg"
   efficientvit_params:
     model_zoo_name: "efficientvit-seg-l1-ade20k"
-    pretrained_seg_weights: "đường/dẫn/weights.pt"
+    pretrained_seg_weights: "/path/to/weights.pt"
 ```
 
 ```bash
 python train.py
 ```
 
-### Ví dụ 2: Huấn luyện nhiều encoder
+### Example 2: Train with Multiple Encoders
 
 ```bash
 python train.py --encoders resnet18 resnet50 mobileone_s0
 ```
 
-### Ví dụ 3: Dự đoán với output tùy chỉnh
+### Example 3: Custom Inference with Different Output
 
 ```bash
 python inference.py \
@@ -255,28 +255,28 @@ python inference.py \
 
 ---
 
-## 🛠️ Xử Lý Sự Cố
+## 🛠️ Troubleshooting
 
-| Vấn đề | Giải pháp |
-|--------|----------|
-| **CUDA out of memory** | Giảm `batch_size` trong `config.yaml` |
-| **Không tìm thấy dataset** | Kiểm tra `dataset_name` và `base_dir` trong config |
-| **Model không lưu** | Kiểm tra quyền ghi trong thư mục `model/` |
-| **Import error** | Chạy lại `pip install -r requirements.txt` |
-| **Huấn luyện chậm** | Sử dụng GPU hoặc giảm `num_epochs` |
-
----
-
-## 📋 Yêu Cầu Hệ Thống
-
-- **Python**: 3.8 trở lên
-- **PyTorch**: 2.0+ (khuyến nghị CUDA 11.8 cho GPU)
-- **RAM**: Tối thiểu 8GB (khuyến nghị 16GB+)
-- **GPU**: Tùy chọn nhưng khuyến nghị (nhanh hơn 10-20 lần)
+| Issue | Solution |
+|-------|----------|
+| **CUDA out of memory** | Reduce `batch_size` in `config.yaml` |
+| **Dataset not found** | Check `dataset_name` and `base_dir` in config |
+| **Model not saved** | Verify write permissions in `model/` directory |
+| **Import errors** | Run `pip install -r requirements.txt` again |
+| **Slow training** | Use GPU or reduce `num_epochs` |
 
 ---
 
-## 📚 Tài Liệu Tham Khảo
+## 📋 System Requirements
+
+- **Python**: 3.8 or higher
+- **PyTorch**: 2.0+ (CUDA 11.8 recommended for GPU acceleration)
+- **RAM**: Minimum 8GB (16GB+ recommended)
+- **GPU**: Optional but recommended (10-20x faster)
+
+---
+
+## 📚 References
 
 - [Segmentation Models PyTorch](https://github.com/qubvel/segmentation_models.pytorch)
 - [PyTorch Documentation](https://pytorch.org/docs/)
@@ -284,37 +284,37 @@ python inference.py \
 
 ---
 
-## 📄 Giấy Phép
+## 📄 License
 
-MIT License - xem file [LICENSE](LICENSE) để biết chi tiết.
+MIT License - see [LICENSE](LICENSE) file for details.
 
 ---
 
-## 👤 Tác Giả
+## 👤 Author
 
 **Min-1210** - [GitHub Profile](https://github.com/Min-1210)
 
 ---
 
-## 🤝 Đóng Góp
+## 🤝 Contributing
 
-Mọi đóng góp đều được chào đón! Vui lòng:
+Contributions are welcome! Please:
 
-1. Fork repository
-2. Tạo feature branch (`git checkout -b feature/TinhNangMoi`)
-3. Commit thay đổi (`git commit -m 'Thêm tính năng mới'`)
-4. Push lên branch (`git push origin feature/TinhNangMoi`)
-5. Mở Pull Request
-
----
-
-## 📞 Hỗ Trợ
-
-Nếu gặp vấn đề:
-- Kiểm tra phần [Xử Lý Sự Cố](#-xử-lý-sự-cố)
-- Mở [GitHub Issue](https://github.com/Min-1210/road_segmentation/issues)
-- Đọc comments trong code
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/NewFeature`)
+3. Commit your changes (`git commit -m 'Add new feature'`)
+4. Push to the branch (`git push origin feature/NewFeature`)
+5. Open a Pull Request
 
 ---
 
-**Cập nhật lần cuối**: Tháng 12, 2025
+## 📞 Support
+
+If you encounter any issues:
+- Check the [Troubleshooting](#-troubleshooting) section
+- Open a [GitHub Issue](https://github.com/Min-1210/road_segmentation/issues)
+- Review inline code comments
+
+---
+
+**Last Updated**: December 2025
