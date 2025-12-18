@@ -1,442 +1,320 @@
-# Road Segmentation with PyTorch
+# Phân Đoạn Đường Bộ với PyTorch
 
 <div align="center">
 
-![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)
-![PyTorch](https://img.shields.io/badge/PyTorch-2.0+-red.svg)
-![License](https://img.shields.io/badge/License-MIT-green.svg)
-![Status](https://img.shields.io/badge/Status-Active-brightgreen.svg)
+![Python](https://img.shields.io/badge/Python-3.8%2B-blue)
+![PyTorch](https://img.shields.io/badge/PyTorch-2.0%2B-red)
+![License](https://img.shields.io/badge/License-MIT-green)
+![Status](https://img.shields.io/badge/Status-Active-brightgreen)
 
-A complete end-to-end pipeline for training and evaluating road segmentation models on satellite imagery using PyTorch and Segmentation Models PyTorch (SMP).
-
-[English](#road-segmentation-with-pytorch) • [Vietnamese](#gi%E1%BB%9Bi-thi%E1%BB%87u-d%E1%BB%B1-%C3%A1n)
+Pipeline hoàn chỉnh để huấn luyện và đánh giá các mô hình phân đoạn đường bộ trên ảnh vệ tinh sử dụng PyTorch và Segmentation Models PyTorch.
 
 </div>
 
 ---
 
-## 📌 Project Overview
+## 📌 Tổng Quan
 
-This project is a complete pipeline for training and evaluating road segmentation models on satellite images using PyTorch and Segmentation Models PyTorch (SMP). Designed with high modularity and easy configuration, it supports multiple datasets and model architectures, making it extensible for various segmentation tasks.
+Dự án này cung cấp một pipeline đầy đủ để huấn luyện và đánh giá các mô hình phân đoạn đường bộ (road segmentation) từ ảnh vệ tinh. Thiết kế modular và dễ dàng cấu hình thông qua file YAML, hỗ trợ nhiều kiến trúc mô hình và encoder khác nhau.
 
-**Status**: ✅ Active Development  
-**Primary Language**: Python (98.5%)  
-**Main Framework**: PyTorch 2.0+
+**Đặc điểm chính:**
+- 🎯 Hỗ trợ nhiều kiến trúc: UNet, UNet++, DeepLabV3+, FPN, SegFormer, DPT, EfficientViT-Seg
+- 🔧 Cấu hình linh hoạt qua file `config.yaml`
+- 📊 Theo dõi nhiều chỉ số: IoU, F1-score, Accuracy, Dice Loss, Focal Loss
+- 💾 Tự động lưu mô hình tốt nhất và kết quả huấn luyện
+- 🚀 Hỗ trợ GPU/CPU tự động phát hiện
+- 📈 Visualizations và báo cáo chi tiết
 
 ---
 
-## ⚡ Quick Start (5 Minutes)
+## 🚀 Bắt Đầu Nhanh
 
-### 1. Installation
+### 1. Cài Đặt
 
 ```bash
 # Clone repository
 git clone https://github.com/Min-1210/road_segmentation.git
 cd road_segmentation
 
-# Create virtual environment
-python3 -m venv venv
-source venv/bin/activate  # Linux/macOS
-# or
+# Tạo môi trường ảo
 python -m venv venv
-venv\Scripts\activate  # Windows
+source venv/bin/activate  # Linux/macOS
+# hoặc
+venv\\Scripts\\activate  # Windows
 
-# Install dependencies
+# Cài đặt thư viện
 pip install -r requirements.txt
 ```
 
-### 2. Prepare Dataset
+### 2. Chuẩn Bị Dữ Liệu
 
-Organize your data in this structure:
+Tổ chức dữ liệu theo cấu trúc sau:
+
 ```
 Satellite_Datasets/
-└── DeepGlobal/
+└── <tên_dataset>/
     ├── images/
-    │   ├── Train/  ├── image1.png
-    │   ├── Val/    └── ...
-    │   └── Test/
+    │   ├── Train/  # Ảnh huấn luyện
+    │   ├── Val/    # Ảnh validation
+    │   └── Test/   # Ảnh test
     └── mask/
-        ├── Train/  ├── image1.png
-        ├── Val/    └── ...
-        └── Test/
+        ├── Train/  # Mask huấn luyện
+        ├── Val/    # Mask validation
+        └── Test/   # Mask test
 ```
 
-### 3. Train Model
+**Lưu ý:** Tất cả ảnh phải là file `.png`
 
-```bash
-python train.py  # Uses config.yaml
-```
+### 3. Cấu Hình Huấn Luyện
 
-### 4. Make Predictions
-
-```bash
-python overplay.py --model_path model/best.pt --image_path image.jpg
-```
-
----
-
-## ✨ Key Features
-
-- **🔧 Flexible Configuration**: All parameters managed in `config.yaml` - no code changes needed
-- **🏗️ Multiple Architectures**: UNet, UNet++, DeepLabV3+, FPN, SegFormer, DPT, EfficientViT...
-- **⚙️ Multiple Encoders**: ResNet, EfficientNet, MobileOne, VGG, DenseNet, and more
-- **📊 Multi-Metric Tracking**: IoU, F1-score, Accuracy, Dice Loss, Focal Loss
-- **🤖 Automated Testing**: Batch experiments, hyperparameter tuning, result visualization
-- **📈 Detailed Output**: Logs, metrics CSV, confusion matrix, training graphs
-- **💾 Smart Checkpointing**: Auto-saves best model based on validation IoU
-
----
-
-## 📋 Requirements
-
-- **Python**: 3.8 or higher
-- **PyTorch**: 2.0+ (with CUDA 11.8 recommended for GPU)
-- **RAM**: 8GB minimum (16GB+ recommended)
-- **GPU**: Optional but highly recommended (10-20x faster training)
-
----
-
-## 🗂️ Project Structure
-
-```
-road_segmentation/
-├── continuous/                 # Experimental/Legacy versions
-├── efficientvit.version/        # Lightweight EfficientViT models
-├── smp.version/                 # Segmentation Models PyTorch versions
-├── Satellite_Datasets/          # Input data directory
-│   └── DeepGlobal/
-│       ├── images/
-│       │   ├── Train/
-│       │   ├── Val/
-│       │   └── Test/
-│       └── mask/
-│           ├── Train/
-│           ├── Val/
-│           └── Test/
-├── model/                       # Trained models (.pt files)
-├── plot/                        # Results (graphs, logs, confusion matrix)
-├── config.yaml                  # Main configuration file
-├── dataset.py                   # Dataset & DataLoader classes
-├── train.py                     # Single training script
-├── train_continuous.py          # Training for batch experiments
-├── test.py                      # Evaluation on test set
-├── overplay.py                  # Prediction on new images
-├── run_parameters.py            # Batch testing multiple encoders
-├── plot.py                      # Plotting utilities
-├── utils.py                     # Helper functions
-├── requirements.txt             # Python dependencies
-└── README.md                    # This file
-```
-
----
-
-## 🚀 Usage Guide
-
-### 1️⃣ Configure Training
-
-Edit `config.yaml`:
+Chỉnh sửa file `config.yaml`:
 
 ```yaml
 data:
-  dataset_name: DeepGlobal      # Your dataset folder name
+  base_dir: "/đường/dẫn/đến/Satellite_Datasets"
+  dataset_name: "TGRS_Road"  # Tên thư mục dataset của bạn
+
+training:
   batch_size: 16
-
-model:
-  name: UNet                    # Architecture
-  encoder_name: resnet50        # Backbone encoder
-
-training:
   num_epochs: 50
-  learning_rate: 0.001
-
-loss: CrossEntropyLoss
-optimizer: Adam
-scheduler: CosineAnnealingLR
-```
-
-### 2️⃣ Train Single Model
-
-```bash
-python train.py
-```
-
-**Output locations**:
-- Model: `model/model_<config_name>.pt`
-- Logs: `plot/plot_<config_name>/training.log`
-- Metrics: `plot/plot_<config_name>/epoch_results.csv`
-- Graphs: `plot/plot_<config_name>/training_metrics_summary.png`
-
-### 3️⃣ Evaluate on Test Set
-
-```bash
-python test.py "model/model_DeepGlobal_UNet++_resnet50.pt" \
-               "Satellite_Datasets/DeepGlobal" \
-               --output-dir "test_results/"
-```
-
-### 4️⃣ Make Predictions
-
-**Single image**:
-```bash
-python overplay.py --model_path model/best.pt --image_path image.jpg
-```
-
-**Entire folder**:
-```bash
-python overplay.py --model_path model/best.pt --folder_path ./images/
-```
-
-### 5️⃣ Batch Testing (Multiple Models)
-
-Edit `run_parameters.py`:
-
-```python
-model_name_to_test = "UNet"
-encoders_to_test = [
-    "resnet50",
-    "resnet18",
-    "efficientnet-b1",
-    "mobileone_s0",
-    # Add more encoders...
-]
-```
-
-Run:
-```bash
-python run_parameters.py
-```
-
----
-
-## 📊 Output Results
-
-After training, these files are automatically generated:
-
-| File | Description |
-|------|-------------|
-| `training.log` | Complete training logs |
-| `epoch_results.csv` | Per-epoch metrics table |
-| `training_metrics_summary.png` | Train/Val metrics graphs |
-| `confusion_matrix.png` | Best epoch confusion matrix |
-| `training_times.txt` | Training time report |
-| `model_<name>.pt` | Best model (based on Val IoU) |
-
----
-
-## 📝 Project Versions
-
-### 📦 `smp.version/`
-- **Purpose**: Segmentation Models PyTorch library
-- **Best for**: Rapid prototyping, multiple architectures
-- **Supported**: UNet, DeepLabV3+, FPN, SegFormer, DPT
-
-### 🚀 `efficientvit.version/`
-- **Purpose**: Optimized EfficientViT architecture
-- **Best for**: Lightweight models, edge deployment
-- **Advantage**: Fast inference, low memory usage
-
-### 📝 `continuous/`
-- **Purpose**: Experimental/legacy implementations
-- **Status**: Not actively maintained
-
----
-
-
-## 🔶 Detailed Version Guides
-
-### Using SMP Version (`smp.version/`)
-
-The SMP version uses **Segmentation Models PyTorch** and supports multiple architectures:
-
-```bash
-cd smp.version
-python train.py              # Train with SMP
-python test.py "model_path" "dataset_path"
-python overplay.py --model_path "model.pt" --image_path "image.jpg"
-```
-
-**Supported Models**: UNet, DeepLabV3+, FPN, SegFormer, DPT, and more  
-**Best for**: Rapid prototyping and comparing multiple architectures
-
----
-
-### Using EfficientViT Version (`efficientvit.version/`)
-
-The EfficientViT version is optimized for **lightweight and fast inference** models.
-
-#### Configure Training
-
-Edit `config.yaml` to customize model parameters:
-
-```yaml
-data:
-  base_dir: "Satellite_Datasets"
-  dataset_name: "TGRS_Road"  # Your dataset folder name
-
-training:
-  batch_size: 1
-  num_epochs: 1
 
 model:
-  name: "PFN"                     # Available models in efficientvit
-  in_channels: 3
-  classes: 2
-  encoder_name: "mobileone_s0"   # Backbone encoder
-  encoder_weights: "imagenet"
+  name: "DeepLabV3Plus"  # Kiến trúc model
+  encoder_name: "resnet50"  # Backbone encoder
+  classes: 2  # Số lớp (2 cho binary: đường/không phải đường)
 
 loss:
   name: "CrossEntropyLoss"
-  # weight_bce: 0.5  # For CombinedLoss
 
 optimizer:
   name: "Adam"
   lr: 0.001
 
 scheduler:
-  name: "CosineAnnealingLR"
+  name: "ReduceLROnPlateau"
 ```
 
-**Common Configuration Parameters**:
-- `dataset_name`: Name of your dataset folder
-- `batch_size`: Batch size for training
-- `num_epochs`: Number of training epochs
-- `encoder_name`: Choose from available backbones (resnet18, resnet50, efficientnet-b1, mobileone_s0, etc.)
-- `lr`: Learning rate for optimizer
-
-#### Setup
-
-```bash
-cd efficientvit.version
-pip install -r requirements.txt
-```
-
-#### Prepare Model Checkpoints
-
-Download EfficientViT-Seg checkpoints from HuggingFace:
-
-```bash
-cd efficientvit/model_zoo
-wget https://huggingface.co/han-cai/efficientvit-seg/resolve/main/efficientvit_seg_l1_ade20k.pt
-wget https://huggingface.co/han-cai/efficientvit-seg/resolve/main/efficientvit_seg_l2_ade20k.pt
-wget https://huggingface.co/han-cai/efficientvit-seg/resolve/main/efficientvit_seg_l1_cityscapes.pt
-wget https://huggingface.co/han-cai/efficientvit-seg/resolve/main/efficientvit_seg_l2_cityscapes.pt
-cd ../..
-```
-
-#### Training
+### 4. Huấn Luyện
 
 ```bash
 python train.py
 ```
 
-#### Evaluation
+Kết quả sẽ được lưu tại:
+- Model tốt nhất: `model/model_<config_name>.pt`
+- Logs: `plot/plot_<config_name>/training.log`
+- Metrics: `plot/plot_<config_name>/epoch_results.csv`
+- Biểu đồ: `plot/plot_<config_name>/training_metrics_summary.png`
 
+### 5. Dự Đoán
+
+**Dự đoán một ảnh:**
 ```bash
-python eval_efficientvit_seg_model.py
+python inference.py \
+  --input "/đường/dẫn/ảnh.jpg" \
+  --weight "model/model_best.pt" \
+  --arch "DeepLabV3Plus" \
+  --encoder "resnet50" \
+  --classes 2
 ```
 
-#### Prediction on New Images
-
+**Dự đoán cả thư mục:**
 ```bash
-python overplay.py --model_path "efficientvit/path_to_model.pt" --image_path "image.jpg"
+python inference.py \
+  --input "/đường/dẫn/thư_mục_ảnh/" \
+  --weight "model/model_best.pt" \
+  --arch "DeepLabV3Plus" \
+  --encoder "resnet50" \
+  --output "predictions"
 ```
-
-#### Demo with Pre-trained Model
-
-```bash
-python demo_efficientvit_seg_model.py \\
-  --model "efficientvit-seg-l1-ade20k" \\
-  --weight_path "efficientvit/model_zoo/efficientvit_seg_l1_ade20k.pt" \\
-  --image_path "/path/to/image.jpg" \\
-  --output_path "/path/to/output.png"
-```
-
-**Features**:
-- ⚡ **Fast Inference**: Optimized for edge devices and real-time applications
-- 📋 **Lightweight**: Low memory footprint suitable for mobile/embedded systems
-- 📊 **Multiple Sizes**: L0, L1, L2 variants with different performance/accuracy trade-offs
-- 🎹 **Pre-trained**: Ready-to-use models on ADE20K and Cityscapes datasets
 
 ---
 
-### Comparison Table
+## 📁 Cấu Trúc Dự Án
 
-| Feature | SMP Version | EfficientViT Version |
-|---------|------------|----------------------|
-| **Architectures** | 10+ (UNet, DeepLabV3+, FPN, SegFormer, etc.) | EfficientViT-Seg (L0, L1, L2) |
-| **Model Size** | Large (100-500MB) | Small (20-50MB) |
-| **Inference Speed** | ~200-500ms/image | ~50-150ms/image |
-| **Best Use Case** | Accuracy-focused | Speed & efficiency-focused |
-| **Hardware** | GPU (NVIDIA/AMD) | CPU/GPU/Edge devices |
-| **Training** | From scratch | Fine-tuning or transfer learning |
-| **Pre-trained Models** | Many encoders available | Pre-trained on ADE20K, Cityscapes |
-
----
-## 🔧 Troubleshooting
-
-| Problem | Solution |
-|---------|----------|
-| **CUDA out of memory** | Reduce `batch_size` in `config.yaml` |
-| **Dataset not found** | Check folder name matches `dataset_name` in config |
-| **Model not saving** | Verify write permissions in `model/` directory |
-| **Import errors** | Run `pip install -r requirements.txt` again |
-| **Slow training** | Use GPU or reduce `num_epochs` |
-| **Poor predictions** | Check input/output channels in config match your data |
+```
+road_segmentation/
+├── config.yaml              # File cấu hình chính
+├── dataset.py               # Dataset & DataLoader
+├── train.py                 # Script huấn luyện
+├── inference.py             # Script dự đoán
+├── test.py                  # Script đánh giá
+├── utils.py                 # Các hàm tiện ích
+├── plot.py                  # Vẽ biểu đồ
+├── requirements.txt         # Thư viện cần thiết
+├── Satellite_Datasets/      # Thư mục chứa dữ liệu
+├── model/                   # Mô hình đã huấn luyện
+└── plot/                    # Kết quả và biểu đồ
+```
 
 ---
 
-## 📚 References
+## ⚙️ Cấu Hình Chi Tiết
+
+### Các Kiến Trúc Model Được Hỗ Trợ
+
+Trong `config.yaml`, bạn có thể chọn:
+
+```yaml
+model:
+  name: "UNet"  # UNet, UNet++, DeepLabV3Plus, FPN, SegFormer, DPT, EfficientViT-Seg
+```
+
+### Các Encoder Được Hỗ Trợ
+
+```yaml
+model:
+  encoder_name: "resnet50"
+  # Lựa chọn: resnet18, resnet50, resnet101, efficientnet-b1, 
+  # mobileone_s0, vgg11, densenet121, v.v.
+```
+
+### Các Loss Function
+
+```yaml
+loss:
+  name: "CrossEntropyLoss"
+  # Lựa chọn: CrossEntropyLoss, DiceLoss, JaccardLoss, 
+  # FocalLoss, BCEWithLogitsLoss, CombinedLoss
+```
+
+### Scheduler
+
+```yaml
+scheduler:
+  name: "ReduceLROnPlateau"
+  params:
+    mode: 'min'
+    factor: 0.1
+    patience: 5
+```
+
+---
+
+## 📊 Kết Quả Đầu Ra
+
+Sau khi huấn luyện, các file sau sẽ được tạo tự động:
+
+| File | Mô tả |
+|------|-------|
+| `training.log` | Log chi tiết quá trình huấn luyện |
+| `epoch_results.csv` | Bảng metrics theo từng epoch |
+| `training_metrics_summary.png` | Biểu đồ metrics train/val |
+| `confusion_matrix.png` | Ma trận nhầm lẫn |
+| `training_times.txt` | Thời gian huấn luyện |
+| `model_<name>.pt` | Model tốt nhất (dựa trên Val IoU) |
+
+---
+
+## 🔧 Đánh Giá Model
+
+Để đánh giá model trên tập test:
+
+```bash
+python test.py \
+  "model/model_best.pt" \
+  "Satellite_Datasets/TGRS_Road" \
+  --output-dir "test_results/"
+```
+
+---
+
+## 💡 Ví Dụ Sử Dụng
+
+### Ví dụ 1: Huấn luyện với EfficientViT-Seg
+
+```yaml
+# config.yaml
+model:
+  name: "EfficientViT-Seg"
+  efficientvit_params:
+    model_zoo_name: "efficientvit-seg-l1-ade20k"
+    pretrained_seg_weights: "đường/dẫn/weights.pt"
+```
+
+```bash
+python train.py
+```
+
+### Ví dụ 2: Huấn luyện nhiều encoder
+
+```bash
+python train.py --encoders resnet18 resnet50 mobileone_s0
+```
+
+### Ví dụ 3: Dự đoán với output tùy chỉnh
+
+```bash
+python inference.py \
+  --input "test_images/" \
+  --weight "model/best_model.pt" \
+  --arch "UNet" \
+  --encoder "resnet34" \
+  --output "my_predictions/"
+```
+
+---
+
+## 🛠️ Xử Lý Sự Cố
+
+| Vấn đề | Giải pháp |
+|--------|----------|
+| **CUDA out of memory** | Giảm `batch_size` trong `config.yaml` |
+| **Không tìm thấy dataset** | Kiểm tra `dataset_name` và `base_dir` trong config |
+| **Model không lưu** | Kiểm tra quyền ghi trong thư mục `model/` |
+| **Import error** | Chạy lại `pip install -r requirements.txt` |
+| **Huấn luyện chậm** | Sử dụng GPU hoặc giảm `num_epochs` |
+
+---
+
+## 📋 Yêu Cầu Hệ Thống
+
+- **Python**: 3.8 trở lên
+- **PyTorch**: 2.0+ (khuyến nghị CUDA 11.8 cho GPU)
+- **RAM**: Tối thiểu 8GB (khuyến nghị 16GB+)
+- **GPU**: Tùy chọn nhưng khuyến nghị (nhanh hơn 10-20 lần)
+
+---
+
+## 📚 Tài Liệu Tham Khảo
 
 - [Segmentation Models PyTorch](https://github.com/qubvel/segmentation_models.pytorch)
 - [PyTorch Documentation](https://pytorch.org/docs/)
-- [EfficientViT](https://github.com/mit-han-lab/efficientvit/blob/master/applications/efficientvit_seg/README.md)
-- [Image Segmentation Metrics](https://www.jeremyjordan.me/evaluating-image-segmentation-models/)
+- [EfficientViT](https://github.com/mit-han-lab/efficientvit)
 
 ---
 
-## 📄 License
+## 📄 Giấy Phép
 
-MIT License - see [LICENSE](LICENSE) file for details.
+MIT License - xem file [LICENSE](LICENSE) để biết chi tiết.
 
 ---
 
-## 👤 Author
+## 👤 Tác Giả
 
 **Min-1210** - [GitHub Profile](https://github.com/Min-1210)
 
 ---
 
-## 💝 Contributing
+## 🤝 Đóng Góp
 
-Contributions are welcome! Please:
+Mọi đóng góp đều được chào đón! Vui lòng:
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add AmazingFeature'`)
-4. Push to branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
----
-
-## 📞 Support
-
-If you encounter any issues:
-
-- Check [Troubleshooting](#-troubleshooting) section
-- Open a [GitHub Issue](https://github.com/Min-1210/road_segmentation/issues)
-- Review code comments and docstrings
+1. Fork repository
+2. Tạo feature branch (`git checkout -b feature/TinhNangMoi`)
+3. Commit thay đổi (`git commit -m 'Thêm tính năng mới'`)
+4. Push lên branch (`git push origin feature/TinhNangMoi`)
+5. Mở Pull Request
 
 ---
 
-## 🎯 Roadmap
+## 📞 Hỗ Trợ
 
-- [ ] Support for additional datasets (AerialImageDataset, Inria Aerial)
-- [ ] Real-time inference API
-- [ ] Web demo application
-- [ ] Distributed training support
-- [ ] Model optimization (quantization, pruning)
-- [ ] Export to ONNX and TensorFlow
+Nếu gặp vấn đề:
+- Kiểm tra phần [Xử Lý Sự Cố](#-xử-lý-sự-cố)
+- Mở [GitHub Issue](https://github.com/Min-1210/road_segmentation/issues)
+- Đọc comments trong code
 
 ---
 
-**Last Updated**: November 27, 2025
+**Cập nhật lần cuối**: Tháng 12, 2025
