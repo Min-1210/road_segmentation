@@ -1,6 +1,0 @@
-model,best_epoch_by_train_acc,train_accuracy,train_f1,train_iou,train_loss,val_accuracy,val_f1_score,val_iou,val_loss
-plot_Massachusetts_CrossEntropyLoss_MAnet_mobileone_s1,27,0.9752,0.9752,0.9516,0.0675,0.9714,0.9714,0.9444,0.0846
-plot_Massachusetts_CrossEntropyLoss_UPerNet_mobileone_s1,30,0.9663,0.9663,0.9347,0.0765,0.9626,0.9626,0.9279,0.1063
-plot_Massachusetts_CrossEntropyLoss_DeepLabV3Plus_mobileone_s1,30,0.964,0.964,0.9304,0.0794,0.9605,0.9605,0.9241,0.1147
-plot_Massachusetts_CrossEntropyLoss_PAN_mobileone_s1,30,0.9563,0.9563,0.9162,0.0991,0.9545,0.9545,0.913,0.1251
-plot_Massachusetts_CrossEntropyLoss_PSPNet_mobileone_s1,18,0.9497,0.9497,0.9041,0.1143,0.9505,0.9505,0.9056,0.1264
