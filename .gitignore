@@ -3,9 +3,10 @@ __pycache__/
 
 # Datasets / results
 Satellite_Datasets/
+Result/
+*.pt
 *.npy
 *.pth
-*.pt
 *.ckpt
 *.onnx
 *.zip
