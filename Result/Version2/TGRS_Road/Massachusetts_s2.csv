@@ -1,0 +1,6 @@
+model,best_epoch_by_train_acc,train_accuracy,train_f1,train_iou,train_loss,val_accuracy,val_f1_score,val_iou,val_loss
+plot_TGRS_Road_CrossEntropyLoss_DeepLabV3Plus_mobileone_s0,29,0.9731,0.9856,0.9715,0.0347,0.9739,0.9739,0.9492,0.0678
+plot_TGRS_Road_CrossEntropyLoss_MAnet_mobileone_s0,25,0.9713,0.9837,0.968,0.0392,0.9771,0.9771,0.9552,0.0551
+plot_TGRS_Road_CrossEntropyLoss_UPerNet_mobileone_s0,30,0.9702,0.9826,0.9659,0.0417,0.973,0.973,0.9474,0.0664
+plot_TGRS_Road_CrossEntropyLoss_PAN_mobileone_s0,30,0.9666,0.979,0.9588,0.0504,0.9687,0.9687,0.9393,0.0769
+plot_TGRS_Road_CrossEntropyLoss_PSPNet_mobileone_s0,29,0.9634,0.9757,0.9526,0.0569,0.9701,0.9701,0.9419,0.0745

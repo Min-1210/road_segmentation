@@ -1,0 +1,47 @@
+2025-07-31 22:11:14,012 [INFO] - 
+============================ BẮT ĐẦU THÍ NGHIỆM MỚI ============================
+2025-07-31 22:11:14,012 [INFO] - Cấu hình: Massachusetts_CrossEntropyLoss_DeepLabV3Plus_efficientnet-b1
+2025-07-31 22:11:14,012 [INFO] - ================================================================================
+2025-07-31 22:11:14,012 [INFO] - 🔄 Tải dữ liệu...
+2025-07-31 22:11:14,015 [INFO] - 🔧 Khởi tạo mô hình, hàm loss, và optimizer...
+2025-07-31 22:12:20,147 [INFO] - Epoch 01 | Val Loss: 0.1378 | Val IoU: 0.9056 | 🕒 64.46s
+2025-07-31 22:13:23,951 [INFO] - Epoch 02 | Val Loss: 0.1366 | Val IoU: 0.9056 | 🕒 63.80s
+2025-07-31 22:14:29,238 [INFO] - Epoch 03 | Val Loss: 0.1145 | Val IoU: 0.9143 | 🕒 65.29s
+2025-07-31 22:15:34,196 [INFO] - Epoch 04 | Val Loss: 0.1101 | Val IoU: 0.9159 | 🕒 64.96s
+2025-07-31 22:16:37,755 [INFO] - Epoch 05 | Val Loss: 0.1089 | Val IoU: 0.9171 | 🕒 63.56s
+2025-07-31 22:17:39,688 [INFO] - Epoch 06 | Val Loss: 0.1071 | Val IoU: 0.9190 | 🕒 61.93s
+2025-07-31 22:18:42,393 [INFO] - Epoch 07 | Val Loss: 0.1095 | Val IoU: 0.9197 | 🕒 62.70s
+2025-07-31 22:19:47,616 [INFO] - Epoch 08 | Val Loss: 0.1054 | Val IoU: 0.9225 | 🕒 65.22s
+2025-07-31 22:20:49,523 [INFO] - Epoch 09 | Val Loss: 0.1041 | Val IoU: 0.9226 | 🕒 61.91s
+2025-07-31 22:21:55,536 [INFO] - Epoch 10 | Val Loss: 0.1035 | Val IoU: 0.9234 | 🕒 66.01s
+2025-07-31 22:22:58,741 [INFO] - Epoch 11 | Val Loss: 0.1072 | Val IoU: 0.9230 | 🕒 63.20s
+2025-07-31 22:24:03,169 [INFO] - Epoch 12 | Val Loss: 0.1022 | Val IoU: 0.9239 | 🕒 64.43s
+2025-07-31 22:25:08,042 [INFO] - Epoch 13 | Val Loss: 0.1039 | Val IoU: 0.9246 | 🕒 64.87s
+2025-07-31 22:26:10,882 [INFO] - Epoch 14 | Val Loss: 0.1058 | Val IoU: 0.9244 | 🕒 62.84s
+2025-07-31 22:27:14,479 [INFO] - Epoch 15 | Val Loss: 0.1037 | Val IoU: 0.9262 | 🕒 63.60s
+2025-07-31 22:28:17,245 [INFO] - Epoch 16 | Val Loss: 0.1030 | Val IoU: 0.9255 | 🕒 62.77s
+2025-07-31 22:29:20,909 [INFO] - Epoch 17 | Val Loss: 0.1028 | Val IoU: 0.9260 | 🕒 63.66s
+2025-07-31 22:30:22,439 [INFO] - Epoch 18 | Val Loss: 0.1027 | Val IoU: 0.9251 | 🕒 61.53s
+2025-07-31 22:31:22,472 [INFO] - Epoch 19 | Val Loss: 0.1041 | Val IoU: 0.9272 | 🕒 60.03s
+2025-07-31 22:32:24,482 [INFO] - Epoch 20 | Val Loss: 0.1031 | Val IoU: 0.9275 | 🕒 62.01s
+2025-07-31 22:33:25,787 [INFO] - Epoch 21 | Val Loss: 0.1035 | Val IoU: 0.9274 | 🕒 61.30s
+2025-07-31 22:34:27,296 [INFO] - Epoch 22 | Val Loss: 0.1032 | Val IoU: 0.9279 | 🕒 61.51s
+2025-07-31 22:35:29,360 [INFO] - Epoch 23 | Val Loss: 0.1031 | Val IoU: 0.9278 | 🕒 62.06s
+2025-07-31 22:36:29,811 [INFO] - Epoch 24 | Val Loss: 0.1041 | Val IoU: 0.9279 | 🕒 60.45s
+2025-07-31 22:37:30,478 [INFO] - Epoch 25 | Val Loss: 0.1047 | Val IoU: 0.9277 | 🕒 60.67s
+2025-07-31 22:38:31,421 [INFO] - Epoch 26 | Val Loss: 0.1046 | Val IoU: 0.9277 | 🕒 60.94s
+2025-07-31 22:39:33,564 [INFO] - Epoch 27 | Val Loss: 0.1048 | Val IoU: 0.9278 | 🕒 62.14s
+2025-07-31 22:40:35,364 [INFO] - Epoch 28 | Val Loss: 0.1051 | Val IoU: 0.9277 | 🕒 61.80s
+2025-07-31 22:41:35,657 [INFO] - Epoch 29 | Val Loss: 0.1049 | Val IoU: 0.9277 | 🕒 60.29s
+2025-07-31 22:42:37,656 [INFO] - Epoch 30 | Val Loss: 0.1049 | Val IoU: 0.9277 | 🕒 62.00s
+2025-07-31 22:42:37,656 [INFO] - 
+--- Huấn luyện cho Massachusetts_CrossEntropyLoss_DeepLabV3Plus_efficientnet-b1 hoàn tất ---
+2025-07-31 22:42:37,656 [INFO] - 📄 Báo cáo thời gian đã được lưu tại: plot/plot_Massachusetts_CrossEntropyLoss_DeepLabV3Plus_efficientnet-b1/training_times.txt
+2025-07-31 22:42:37,656 [INFO] - ✅ Mô hình tốt nhất đã được lưu tại: model/model_Massachusetts_CrossEntropyLoss_DeepLabV3Plus_efficientnet-b1.pt
+2025-07-31 22:42:37,656 [INFO] - 📊 Kết quả từng epoch đã được lưu tại: plot/plot_Massachusetts_CrossEntropyLoss_DeepLabV3Plus_efficientnet-b1/epoch_results.csv
+2025-07-31 22:42:37,657 [INFO] - 
+Lịch sử huấn luyện đã được lưu vào thư mục 'plot/plot_Massachusetts_CrossEntropyLoss_DeepLabV3Plus_efficientnet-b1'
+2025-07-31 22:42:38,275 [INFO] - Biểu đồ tổng hợp đã được lưu tại: plot/plot_Massachusetts_CrossEntropyLoss_DeepLabV3Plus_efficientnet-b1/training_metrics_summary.png
+2025-07-31 22:42:38,285 [INFO] - 
+============================= KẾT THÚC THÍ NGHIỆM ==============================
+

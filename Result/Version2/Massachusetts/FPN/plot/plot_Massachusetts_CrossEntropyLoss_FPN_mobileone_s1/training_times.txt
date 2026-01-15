@@ -1,0 +1,34 @@
+TRAINING TIME REPORT
+==============================
+Epoch 01 Time: 44.30 seconds
+Epoch 02 Time: 43.10 seconds
+Epoch 03 Time: 43.44 seconds
+Epoch 04 Time: 43.28 seconds
+Epoch 05 Time: 44.08 seconds
+Epoch 06 Time: 43.08 seconds
+Epoch 07 Time: 42.90 seconds
+Epoch 08 Time: 43.28 seconds
+Epoch 09 Time: 42.79 seconds
+Epoch 10 Time: 42.97 seconds
+Epoch 11 Time: 43.09 seconds
+Epoch 12 Time: 42.95 seconds
+Epoch 13 Time: 43.24 seconds
+Epoch 14 Time: 43.06 seconds
+Epoch 15 Time: 42.68 seconds
+Epoch 16 Time: 42.72 seconds
+Epoch 17 Time: 43.17 seconds
+Epoch 18 Time: 42.78 seconds
+Epoch 19 Time: 42.88 seconds
+Epoch 20 Time: 43.34 seconds
+Epoch 21 Time: 43.04 seconds
+Epoch 22 Time: 42.72 seconds
+Epoch 23 Time: 43.14 seconds
+Epoch 24 Time: 42.68 seconds
+Epoch 25 Time: 42.76 seconds
+Epoch 26 Time: 42.97 seconds
+Epoch 27 Time: 42.83 seconds
+Epoch 28 Time: 42.95 seconds
+Epoch 29 Time: 43.09 seconds
+Epoch 30 Time: 42.85 seconds
+==============================
+Total training time: 21.54 minutes (1292.20 seconds)

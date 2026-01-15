@@ -1,0 +1,43 @@
+2025-08-01 10:13:13,393 [INFO] - 🔄 Tải dữ liệu...
+2025-08-01 10:13:13,424 [INFO] - 🔧 Khởi tạo mô hình, hàm loss, và optimizer...
+2025-08-01 10:13:13,768 [INFO] - 
+--- Bắt đầu quá trình huấn luyện ---
+2025-08-01 10:14:10,151 [INFO] - Epoch 01/30 | Val Loss: 0.1233 | Val IoU: 0.9078 | Val F1: 0.9517 | 🕒 56.38s
+2025-08-01 10:15:06,439 [INFO] - Epoch 02/30 | Val Loss: 0.1149 | Val IoU: 0.9103 | Val F1: 0.9530 | 🕒 56.29s
+2025-08-01 10:16:03,164 [INFO] - Epoch 03/30 | Val Loss: 0.1095 | Val IoU: 0.9161 | Val F1: 0.9562 | 🕒 56.72s
+2025-08-01 10:16:59,967 [INFO] - Epoch 04/30 | Val Loss: 0.1071 | Val IoU: 0.9174 | Val F1: 0.9569 | 🕒 56.80s
+2025-08-01 10:17:56,624 [INFO] - Epoch 05/30 | Val Loss: 0.1042 | Val IoU: 0.9186 | Val F1: 0.9576 | 🕒 56.66s
+2025-08-01 10:18:53,486 [INFO] - Epoch 06/30 | Val Loss: 0.1055 | Val IoU: 0.9200 | Val F1: 0.9583 | 🕒 56.86s
+2025-08-01 10:19:50,042 [INFO] - Epoch 07/30 | Val Loss: 0.1031 | Val IoU: 0.9218 | Val F1: 0.9593 | 🕒 56.56s
+2025-08-01 10:20:46,793 [INFO] - Epoch 08/30 | Val Loss: 0.1034 | Val IoU: 0.9224 | Val F1: 0.9596 | 🕒 56.75s
+2025-08-01 10:21:43,596 [INFO] - Epoch 09/30 | Val Loss: 0.1006 | Val IoU: 0.9241 | Val F1: 0.9606 | 🕒 56.80s
+2025-08-01 10:22:39,977 [INFO] - Epoch 10/30 | Val Loss: 0.1015 | Val IoU: 0.9243 | Val F1: 0.9607 | 🕒 56.38s
+2025-08-01 10:23:36,408 [INFO] - Epoch 11/30 | Val Loss: 0.1015 | Val IoU: 0.9245 | Val F1: 0.9608 | 🕒 56.43s
+2025-08-01 10:24:33,179 [INFO] - Epoch 12/30 | Val Loss: 0.1025 | Val IoU: 0.9259 | Val F1: 0.9615 | 🕒 56.77s
+2025-08-01 10:25:29,991 [INFO] - Epoch 13/30 | Val Loss: 0.1031 | Val IoU: 0.9261 | Val F1: 0.9616 | 🕒 56.81s
+2025-08-01 10:26:26,886 [INFO] - Epoch 14/30 | Val Loss: 0.1012 | Val IoU: 0.9255 | Val F1: 0.9613 | 🕒 56.89s
+2025-08-01 10:27:23,708 [INFO] - Epoch 15/30 | Val Loss: 0.1054 | Val IoU: 0.9283 | Val F1: 0.9628 | 🕒 56.82s
+2025-08-01 10:28:20,616 [INFO] - Epoch 16/30 | Val Loss: 0.1024 | Val IoU: 0.9277 | Val F1: 0.9625 | 🕒 56.91s
+2025-08-01 10:29:17,082 [INFO] - Epoch 17/30 | Val Loss: 0.1024 | Val IoU: 0.9280 | Val F1: 0.9627 | 🕒 56.47s
+2025-08-01 10:30:13,036 [INFO] - Epoch 18/30 | Val Loss: 0.1019 | Val IoU: 0.9281 | Val F1: 0.9627 | 🕒 55.95s
+2025-08-01 10:31:09,003 [INFO] - Epoch 19/30 | Val Loss: 0.1036 | Val IoU: 0.9281 | Val F1: 0.9627 | 🕒 55.97s
+2025-08-01 10:32:04,553 [INFO] - Epoch 20/30 | Val Loss: 0.1039 | Val IoU: 0.9284 | Val F1: 0.9629 | 🕒 55.55s
+2025-08-01 10:33:00,751 [INFO] - Epoch 21/30 | Val Loss: 0.1040 | Val IoU: 0.9282 | Val F1: 0.9627 | 🕒 56.20s
+2025-08-01 10:33:56,596 [INFO] - Epoch 22/30 | Val Loss: 0.1041 | Val IoU: 0.9283 | Val F1: 0.9628 | 🕒 55.84s
+2025-08-01 10:34:52,349 [INFO] - Epoch 23/30 | Val Loss: 0.1040 | Val IoU: 0.9282 | Val F1: 0.9628 | 🕒 55.75s
+2025-08-01 10:35:47,779 [INFO] - Epoch 24/30 | Val Loss: 0.1040 | Val IoU: 0.9283 | Val F1: 0.9628 | 🕒 55.43s
+2025-08-01 10:36:43,505 [INFO] - Epoch 25/30 | Val Loss: 0.1039 | Val IoU: 0.9283 | Val F1: 0.9628 | 🕒 55.73s
+2025-08-01 10:37:39,459 [INFO] - Epoch 26/30 | Val Loss: 0.1044 | Val IoU: 0.9284 | Val F1: 0.9629 | 🕒 55.95s
+2025-08-01 10:38:35,293 [INFO] - Epoch 27/30 | Val Loss: 0.1042 | Val IoU: 0.9284 | Val F1: 0.9628 | 🕒 55.83s
+2025-08-01 10:39:30,698 [INFO] - Epoch 28/30 | Val Loss: 0.1045 | Val IoU: 0.9283 | Val F1: 0.9628 | 🕒 55.41s
+2025-08-01 10:40:26,252 [INFO] - Epoch 29/30 | Val Loss: 0.1046 | Val IoU: 0.9283 | Val F1: 0.9628 | 🕒 55.55s
+2025-08-01 10:41:21,668 [INFO] - Epoch 30/30 | Val Loss: 0.1041 | Val IoU: 0.9283 | Val F1: 0.9628 | 🕒 55.42s
+2025-08-01 10:41:21,668 [INFO] - 
+--- Huấn luyện hoàn tất ---
+2025-08-01 10:41:21,668 [INFO] - 
+💾 Đang lưu lịch sử huấn luyện và vẽ biểu đồ...
+2025-08-01 10:41:21,670 [INFO] - Lịch sử huấn luyện (các file .npy) đã được lưu vào thư mục 'plot/plot_Massachusetts_CrossEntropyLoss_SegFormer_efficientnet-b3'
+2025-08-01 10:41:22,928 [INFO] - Biểu đồ tổng hợp đã được lưu tại: plot/plot_Massachusetts_CrossEntropyLoss_SegFormer_efficientnet-b3/training_metrics_summary.png
+2025-08-01 10:41:22,929 [INFO] - 📄 Báo cáo thời gian đã được lưu tại: plot/plot_Massachusetts_CrossEntropyLoss_SegFormer_efficientnet-b3/training_times.txt
+2025-08-01 10:41:22,929 [INFO] - ✅ Mô hình tốt nhất đã được lưu tại: model/model_Massachusetts_CrossEntropyLoss_SegFormer_efficientnet-b3.pt
+2025-08-01 10:41:22,929 [INFO] - 📊 Kết quả từng epoch đã được lưu tại: plot/plot_Massachusetts_CrossEntropyLoss_SegFormer_efficientnet-b3/epoch_results.csv

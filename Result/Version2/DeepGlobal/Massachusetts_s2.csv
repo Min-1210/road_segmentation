@@ -1,0 +1,6 @@
+model,best_epoch_by_train_acc,train_accuracy,train_f1,train_iou,train_loss
+plot_DeepGlobal_CrossEntropyLoss_UPerNet_mobileone_s1,29,0.9852,0.9871,0.9745,0.0302
+plot_DeepGlobal_CrossEntropyLoss_MAnet_mobileone_s1,28,0.9846,0.9865,0.9734,0.032
+plot_DeepGlobal_CrossEntropyLoss_DeepLabV3Plus_mobileone_s1,29,0.9829,0.9849,0.9702,0.0352
+plot_DeepGlobal_CrossEntropyLoss_PAN_mobileone_s1,28,0.9769,0.9788,0.9585,0.0502
+plot_DeepGlobal_CrossEntropyLoss_PSPNet_mobileone_s1,27,0.9768,0.9787,0.9583,0.0483

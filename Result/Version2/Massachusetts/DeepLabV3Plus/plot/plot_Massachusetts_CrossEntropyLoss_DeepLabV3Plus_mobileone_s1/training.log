@@ -1,0 +1,49 @@
+2025-10-11 12:08:48,882 [INFO] - 
+=========================== STARTING NEW EXPERIMENT ============================
+2025-10-11 12:08:48,882 [INFO] - The device used: cuda
+2025-10-11 12:08:48,882 [INFO] - Configuration: Massachusetts_CrossEntropyLoss_DeepLabV3Plus_mobileone_s1
+2025-10-11 12:08:48,882 [INFO] - ================================================================================
+2025-10-11 12:08:48,882 [INFO] - 🔄 Loading data...
+2025-10-11 12:08:48,885 [INFO] - 🔧 Initializing model, loss function, and optimizer...
+2025-10-11 12:09:17,578 [INFO] - Epoch 01 | Val Loss: 0.1358 | Val IoU: 0.9062 | 🕒 28.58s
+2025-10-11 12:09:46,157 [INFO] - Epoch 02 | Val Loss: 0.1732 | Val IoU: 0.9067 | 🕒 28.58s
+2025-10-11 12:10:14,763 [INFO] - Epoch 03 | Val Loss: 0.1218 | Val IoU: 0.9115 | 🕒 28.61s
+2025-10-11 12:10:43,324 [INFO] - Epoch 04 | Val Loss: 0.1223 | Val IoU: 0.9130 | 🕒 28.56s
+2025-10-11 12:11:11,883 [INFO] - Epoch 05 | Val Loss: 0.1140 | Val IoU: 0.9162 | 🕒 28.56s
+2025-10-11 12:11:40,430 [INFO] - Epoch 06 | Val Loss: 0.1140 | Val IoU: 0.9174 | 🕒 28.55s
+2025-10-11 12:12:09,031 [INFO] - Epoch 07 | Val Loss: 0.1139 | Val IoU: 0.9176 | 🕒 28.60s
+2025-10-11 12:12:37,553 [INFO] - Epoch 08 | Val Loss: 0.1154 | Val IoU: 0.9181 | 🕒 28.52s
+2025-10-11 12:13:06,121 [INFO] - Epoch 09 | Val Loss: 0.1103 | Val IoU: 0.9191 | 🕒 28.57s
+2025-10-11 12:13:34,668 [INFO] - Epoch 10 | Val Loss: 0.1097 | Val IoU: 0.9199 | 🕒 28.55s
+2025-10-11 12:14:03,218 [INFO] - Epoch 11 | Val Loss: 0.1070 | Val IoU: 0.9207 | 🕒 28.55s
+2025-10-11 12:14:31,779 [INFO] - Epoch 12 | Val Loss: 0.1105 | Val IoU: 0.9198 | 🕒 28.56s
+2025-10-11 12:15:00,457 [INFO] - Epoch 13 | Val Loss: 0.1244 | Val IoU: 0.9216 | 🕒 28.68s
+2025-10-11 12:15:29,102 [INFO] - Epoch 14 | Val Loss: 0.1100 | Val IoU: 0.9227 | 🕒 28.64s
+2025-10-11 12:15:57,653 [INFO] - Epoch 15 | Val Loss: 0.1240 | Val IoU: 0.9191 | 🕒 28.55s
+2025-10-11 12:16:26,142 [INFO] - Epoch 16 | Val Loss: 0.1335 | Val IoU: 0.9197 | 🕒 28.49s
+2025-10-11 12:16:54,617 [INFO] - Epoch 17 | Val Loss: 0.1218 | Val IoU: 0.9227 | 🕒 28.47s
+2025-10-11 12:17:23,230 [INFO] - Epoch 18 | Val Loss: 0.1106 | Val IoU: 0.9237 | 🕒 28.61s
+2025-10-11 12:17:51,734 [INFO] - Epoch 19 | Val Loss: 0.1103 | Val IoU: 0.9237 | 🕒 28.50s
+2025-10-11 12:18:20,418 [INFO] - Epoch 20 | Val Loss: 0.1118 | Val IoU: 0.9240 | 🕒 28.68s
+2025-10-11 12:18:48,904 [INFO] - Epoch 21 | Val Loss: 0.1135 | Val IoU: 0.9238 | 🕒 28.49s
+2025-10-11 12:19:17,522 [INFO] - Epoch 22 | Val Loss: 0.1136 | Val IoU: 0.9242 | 🕒 28.62s
+2025-10-11 12:19:45,992 [INFO] - Epoch 23 | Val Loss: 0.1151 | Val IoU: 0.9240 | 🕒 28.47s
+2025-10-11 12:20:14,638 [INFO] - Epoch 24 | Val Loss: 0.1152 | Val IoU: 0.9242 | 🕒 28.65s
+2025-10-11 12:20:43,192 [INFO] - Epoch 25 | Val Loss: 0.1130 | Val IoU: 0.9238 | 🕒 28.55s
+2025-10-11 12:21:11,758 [INFO] - Epoch 26 | Val Loss: 0.1154 | Val IoU: 0.9240 | 🕒 28.57s
+2025-10-11 12:21:40,301 [INFO] - Epoch 27 | Val Loss: 0.1135 | Val IoU: 0.9241 | 🕒 28.54s
+2025-10-11 12:22:08,811 [INFO] - Epoch 28 | Val Loss: 0.1137 | Val IoU: 0.9239 | 🕒 28.51s
+2025-10-11 12:22:37,411 [INFO] - Epoch 29 | Val Loss: 0.1137 | Val IoU: 0.9239 | 🕒 28.60s
+2025-10-11 12:23:06,012 [INFO] - Epoch 30 | Val Loss: 0.1147 | Val IoU: 0.9241 | 🕒 28.60s
+2025-10-11 12:23:06,012 [INFO] - 
+--- Training for Massachusetts_CrossEntropyLoss_DeepLabV3Plus_mobileone_s1 complete ---
+2025-10-11 12:23:06,012 [INFO] - 📄 Time report saved at: plot/plot_Massachusetts_CrossEntropyLoss_DeepLabV3Plus_mobileone_s1/training_times.txt
+2025-10-11 12:23:06,012 [INFO] - ✅ Best model saved at: model/model_Massachusetts_CrossEntropyLoss_DeepLabV3Plus_mobileone_s1.pt
+2025-10-11 12:23:06,012 [INFO] - 📊 Per-epoch results saved at: plot/plot_Massachusetts_CrossEntropyLoss_DeepLabV3Plus_mobileone_s1/epoch_results.csv
+2025-10-11 12:23:06,013 [INFO] - 
+Training history saved to 'plot/plot_Massachusetts_CrossEntropyLoss_DeepLabV3Plus_mobileone_s1' directory.
+2025-10-11 12:23:06,631 [INFO] - Summary plot saved at: plot/plot_Massachusetts_CrossEntropyLoss_DeepLabV3Plus_mobileone_s1/training_metrics_summary.png
+2025-10-11 12:23:06,714 [INFO] - 📈 Confusion matrix saved at: plot/plot_Massachusetts_CrossEntropyLoss_DeepLabV3Plus_mobileone_s1/confusion_matrix.png
+2025-10-11 12:23:06,714 [INFO] - 
+============================= EXPERIMENT FINISHED ==============================
+

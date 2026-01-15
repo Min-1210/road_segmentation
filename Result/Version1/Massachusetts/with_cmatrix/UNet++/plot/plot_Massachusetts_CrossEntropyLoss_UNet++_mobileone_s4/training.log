@@ -1,0 +1,48 @@
+2025-08-06 07:37:04,857 [INFO] - 
+=========================== STARTING NEW EXPERIMENT ============================
+2025-08-06 07:37:04,857 [INFO] - Configuration: Massachusetts_CrossEntropyLoss_UNet++_mobileone_s4
+2025-08-06 07:37:04,857 [INFO] - ================================================================================
+2025-08-06 07:37:04,857 [INFO] - 🔄 Loading data...
+2025-08-06 07:37:04,878 [INFO] - 🔧 Initializing model, loss function, and optimizer...
+2025-08-06 07:40:01,130 [INFO] - Epoch 01 | Val Loss: 0.1016 | Val IoU: 0.9302 | 🕒 175.26s
+2025-08-06 07:42:54,827 [INFO] - Epoch 02 | Val Loss: 0.0938 | Val IoU: 0.9362 | 🕒 173.70s
+2025-08-06 07:45:48,301 [INFO] - Epoch 03 | Val Loss: 0.0870 | Val IoU: 0.9407 | 🕒 173.47s
+2025-08-06 07:48:41,650 [INFO] - Epoch 04 | Val Loss: 0.0866 | Val IoU: 0.9399 | 🕒 173.35s
+2025-08-06 07:51:34,969 [INFO] - Epoch 05 | Val Loss: 0.0862 | Val IoU: 0.9401 | 🕒 173.32s
+2025-08-06 07:54:28,622 [INFO] - Epoch 06 | Val Loss: 0.0866 | Val IoU: 0.9408 | 🕒 173.65s
+2025-08-06 07:57:22,658 [INFO] - Epoch 07 | Val Loss: 0.0847 | Val IoU: 0.9426 | 🕒 174.04s
+2025-08-06 08:00:16,636 [INFO] - Epoch 08 | Val Loss: 0.0880 | Val IoU: 0.9434 | 🕒 173.98s
+2025-08-06 08:03:10,224 [INFO] - Epoch 09 | Val Loss: 0.0950 | Val IoU: 0.9388 | 🕒 173.59s
+2025-08-06 08:06:03,754 [INFO] - Epoch 10 | Val Loss: 0.0902 | Val IoU: 0.9429 | 🕒 173.53s
+2025-08-06 08:08:57,141 [INFO] - Epoch 11 | Val Loss: 0.0976 | Val IoU: 0.9420 | 🕒 173.39s
+2025-08-06 08:11:50,523 [INFO] - Epoch 12 | Val Loss: 0.0901 | Val IoU: 0.9415 | 🕒 173.38s
+2025-08-06 08:14:44,706 [INFO] - Epoch 13 | Val Loss: 0.0909 | Val IoU: 0.9440 | 🕒 174.18s
+2025-08-06 08:17:38,645 [INFO] - Epoch 14 | Val Loss: 0.0967 | Val IoU: 0.9448 | 🕒 173.94s
+2025-08-06 08:20:32,529 [INFO] - Epoch 15 | Val Loss: 0.0964 | Val IoU: 0.9444 | 🕒 173.88s
+2025-08-06 08:23:26,072 [INFO] - Epoch 16 | Val Loss: 0.0981 | Val IoU: 0.9444 | 🕒 173.54s
+2025-08-06 08:26:19,758 [INFO] - Epoch 17 | Val Loss: 0.1011 | Val IoU: 0.9441 | 🕒 173.69s
+2025-08-06 08:29:13,370 [INFO] - Epoch 18 | Val Loss: 0.1024 | Val IoU: 0.9440 | 🕒 173.61s
+2025-08-06 08:32:06,987 [INFO] - Epoch 19 | Val Loss: 0.1029 | Val IoU: 0.9438 | 🕒 173.62s
+2025-08-06 08:35:00,606 [INFO] - Epoch 20 | Val Loss: 0.1026 | Val IoU: 0.9436 | 🕒 173.62s
+2025-08-06 08:37:54,128 [INFO] - Epoch 21 | Val Loss: 0.1030 | Val IoU: 0.9441 | 🕒 173.52s
+2025-08-06 08:40:47,585 [INFO] - Epoch 22 | Val Loss: 0.1043 | Val IoU: 0.9441 | 🕒 173.46s
+2025-08-06 08:43:41,300 [INFO] - Epoch 23 | Val Loss: 0.1039 | Val IoU: 0.9439 | 🕒 173.71s
+2025-08-06 08:46:34,618 [INFO] - Epoch 24 | Val Loss: 0.1067 | Val IoU: 0.9439 | 🕒 173.32s
+2025-08-06 08:49:27,998 [INFO] - Epoch 25 | Val Loss: 0.1051 | Val IoU: 0.9438 | 🕒 173.38s
+2025-08-06 08:52:21,634 [INFO] - Epoch 26 | Val Loss: 0.1038 | Val IoU: 0.9436 | 🕒 173.64s
+2025-08-06 08:55:15,273 [INFO] - Epoch 27 | Val Loss: 0.1032 | Val IoU: 0.9437 | 🕒 173.64s
+2025-08-06 08:58:08,863 [INFO] - Epoch 28 | Val Loss: 0.1054 | Val IoU: 0.9440 | 🕒 173.59s
+2025-08-06 09:01:02,369 [INFO] - Epoch 29 | Val Loss: 0.1054 | Val IoU: 0.9438 | 🕒 173.51s
+2025-08-06 09:03:56,186 [INFO] - Epoch 30 | Val Loss: 0.1046 | Val IoU: 0.9438 | 🕒 173.82s
+2025-08-06 09:03:56,186 [INFO] - 
+--- Training for Massachusetts_CrossEntropyLoss_UNet++_mobileone_s4 complete ---
+2025-08-06 09:03:56,186 [INFO] - 📄 Time report saved at: plot/plot_Massachusetts_CrossEntropyLoss_UNet++_mobileone_s4/training_times.txt
+2025-08-06 09:03:56,186 [INFO] - ✅ Best model saved at: model/model_Massachusetts_CrossEntropyLoss_UNet++_mobileone_s4.pt
+2025-08-06 09:03:56,186 [INFO] - 📊 Per-epoch results saved at: plot/plot_Massachusetts_CrossEntropyLoss_UNet++_mobileone_s4/epoch_results.csv
+2025-08-06 09:03:56,187 [INFO] - 
+Training history saved to 'plot/plot_Massachusetts_CrossEntropyLoss_UNet++_mobileone_s4' directory.
+2025-08-06 09:03:57,288 [INFO] - Summary plot saved at: plot/plot_Massachusetts_CrossEntropyLoss_UNet++_mobileone_s4/training_metrics_summary.png
+2025-08-06 09:03:57,417 [INFO] - 📈 Confusion matrix saved at: plot/plot_Massachusetts_CrossEntropyLoss_UNet++_mobileone_s4/confusion_matrix.png
+2025-08-06 09:03:57,417 [INFO] - 
+============================= EXPERIMENT FINISHED ==============================
+

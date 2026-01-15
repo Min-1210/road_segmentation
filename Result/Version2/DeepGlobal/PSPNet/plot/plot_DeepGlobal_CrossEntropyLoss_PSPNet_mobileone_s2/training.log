@@ -1,0 +1,49 @@
+2025-10-16 23:50:01,786 [INFO] - 
+=========================== STARTING NEW EXPERIMENT ============================
+2025-10-16 23:50:01,786 [INFO] - The device used: cuda
+2025-10-16 23:50:01,786 [INFO] - Configuration: DeepGlobal_CrossEntropyLoss_PSPNet_mobileone_s2
+2025-10-16 23:50:01,786 [INFO] - ================================================================================
+2025-10-16 23:50:01,786 [INFO] - 🔄 Loading data...
+2025-10-16 23:50:01,799 [INFO] - 🔧 Initializing model, loss function, and optimizer...
+2025-10-16 23:51:08,807 [INFO] - Epoch 01 | Val Loss: 0.1019 | Val IoU: 0.9276 | 🕒 66.80s
+2025-10-16 23:52:14,137 [INFO] - Epoch 02 | Val Loss: 0.0916 | Val IoU: 0.9328 | 🕒 65.33s
+2025-10-16 23:53:12,629 [INFO] - Epoch 03 | Val Loss: 0.0990 | Val IoU: 0.9314 | 🕒 58.49s
+2025-10-16 23:54:08,665 [INFO] - Epoch 04 | Val Loss: 0.0849 | Val IoU: 0.9374 | 🕒 56.03s
+2025-10-16 23:55:04,493 [INFO] - Epoch 05 | Val Loss: 0.0978 | Val IoU: 0.9325 | 🕒 55.83s
+2025-10-16 23:56:10,319 [INFO] - Epoch 06 | Val Loss: 0.0791 | Val IoU: 0.9399 | 🕒 65.83s
+2025-10-16 23:57:16,110 [INFO] - Epoch 07 | Val Loss: 0.0805 | Val IoU: 0.9391 | 🕒 65.79s
+2025-10-16 23:58:21,697 [INFO] - Epoch 08 | Val Loss: 0.1002 | Val IoU: 0.9384 | 🕒 65.59s
+2025-10-16 23:59:28,131 [INFO] - Epoch 09 | Val Loss: 0.0866 | Val IoU: 0.9399 | 🕒 66.43s
+2025-10-17 00:00:36,706 [INFO] - Epoch 10 | Val Loss: 0.0858 | Val IoU: 0.9417 | 🕒 68.57s
+2025-10-17 00:01:43,822 [INFO] - Epoch 11 | Val Loss: 0.0784 | Val IoU: 0.9412 | 🕒 67.11s
+2025-10-17 00:02:45,593 [INFO] - Epoch 12 | Val Loss: 0.0758 | Val IoU: 0.9422 | 🕒 61.77s
+2025-10-17 00:03:54,950 [INFO] - Epoch 13 | Val Loss: 0.0807 | Val IoU: 0.9409 | 🕒 69.36s
+2025-10-17 00:05:02,558 [INFO] - Epoch 14 | Val Loss: 0.0910 | Val IoU: 0.9415 | 🕒 67.61s
+2025-10-17 00:06:07,990 [INFO] - Epoch 15 | Val Loss: 0.0811 | Val IoU: 0.9405 | 🕒 65.43s
+2025-10-17 00:07:13,443 [INFO] - Epoch 16 | Val Loss: 0.0786 | Val IoU: 0.9440 | 🕒 65.45s
+2025-10-17 00:08:21,355 [INFO] - Epoch 17 | Val Loss: 0.0884 | Val IoU: 0.9430 | 🕒 67.91s
+2025-10-17 00:09:28,765 [INFO] - Epoch 18 | Val Loss: 0.0898 | Val IoU: 0.9446 | 🕒 67.41s
+2025-10-17 00:10:35,111 [INFO] - Epoch 19 | Val Loss: 0.0842 | Val IoU: 0.9457 | 🕒 66.34s
+2025-10-17 00:11:43,295 [INFO] - Epoch 20 | Val Loss: 0.0858 | Val IoU: 0.9457 | 🕒 68.18s
+2025-10-17 00:12:50,679 [INFO] - Epoch 21 | Val Loss: 0.0862 | Val IoU: 0.9456 | 🕒 67.38s
+2025-10-17 00:13:56,551 [INFO] - Epoch 22 | Val Loss: 0.0869 | Val IoU: 0.9456 | 🕒 65.87s
+2025-10-17 00:15:03,440 [INFO] - Epoch 23 | Val Loss: 0.0921 | Val IoU: 0.9457 | 🕒 66.89s
+2025-10-17 00:16:01,833 [INFO] - Epoch 24 | Val Loss: 0.0890 | Val IoU: 0.9454 | 🕒 58.39s
+2025-10-17 00:16:59,725 [INFO] - Epoch 25 | Val Loss: 0.0912 | Val IoU: 0.9457 | 🕒 57.89s
+2025-10-17 00:17:57,538 [INFO] - Epoch 26 | Val Loss: 0.0903 | Val IoU: 0.9455 | 🕒 57.81s
+2025-10-17 00:19:01,264 [INFO] - Epoch 27 | Val Loss: 0.0934 | Val IoU: 0.9456 | 🕒 63.73s
+2025-10-17 00:20:05,639 [INFO] - Epoch 28 | Val Loss: 0.0909 | Val IoU: 0.9457 | 🕒 64.37s
+2025-10-17 00:21:11,401 [INFO] - Epoch 29 | Val Loss: 0.0926 | Val IoU: 0.9456 | 🕒 65.76s
+2025-10-17 00:22:16,327 [INFO] - Epoch 30 | Val Loss: 0.0919 | Val IoU: 0.9456 | 🕒 64.93s
+2025-10-17 00:22:16,328 [INFO] - 
+--- Training for DeepGlobal_CrossEntropyLoss_PSPNet_mobileone_s2 complete ---
+2025-10-17 00:22:16,329 [INFO] - 📄 Time report saved at: plot/plot_DeepGlobal_CrossEntropyLoss_PSPNet_mobileone_s2\training_times.txt
+2025-10-17 00:22:16,329 [INFO] - ✅ Best model saved at: model/model_DeepGlobal_CrossEntropyLoss_PSPNet_mobileone_s2.pt
+2025-10-17 00:22:16,329 [INFO] - 📊 Per-epoch results saved at: plot/plot_DeepGlobal_CrossEntropyLoss_PSPNet_mobileone_s2\epoch_results.csv
+2025-10-17 00:22:16,336 [INFO] - 
+Training history saved to 'plot/plot_DeepGlobal_CrossEntropyLoss_PSPNet_mobileone_s2' directory.
+2025-10-17 00:22:17,550 [INFO] - Summary plot saved at: plot/plot_DeepGlobal_CrossEntropyLoss_PSPNet_mobileone_s2\training_metrics_summary.png
+2025-10-17 00:22:17,704 [INFO] - 📈 Confusion matrix saved at: plot/plot_DeepGlobal_CrossEntropyLoss_PSPNet_mobileone_s2\confusion_matrix.png
+2025-10-17 00:22:17,704 [INFO] - 
+============================= EXPERIMENT FINISHED ==============================
+

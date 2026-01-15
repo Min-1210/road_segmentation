@@ -1,0 +1,34 @@
+BÁO CÁO THỜI GIAN HUẤN LUYỆN
+==============================
+Thời gian Epoch 01: 78.54 giây
+Thời gian Epoch 02: 78.81 giây
+Thời gian Epoch 03: 78.57 giây
+Thời gian Epoch 04: 78.89 giây
+Thời gian Epoch 05: 78.65 giây
+Thời gian Epoch 06: 78.55 giây
+Thời gian Epoch 07: 78.61 giây
+Thời gian Epoch 08: 78.51 giây
+Thời gian Epoch 09: 78.40 giây
+Thời gian Epoch 10: 78.82 giây
+Thời gian Epoch 11: 78.40 giây
+Thời gian Epoch 12: 78.39 giây
+Thời gian Epoch 13: 78.47 giây
+Thời gian Epoch 14: 78.27 giây
+Thời gian Epoch 15: 78.45 giây
+Thời gian Epoch 16: 78.86 giây
+Thời gian Epoch 17: 78.59 giây
+Thời gian Epoch 18: 78.48 giây
+Thời gian Epoch 19: 78.71 giây
+Thời gian Epoch 20: 78.40 giây
+Thời gian Epoch 21: 78.21 giây
+Thời gian Epoch 22: 78.52 giây
+Thời gian Epoch 23: 78.31 giây
+Thời gian Epoch 24: 78.27 giây
+Thời gian Epoch 25: 78.41 giây
+Thời gian Epoch 26: 78.74 giây
+Thời gian Epoch 27: 78.27 giây
+Thời gian Epoch 28: 78.44 giây
+Thời gian Epoch 29: 78.34 giây
+Thời gian Epoch 30: 78.09 giây
+==============================
+Tổng thời gian huấn luyện: 39.25 phút (2355.01 giây)

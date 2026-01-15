@@ -1,0 +1,49 @@
+2025-10-11 21:50:30,261 [INFO] - 
+=========================== STARTING NEW EXPERIMENT ============================
+2025-10-11 21:50:30,262 [INFO] - The device used: cuda
+2025-10-11 21:50:30,262 [INFO] - Configuration: TGRS_Road_CrossEntropyLoss_PAN_mobileone_s0
+2025-10-11 21:50:30,262 [INFO] - ================================================================================
+2025-10-11 21:50:30,262 [INFO] - 🔄 Loading data...
+2025-10-11 21:50:30,265 [INFO] - 🔧 Initializing model, loss function, and optimizer...
+2025-10-11 21:50:44,633 [INFO] - Epoch 01 | Val Loss: 0.1757 | Val IoU: 0.8768 | 🕒 14.03s
+2025-10-11 21:50:57,256 [INFO] - Epoch 02 | Val Loss: 0.1526 | Val IoU: 0.8938 | 🕒 12.62s
+2025-10-11 21:51:09,916 [INFO] - Epoch 03 | Val Loss: 0.1207 | Val IoU: 0.9050 | 🕒 12.66s
+2025-10-11 21:51:22,629 [INFO] - Epoch 04 | Val Loss: 0.1090 | Val IoU: 0.9149 | 🕒 12.71s
+2025-10-11 21:51:35,635 [INFO] - Epoch 05 | Val Loss: 0.1038 | Val IoU: 0.9178 | 🕒 13.00s
+2025-10-11 21:51:48,305 [INFO] - Epoch 06 | Val Loss: 0.1038 | Val IoU: 0.9154 | 🕒 12.67s
+2025-10-11 21:52:01,140 [INFO] - Epoch 07 | Val Loss: 0.0938 | Val IoU: 0.9235 | 🕒 12.83s
+2025-10-11 21:52:13,805 [INFO] - Epoch 08 | Val Loss: 0.0993 | Val IoU: 0.9199 | 🕒 12.66s
+2025-10-11 21:52:26,492 [INFO] - Epoch 09 | Val Loss: 0.0864 | Val IoU: 0.9297 | 🕒 12.69s
+2025-10-11 21:52:39,103 [INFO] - Epoch 10 | Val Loss: 0.0907 | Val IoU: 0.9251 | 🕒 12.61s
+2025-10-11 21:52:51,898 [INFO] - Epoch 11 | Val Loss: 0.0861 | Val IoU: 0.9309 | 🕒 12.79s
+2025-10-11 21:53:04,558 [INFO] - Epoch 12 | Val Loss: 0.0839 | Val IoU: 0.9309 | 🕒 12.66s
+2025-10-11 21:53:17,089 [INFO] - Epoch 13 | Val Loss: 0.1010 | Val IoU: 0.9191 | 🕒 12.53s
+2025-10-11 21:53:29,706 [INFO] - Epoch 14 | Val Loss: 0.0820 | Val IoU: 0.9331 | 🕒 12.62s
+2025-10-11 21:53:42,173 [INFO] - Epoch 15 | Val Loss: 0.1256 | Val IoU: 0.9105 | 🕒 12.47s
+2025-10-11 21:53:55,052 [INFO] - Epoch 16 | Val Loss: 0.0754 | Val IoU: 0.9393 | 🕒 12.88s
+2025-10-11 21:54:07,711 [INFO] - Epoch 17 | Val Loss: 0.0757 | Val IoU: 0.9395 | 🕒 12.66s
+2025-10-11 21:54:20,268 [INFO] - Epoch 18 | Val Loss: 0.0884 | Val IoU: 0.9289 | 🕒 12.56s
+2025-10-11 21:54:33,013 [INFO] - Epoch 19 | Val Loss: 0.0732 | Val IoU: 0.9409 | 🕒 12.74s
+2025-10-11 21:54:45,682 [INFO] - Epoch 20 | Val Loss: 0.0988 | Val IoU: 0.9236 | 🕒 12.67s
+2025-10-11 21:54:58,946 [INFO] - Epoch 21 | Val Loss: 0.1120 | Val IoU: 0.9137 | 🕒 13.26s
+2025-10-11 21:55:11,421 [INFO] - Epoch 22 | Val Loss: 0.0801 | Val IoU: 0.9348 | 🕒 12.47s
+2025-10-11 21:55:24,019 [INFO] - Epoch 23 | Val Loss: 0.0758 | Val IoU: 0.9395 | 🕒 12.60s
+2025-10-11 21:55:36,630 [INFO] - Epoch 24 | Val Loss: 0.1254 | Val IoU: 0.9159 | 🕒 12.61s
+2025-10-11 21:55:49,277 [INFO] - Epoch 25 | Val Loss: 0.1031 | Val IoU: 0.9219 | 🕒 12.65s
+2025-10-11 21:56:02,250 [INFO] - Epoch 26 | Val Loss: 0.0753 | Val IoU: 0.9399 | 🕒 12.97s
+2025-10-11 21:56:14,944 [INFO] - Epoch 27 | Val Loss: 0.0807 | Val IoU: 0.9365 | 🕒 12.69s
+2025-10-11 21:56:27,635 [INFO] - Epoch 28 | Val Loss: 0.0778 | Val IoU: 0.9383 | 🕒 12.69s
+2025-10-11 21:56:40,325 [INFO] - Epoch 29 | Val Loss: 0.0837 | Val IoU: 0.9346 | 🕒 12.69s
+2025-10-11 21:56:52,989 [INFO] - Epoch 30 | Val Loss: 0.0769 | Val IoU: 0.9393 | 🕒 12.66s
+2025-10-11 21:56:52,989 [INFO] - 
+--- Training for TGRS_Road_CrossEntropyLoss_PAN_mobileone_s0 complete ---
+2025-10-11 21:56:52,990 [INFO] - 📄 Time report saved at: plot/plot_TGRS_Road_CrossEntropyLoss_PAN_mobileone_s0\training_times.txt
+2025-10-11 21:56:52,990 [INFO] - ✅ Best model saved at: model/model_TGRS_Road_CrossEntropyLoss_PAN_mobileone_s0.pt
+2025-10-11 21:56:52,990 [INFO] - 📊 Per-epoch results saved at: plot/plot_TGRS_Road_CrossEntropyLoss_PAN_mobileone_s0\epoch_results.csv
+2025-10-11 21:56:52,995 [INFO] - 
+Training history saved to 'plot/plot_TGRS_Road_CrossEntropyLoss_PAN_mobileone_s0' directory.
+2025-10-11 21:56:53,766 [INFO] - Summary plot saved at: plot/plot_TGRS_Road_CrossEntropyLoss_PAN_mobileone_s0\training_metrics_summary.png
+2025-10-11 21:56:53,870 [INFO] - 📈 Confusion matrix saved at: plot/plot_TGRS_Road_CrossEntropyLoss_PAN_mobileone_s0\confusion_matrix.png
+2025-10-11 21:56:53,872 [INFO] - 
+============================= EXPERIMENT FINISHED ==============================
+

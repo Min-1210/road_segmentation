@@ -1,0 +1,44 @@
+2025-10-19 02:32:19,519 [INFO] - 
+=========================== STARTING NEW EXPERIMENT ============================
+2025-10-19 02:32:19,519 [INFO] - The device used: cuda
+2025-10-19 02:32:19,519 [INFO] - Configuration: DeepGlobal_CrossEntropyLoss_FPN_mobileone_s0
+2025-10-19 02:32:19,519 [INFO] - ================================================================================
+2025-10-19 02:32:19,519 [INFO] - 🔄 Loading data...
+2025-10-19 02:32:19,525 [INFO] - 🔧 Initializing model, loss function, and optimizer...
+2025-10-19 02:33:54,219 [INFO] - Epoch 01 | Val Loss: 0.0956 | Val IoU: 0.9300 | 🕒 94.35s
+2025-10-19 02:35:27,400 [INFO] - Epoch 02 | Val Loss: 0.0879 | Val IoU: 0.9361 | 🕒 93.18s
+2025-10-19 02:36:58,769 [INFO] - Epoch 03 | Val Loss: 0.0886 | Val IoU: 0.9354 | 🕒 91.37s
+2025-10-19 02:38:30,005 [INFO] - Epoch 04 | Val Loss: 0.0810 | Val IoU: 0.9391 | 🕒 91.23s
+2025-10-19 02:40:02,616 [INFO] - Epoch 05 | Val Loss: 0.0786 | Val IoU: 0.9400 | 🕒 92.61s
+2025-10-19 02:41:33,877 [INFO] - Epoch 06 | Val Loss: 0.0750 | Val IoU: 0.9444 | 🕒 91.26s
+2025-10-19 02:43:05,041 [INFO] - Epoch 07 | Val Loss: 0.0778 | Val IoU: 0.9411 | 🕒 91.16s
+2025-10-19 02:44:36,818 [INFO] - Epoch 08 | Val Loss: 0.0709 | Val IoU: 0.9459 | 🕒 91.78s
+2025-10-19 02:46:07,837 [INFO] - Epoch 09 | Val Loss: 0.0727 | Val IoU: 0.9445 | 🕒 91.02s
+2025-10-19 02:47:39,568 [INFO] - Epoch 10 | Val Loss: 0.0743 | Val IoU: 0.9459 | 🕒 91.73s
+2025-10-19 02:49:10,940 [INFO] - Epoch 11 | Val Loss: 0.0757 | Val IoU: 0.9451 | 🕒 91.37s
+2025-10-19 02:50:42,266 [INFO] - Epoch 12 | Val Loss: 0.0725 | Val IoU: 0.9462 | 🕒 91.33s
+2025-10-19 02:52:13,808 [INFO] - Epoch 13 | Val Loss: 0.0774 | Val IoU: 0.9455 | 🕒 91.54s
+2025-10-19 02:53:44,933 [INFO] - Epoch 14 | Val Loss: 0.0762 | Val IoU: 0.9443 | 🕒 91.12s
+2025-10-19 02:55:16,730 [INFO] - Epoch 15 | Val Loss: 0.0684 | Val IoU: 0.9493 | 🕒 91.80s
+2025-10-19 02:56:48,321 [INFO] - Epoch 16 | Val Loss: 0.0713 | Val IoU: 0.9496 | 🕒 91.59s
+2025-10-19 02:58:19,428 [INFO] - Epoch 17 | Val Loss: 0.0745 | Val IoU: 0.9497 | 🕒 91.11s
+2025-10-19 02:59:51,671 [INFO] - Epoch 18 | Val Loss: 0.0725 | Val IoU: 0.9498 | 🕒 92.24s
+2025-10-19 03:01:23,170 [INFO] - Epoch 19 | Val Loss: 0.0732 | Val IoU: 0.9493 | 🕒 91.50s
+2025-10-19 03:02:55,354 [INFO] - Epoch 20 | Val Loss: 0.0737 | Val IoU: 0.9496 | 🕒 92.18s
+2025-10-19 03:04:27,251 [INFO] - Epoch 21 | Val Loss: 0.0766 | Val IoU: 0.9497 | 🕒 91.90s
+2025-10-19 03:05:58,642 [INFO] - Epoch 22 | Val Loss: 0.0753 | Val IoU: 0.9500 | 🕒 91.39s
+2025-10-19 03:07:30,266 [INFO] - Epoch 23 | Val Loss: 0.0753 | Val IoU: 0.9499 | 🕒 91.62s
+2025-10-19 03:09:01,412 [INFO] - Epoch 24 | Val Loss: 0.0755 | Val IoU: 0.9500 | 🕒 91.15s
+2025-10-19 03:10:32,636 [INFO] - Epoch 25 | Val Loss: 0.0759 | Val IoU: 0.9497 | 🕒 91.22s
+2025-10-19 03:12:04,001 [INFO] - Epoch 26 | Val Loss: 0.0763 | Val IoU: 0.9496 | 🕒 91.36s
+2025-10-19 03:13:35,174 [INFO] - Epoch 27 | Val Loss: 0.0765 | Val IoU: 0.9499 | 🕒 91.17s
+2025-10-19 03:15:09,802 [INFO] - Epoch 28 | Val Loss: 0.0757 | Val IoU: 0.9499 | 🕒 94.63s
+2025-10-19 03:17:04,246 [INFO] - Epoch 29 | Val Loss: 0.0771 | Val IoU: 0.9498 | 🕒 114.44s
+2025-10-19 03:18:57,293 [INFO] - Epoch 30 | Val Loss: 0.0762 | Val IoU: 0.9498 | 🕒 113.05s
+2025-10-19 03:18:57,293 [INFO] - 
+--- Training for DeepGlobal_CrossEntropyLoss_FPN_mobileone_s0 complete ---
+2025-10-19 03:18:57,294 [INFO] - 📄 Time report saved at: plot/plot_DeepGlobal_CrossEntropyLoss_FPN_mobileone_s0\training_times.txt
+2025-10-19 03:18:57,294 [INFO] - ✅ Best model saved at: model/model_DeepGlobal_CrossEntropyLoss_FPN_mobileone_s0.pt
+2025-10-19 03:18:57,294 [INFO] - 📊 Per-epoch results saved at: plot/plot_DeepGlobal_CrossEntropyLoss_FPN_mobileone_s0\epoch_results.csv
+2025-10-19 03:18:57,302 [INFO] - 
+Training history saved to 'plot/plot_DeepGlobal_CrossEntropyLoss_FPN_mobileone_s0' directory.

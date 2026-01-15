@@ -1,0 +1,49 @@
+2025-10-22 04:06:01,504 [INFO] - 
+=========================== STARTING NEW EXPERIMENT ============================
+2025-10-22 04:06:01,504 [INFO] - The device used: cuda
+2025-10-22 04:06:01,504 [INFO] - Configuration: DeepGlobal_CrossEntropyLoss_MAnet_mobileone_s0
+2025-10-22 04:06:01,504 [INFO] - ================================================================================
+2025-10-22 04:06:01,504 [INFO] - 🔄 Loading data...
+2025-10-22 04:06:08,280 [INFO] - 🔧 Initializing model, loss function, and optimizer...
+2025-10-22 04:24:18,965 [INFO] - Epoch 01 | Val Loss: 0.0909 | Val IoU: 0.9370 | 🕒 1088.42s
+2025-10-22 04:26:27,017 [INFO] - Epoch 02 | Val Loss: 0.0765 | Val IoU: 0.9434 | 🕒 128.04s
+2025-10-22 04:28:33,062 [INFO] - Epoch 03 | Val Loss: 0.0767 | Val IoU: 0.9440 | 🕒 126.04s
+2025-10-22 04:30:38,703 [INFO] - Epoch 04 | Val Loss: 0.0790 | Val IoU: 0.9376 | 🕒 125.64s
+2025-10-22 04:32:43,937 [INFO] - Epoch 05 | Val Loss: 0.0702 | Val IoU: 0.9490 | 🕒 125.23s
+2025-10-22 04:34:49,231 [INFO] - Epoch 06 | Val Loss: 0.0811 | Val IoU: 0.9422 | 🕒 125.29s
+2025-10-22 04:36:54,704 [INFO] - Epoch 07 | Val Loss: 0.0709 | Val IoU: 0.9457 | 🕒 125.47s
+2025-10-22 04:39:00,069 [INFO] - Epoch 08 | Val Loss: 0.0708 | Val IoU: 0.9460 | 🕒 125.36s
+2025-10-22 04:41:05,744 [INFO] - Epoch 09 | Val Loss: 0.0721 | Val IoU: 0.9493 | 🕒 125.67s
+2025-10-22 04:43:11,786 [INFO] - Epoch 10 | Val Loss: 0.0672 | Val IoU: 0.9495 | 🕒 126.04s
+2025-10-22 04:45:17,465 [INFO] - Epoch 11 | Val Loss: 0.0698 | Val IoU: 0.9497 | 🕒 125.67s
+2025-10-22 04:47:23,418 [INFO] - Epoch 12 | Val Loss: 0.0665 | Val IoU: 0.9508 | 🕒 125.95s
+2025-10-22 04:49:29,017 [INFO] - Epoch 13 | Val Loss: 0.0675 | Val IoU: 0.9503 | 🕒 125.60s
+2025-10-22 04:51:34,699 [INFO] - Epoch 14 | Val Loss: 0.0690 | Val IoU: 0.9521 | 🕒 125.68s
+2025-10-22 04:53:40,628 [INFO] - Epoch 15 | Val Loss: 0.0751 | Val IoU: 0.9497 | 🕒 125.93s
+2025-10-22 04:55:46,844 [INFO] - Epoch 16 | Val Loss: 0.0778 | Val IoU: 0.9434 | 🕒 126.22s
+2025-10-22 04:57:52,667 [INFO] - Epoch 17 | Val Loss: 0.0677 | Val IoU: 0.9497 | 🕒 125.82s
+2025-10-22 04:59:58,652 [INFO] - Epoch 18 | Val Loss: 0.0654 | Val IoU: 0.9506 | 🕒 125.98s
+2025-10-22 05:02:03,718 [INFO] - Epoch 19 | Val Loss: 0.0641 | Val IoU: 0.9511 | 🕒 125.06s
+2025-10-22 05:04:08,982 [INFO] - Epoch 20 | Val Loss: 0.0661 | Val IoU: 0.9511 | 🕒 125.26s
+2025-10-22 05:06:13,997 [INFO] - Epoch 21 | Val Loss: 0.0827 | Val IoU: 0.9485 | 🕒 125.02s
+2025-10-22 05:08:19,014 [INFO] - Epoch 22 | Val Loss: 0.0663 | Val IoU: 0.9509 | 🕒 125.02s
+2025-10-22 05:10:24,111 [INFO] - Epoch 23 | Val Loss: 0.0719 | Val IoU: 0.9513 | 🕒 125.10s
+2025-10-22 05:12:29,362 [INFO] - Epoch 24 | Val Loss: 0.0704 | Val IoU: 0.9503 | 🕒 125.25s
+2025-10-22 05:14:34,048 [INFO] - Epoch 25 | Val Loss: 0.0674 | Val IoU: 0.9516 | 🕒 124.69s
+2025-10-22 05:16:39,768 [INFO] - Epoch 26 | Val Loss: 0.0689 | Val IoU: 0.9532 | 🕒 125.72s
+2025-10-22 05:18:45,269 [INFO] - Epoch 27 | Val Loss: 0.0690 | Val IoU: 0.9536 | 🕒 125.50s
+2025-10-22 05:20:50,648 [INFO] - Epoch 28 | Val Loss: 0.0703 | Val IoU: 0.9533 | 🕒 125.38s
+2025-10-22 05:22:55,718 [INFO] - Epoch 29 | Val Loss: 0.0720 | Val IoU: 0.9533 | 🕒 125.07s
+2025-10-22 05:25:00,690 [INFO] - Epoch 30 | Val Loss: 0.0720 | Val IoU: 0.9531 | 🕒 124.97s
+2025-10-22 05:25:00,690 [INFO] - 
+--- Training for DeepGlobal_CrossEntropyLoss_MAnet_mobileone_s0 complete ---
+2025-10-22 05:25:00,690 [INFO] - 📄 Time report saved at: plot/plot_DeepGlobal_CrossEntropyLoss_MAnet_mobileone_s0/training_times.txt
+2025-10-22 05:25:00,690 [INFO] - ✅ Best model saved at: model/model_DeepGlobal_CrossEntropyLoss_MAnet_mobileone_s0.pt
+2025-10-22 05:25:00,690 [INFO] - 📊 Per-epoch results saved at: plot/plot_DeepGlobal_CrossEntropyLoss_MAnet_mobileone_s0/epoch_results.csv
+2025-10-22 05:25:00,692 [INFO] - 
+Training history saved to 'plot/plot_DeepGlobal_CrossEntropyLoss_MAnet_mobileone_s0' directory.
+2025-10-22 05:25:01,718 [INFO] - Summary plot saved at: plot/plot_DeepGlobal_CrossEntropyLoss_MAnet_mobileone_s0/training_metrics_summary.png
+2025-10-22 05:25:01,846 [INFO] - 📈 Confusion matrix saved at: plot/plot_DeepGlobal_CrossEntropyLoss_MAnet_mobileone_s0/confusion_matrix.png
+2025-10-22 05:25:01,847 [INFO] - 
+============================= EXPERIMENT FINISHED ==============================
+

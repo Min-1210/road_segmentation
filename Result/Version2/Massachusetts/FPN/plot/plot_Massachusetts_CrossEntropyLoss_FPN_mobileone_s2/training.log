@@ -1,0 +1,48 @@
+2025-10-08 17:27:39,382 [INFO] - 
+=========================== STARTING NEW EXPERIMENT ============================
+2025-10-08 17:27:39,382 [INFO] - Configuration: Massachusetts_CrossEntropyLoss_FPN_mobileone_s2
+2025-10-08 17:27:39,382 [INFO] - ================================================================================
+2025-10-08 17:27:39,382 [INFO] - 🔄 Loading data...
+2025-10-08 17:27:39,404 [INFO] - 🔧 Initializing model, loss function, and optimizer...
+2025-10-08 17:28:30,559 [INFO] - Epoch 01 | Val Loss: 0.1656 | Val IoU: 0.9034 | 🕒 49.74s
+2025-10-08 17:29:18,672 [INFO] - Epoch 02 | Val Loss: 0.1463 | Val IoU: 0.9042 | 🕒 48.11s
+2025-10-08 17:30:06,900 [INFO] - Epoch 03 | Val Loss: 0.1373 | Val IoU: 0.9045 | 🕒 48.23s
+2025-10-08 17:30:54,937 [INFO] - Epoch 04 | Val Loss: 0.1266 | Val IoU: 0.9077 | 🕒 48.04s
+2025-10-08 17:31:43,368 [INFO] - Epoch 05 | Val Loss: 0.1247 | Val IoU: 0.9082 | 🕒 48.43s
+2025-10-08 17:32:31,453 [INFO] - Epoch 06 | Val Loss: 0.1264 | Val IoU: 0.9071 | 🕒 48.08s
+2025-10-08 17:33:19,743 [INFO] - Epoch 07 | Val Loss: 0.1202 | Val IoU: 0.9101 | 🕒 48.28s
+2025-10-08 17:34:07,962 [INFO] - Epoch 08 | Val Loss: 0.1196 | Val IoU: 0.9110 | 🕒 48.22s
+2025-10-08 17:34:56,118 [INFO] - Epoch 09 | Val Loss: 0.1165 | Val IoU: 0.9129 | 🕒 48.15s
+2025-10-08 17:35:44,339 [INFO] - Epoch 10 | Val Loss: 0.1188 | Val IoU: 0.9103 | 🕒 48.22s
+2025-10-08 17:36:32,916 [INFO] - Epoch 11 | Val Loss: 0.1131 | Val IoU: 0.9153 | 🕒 48.58s
+2025-10-08 17:37:21,478 [INFO] - Epoch 12 | Val Loss: 0.1109 | Val IoU: 0.9172 | 🕒 48.56s
+2025-10-08 17:38:09,872 [INFO] - Epoch 13 | Val Loss: 0.1112 | Val IoU: 0.9197 | 🕒 48.39s
+2025-10-08 17:38:57,962 [INFO] - Epoch 14 | Val Loss: 0.1115 | Val IoU: 0.9176 | 🕒 48.09s
+2025-10-08 17:39:45,892 [INFO] - Epoch 15 | Val Loss: 0.1098 | Val IoU: 0.9201 | 🕒 47.93s
+2025-10-08 17:40:33,668 [INFO] - Epoch 16 | Val Loss: 0.1185 | Val IoU: 0.9191 | 🕒 47.78s
+2025-10-08 17:41:21,568 [INFO] - Epoch 17 | Val Loss: 0.1095 | Val IoU: 0.9214 | 🕒 47.89s
+2025-10-08 17:42:10,269 [INFO] - Epoch 18 | Val Loss: 0.1128 | Val IoU: 0.9217 | 🕒 48.70s
+2025-10-08 17:42:58,361 [INFO] - Epoch 19 | Val Loss: 0.1138 | Val IoU: 0.9222 | 🕒 48.08s
+2025-10-08 17:43:46,446 [INFO] - Epoch 20 | Val Loss: 0.1105 | Val IoU: 0.9211 | 🕒 48.08s
+2025-10-08 17:44:34,770 [INFO] - Epoch 21 | Val Loss: 0.1110 | Val IoU: 0.9222 | 🕒 48.32s
+2025-10-08 17:45:23,354 [INFO] - Epoch 22 | Val Loss: 0.1076 | Val IoU: 0.9242 | 🕒 48.58s
+2025-10-08 17:46:11,454 [INFO] - Epoch 23 | Val Loss: 0.1150 | Val IoU: 0.9233 | 🕒 48.10s
+2025-10-08 17:46:59,794 [INFO] - Epoch 24 | Val Loss: 0.1165 | Val IoU: 0.9229 | 🕒 48.34s
+2025-10-08 17:47:48,242 [INFO] - Epoch 25 | Val Loss: 0.1201 | Val IoU: 0.9247 | 🕒 48.45s
+2025-10-08 17:48:36,678 [INFO] - Epoch 26 | Val Loss: 0.1164 | Val IoU: 0.9234 | 🕒 48.44s
+2025-10-08 17:49:24,664 [INFO] - Epoch 27 | Val Loss: 0.1143 | Val IoU: 0.9242 | 🕒 47.99s
+2025-10-08 17:50:12,855 [INFO] - Epoch 28 | Val Loss: 0.1233 | Val IoU: 0.9224 | 🕒 48.19s
+2025-10-08 17:51:00,987 [INFO] - Epoch 29 | Val Loss: 0.1233 | Val IoU: 0.9259 | 🕒 48.13s
+2025-10-08 17:51:49,541 [INFO] - Epoch 30 | Val Loss: 0.1220 | Val IoU: 0.9260 | 🕒 48.55s
+2025-10-08 17:51:49,541 [INFO] - 
+--- Training for Massachusetts_CrossEntropyLoss_FPN_mobileone_s2 complete ---
+2025-10-08 17:51:49,542 [INFO] - 📄 Time report saved at: plot/plot_Massachusetts_CrossEntropyLoss_FPN_mobileone_s2/training_times.txt
+2025-10-08 17:51:49,542 [INFO] - ✅ Best model saved at: model/model_Massachusetts_CrossEntropyLoss_FPN_mobileone_s2.pt
+2025-10-08 17:51:49,542 [INFO] - 📊 Per-epoch results saved at: plot/plot_Massachusetts_CrossEntropyLoss_FPN_mobileone_s2/epoch_results.csv
+2025-10-08 17:51:49,543 [INFO] - 
+Training history saved to 'plot/plot_Massachusetts_CrossEntropyLoss_FPN_mobileone_s2' directory.
+2025-10-08 17:51:50,491 [INFO] - Summary plot saved at: plot/plot_Massachusetts_CrossEntropyLoss_FPN_mobileone_s2/training_metrics_summary.png
+2025-10-08 17:51:50,617 [INFO] - 📈 Confusion matrix saved at: plot/plot_Massachusetts_CrossEntropyLoss_FPN_mobileone_s2/confusion_matrix.png
+2025-10-08 17:51:50,617 [INFO] - 
+============================= EXPERIMENT FINISHED ==============================
+

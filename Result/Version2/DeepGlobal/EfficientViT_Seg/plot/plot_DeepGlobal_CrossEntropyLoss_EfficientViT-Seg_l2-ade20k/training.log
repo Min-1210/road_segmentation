@@ -1,0 +1,37 @@
+2025-12-20 16:14:43,770 [INFO] - Config suffix: DeepGlobal_CrossEntropyLoss_EfficientViT-Seg_l2-ade20k
+2025-12-20 16:14:43,770 [INFO] - Device: cuda
+2025-12-20 16:14:43,771 [INFO] - 🔄 Loading data...
+2025-12-20 16:14:43,809 [INFO] - 🔧 Initializing model, loss, optimizer, scheduler...
+2025-12-20 16:18:51,330 [INFO] - Epoch 01/30 | Val Loss: 0.0939 | Val IoU: 0.9364 | 🕒 246.22s
+2025-12-20 16:22:54,622 [INFO] - Epoch 02/30 | Val Loss: 0.1044 | Val IoU: 0.9384 | 🕒 243.20s
+2025-12-20 16:26:57,019 [INFO] - Epoch 03/30 | Val Loss: 0.0870 | Val IoU: 0.9377 | 🕒 242.30s
+2025-12-20 16:30:59,610 [INFO] - Epoch 04/30 | Val Loss: 0.0796 | Val IoU: 0.9405 | 🕒 242.49s
+2025-12-20 16:35:01,889 [INFO] - Epoch 05/30 | Val Loss: 0.1200 | Val IoU: 0.9271 | 🕒 242.19s
+2025-12-20 16:39:04,640 [INFO] - Epoch 06/30 | Val Loss: 0.0830 | Val IoU: 0.9357 | 🕒 242.65s
+2025-12-20 16:43:07,105 [INFO] - Epoch 07/30 | Val Loss: 0.0980 | Val IoU: 0.9235 | 🕒 242.37s
+2025-12-20 16:47:10,045 [INFO] - Epoch 08/30 | Val Loss: 0.0722 | Val IoU: 0.9457 | 🕒 242.84s
+2025-12-20 16:51:12,945 [INFO] - Epoch 09/30 | Val Loss: 0.0712 | Val IoU: 0.9468 | 🕒 242.80s
+2025-12-20 16:55:15,405 [INFO] - Epoch 10/30 | Val Loss: 0.1052 | Val IoU: 0.9243 | 🕒 242.36s
+2025-12-20 16:59:17,952 [INFO] - Epoch 11/30 | Val Loss: 0.0797 | Val IoU: 0.9404 | 🕒 242.45s
+2025-12-20 17:03:20,867 [INFO] - Epoch 12/30 | Val Loss: 0.0777 | Val IoU: 0.9437 | 🕒 242.82s
+2025-12-20 17:07:23,599 [INFO] - Epoch 13/30 | Val Loss: 0.0872 | Val IoU: 0.9378 | 🕒 242.63s
+2025-12-20 17:11:25,799 [INFO] - Epoch 14/30 | Val Loss: 0.0890 | Val IoU: 0.9412 | 🕒 242.10s
+2025-12-20 17:15:27,291 [INFO] - Epoch 15/30 | Val Loss: 0.0833 | Val IoU: 0.9429 | 🕒 241.39s
+2025-12-20 17:19:29,393 [INFO] - Epoch 16/30 | Val Loss: 0.0740 | Val IoU: 0.9531 | 🕒 242.01s
+2025-12-20 17:23:31,174 [INFO] - Epoch 17/30 | Val Loss: 0.0744 | Val IoU: 0.9536 | 🕒 241.68s
+2025-12-20 17:27:32,938 [INFO] - Epoch 18/30 | Val Loss: 0.0797 | Val IoU: 0.9538 | 🕒 241.67s
+2025-12-20 17:31:34,804 [INFO] - Epoch 19/30 | Val Loss: 0.0813 | Val IoU: 0.9540 | 🕒 241.76s
+2025-12-20 17:35:36,214 [INFO] - Epoch 20/30 | Val Loss: 0.0845 | Val IoU: 0.9536 | 🕒 241.32s
+2025-12-20 17:39:37,700 [INFO] - Epoch 21/30 | Val Loss: 0.0871 | Val IoU: 0.9539 | 🕒 241.39s
+2025-12-20 17:43:39,308 [INFO] - Epoch 22/30 | Val Loss: 0.0910 | Val IoU: 0.9538 | 🕒 241.51s
+2025-12-20 17:47:40,482 [INFO] - Epoch 23/30 | Val Loss: 0.0903 | Val IoU: 0.9538 | 🕒 241.08s
+2025-12-20 17:51:41,381 [INFO] - Epoch 24/30 | Val Loss: 0.0935 | Val IoU: 0.9537 | 🕒 240.80s
+2025-12-20 17:55:42,132 [INFO] - Epoch 25/30 | Val Loss: 0.0932 | Val IoU: 0.9537 | 🕒 240.65s
+2025-12-20 17:59:43,142 [INFO] - Epoch 26/30 | Val Loss: 0.0934 | Val IoU: 0.9539 | 🕒 240.91s
+2025-12-20 18:03:44,408 [INFO] - Epoch 27/30 | Val Loss: 0.0944 | Val IoU: 0.9536 | 🕒 241.17s
+2025-12-20 18:07:45,264 [INFO] - Epoch 28/30 | Val Loss: 0.0938 | Val IoU: 0.9536 | 🕒 240.76s
+2025-12-20 18:11:46,255 [INFO] - Epoch 29/30 | Val Loss: 0.0939 | Val IoU: 0.9536 | 🕒 240.89s
+2025-12-20 18:15:47,111 [INFO] - Epoch 30/30 | Val Loss: 0.0949 | Val IoU: 0.9536 | 🕒 240.76s
+2025-12-20 18:15:47,208 [INFO] - 📄 Time report saved at: plot/plot_DeepGlobal_CrossEntropyLoss_EfficientViT-Seg_l2-ade20k/training_times.txt
+2025-12-20 18:15:48,349 [INFO] - ✅ Best model saved at: model/model_DeepGlobal_CrossEntropyLoss_EfficientViT-Seg_l2-ade20k.pt
+2025-12-20 18:15:48,349 [INFO] - 📊 Results saved at: plot/plot_DeepGlobal_CrossEntropyLoss_EfficientViT-Seg_l2-ade20k

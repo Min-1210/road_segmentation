@@ -32,7 +32,8 @@ def _suffix_from_config(config):
     model_name = config['model']['name']
     if model_name == "EfficientViT-Seg":
         model_zoo_name = config['model'].get('efficientvit_params', {}).get('model_zoo_name', 'default')
-        model_variant = model_zoo_name.split('-')[-2]
+        parts = model_zoo_name.split('-')
+        model_variant = "-".join(parts[-2:])
         return f"{config['data']['dataset_name']}_{config['loss']['name']}_{model_name}_{model_variant}"
     else:
         encoder_name = config['model'].get('encoder_name', 'no_encoder')

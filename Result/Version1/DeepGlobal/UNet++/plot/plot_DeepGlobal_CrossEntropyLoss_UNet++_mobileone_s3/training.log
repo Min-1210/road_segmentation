@@ -1,0 +1,48 @@
+2025-08-07 08:57:31,547 [INFO] - 
+=========================== STARTING NEW EXPERIMENT ============================
+2025-08-07 08:57:31,548 [INFO] - Configuration: DeepGlobal_CrossEntropyLoss_UNet++_mobileone_s3
+2025-08-07 08:57:31,548 [INFO] - ================================================================================
+2025-08-07 08:57:31,548 [INFO] - 🔄 Loading data...
+2025-08-07 08:57:31,573 [INFO] - 🔧 Initializing model, loss function, and optimizer...
+2025-08-07 09:01:15,727 [INFO] - Epoch 01 | Val Loss: 0.0814 | Val IoU: 0.9409 | 🕒 221.30s
+2025-08-07 09:04:57,546 [INFO] - Epoch 02 | Val Loss: 0.0753 | Val IoU: 0.9454 | 🕒 221.82s
+2025-08-07 09:08:38,844 [INFO] - Epoch 03 | Val Loss: 0.0726 | Val IoU: 0.9465 | 🕒 221.30s
+2025-08-07 09:12:20,033 [INFO] - Epoch 04 | Val Loss: 0.0675 | Val IoU: 0.9507 | 🕒 221.19s
+2025-08-07 09:16:01,124 [INFO] - Epoch 05 | Val Loss: 0.0670 | Val IoU: 0.9477 | 🕒 221.09s
+2025-08-07 09:19:42,643 [INFO] - Epoch 06 | Val Loss: 0.0695 | Val IoU: 0.9520 | 🕒 221.52s
+2025-08-07 09:23:24,593 [INFO] - Epoch 07 | Val Loss: 0.0673 | Val IoU: 0.9531 | 🕒 221.95s
+2025-08-07 09:27:06,296 [INFO] - Epoch 08 | Val Loss: 0.0672 | Val IoU: 0.9519 | 🕒 221.70s
+2025-08-07 09:30:47,131 [INFO] - Epoch 09 | Val Loss: 0.0662 | Val IoU: 0.9515 | 🕒 220.84s
+2025-08-07 09:34:28,456 [INFO] - Epoch 10 | Val Loss: 0.0698 | Val IoU: 0.9529 | 🕒 221.32s
+2025-08-07 09:38:09,162 [INFO] - Epoch 11 | Val Loss: 0.0663 | Val IoU: 0.9521 | 🕒 220.71s
+2025-08-07 09:41:50,138 [INFO] - Epoch 12 | Val Loss: 0.0706 | Val IoU: 0.9534 | 🕒 220.98s
+2025-08-07 09:45:30,682 [INFO] - Epoch 13 | Val Loss: 0.0694 | Val IoU: 0.9529 | 🕒 220.54s
+2025-08-07 09:49:11,518 [INFO] - Epoch 14 | Val Loss: 0.0710 | Val IoU: 0.9538 | 🕒 220.84s
+2025-08-07 09:52:52,541 [INFO] - Epoch 15 | Val Loss: 0.0713 | Val IoU: 0.9530 | 🕒 221.02s
+2025-08-07 09:56:33,835 [INFO] - Epoch 16 | Val Loss: 0.0726 | Val IoU: 0.9559 | 🕒 221.29s
+2025-08-07 10:00:15,032 [INFO] - Epoch 17 | Val Loss: 0.0719 | Val IoU: 0.9560 | 🕒 221.20s
+2025-08-07 10:03:56,880 [INFO] - Epoch 18 | Val Loss: 0.0739 | Val IoU: 0.9564 | 🕒 221.85s
+2025-08-07 10:07:38,367 [INFO] - Epoch 19 | Val Loss: 0.0754 | Val IoU: 0.9561 | 🕒 221.49s
+2025-08-07 10:11:21,017 [INFO] - Epoch 20 | Val Loss: 0.0779 | Val IoU: 0.9560 | 🕒 222.65s
+2025-08-07 10:15:02,458 [INFO] - Epoch 21 | Val Loss: 0.0797 | Val IoU: 0.9556 | 🕒 221.44s
+2025-08-07 10:18:43,869 [INFO] - Epoch 22 | Val Loss: 0.0812 | Val IoU: 0.9560 | 🕒 221.41s
+2025-08-07 10:22:25,475 [INFO] - Epoch 23 | Val Loss: 0.0810 | Val IoU: 0.9557 | 🕒 221.61s
+2025-08-07 10:26:06,866 [INFO] - Epoch 24 | Val Loss: 0.0799 | Val IoU: 0.9558 | 🕒 221.39s
+2025-08-07 10:29:48,318 [INFO] - Epoch 25 | Val Loss: 0.0799 | Val IoU: 0.9558 | 🕒 221.45s
+2025-08-07 10:33:29,596 [INFO] - Epoch 26 | Val Loss: 0.0826 | Val IoU: 0.9560 | 🕒 221.28s
+2025-08-07 10:37:10,936 [INFO] - Epoch 27 | Val Loss: 0.0818 | Val IoU: 0.9559 | 🕒 221.34s
+2025-08-07 10:40:52,814 [INFO] - Epoch 28 | Val Loss: 0.0811 | Val IoU: 0.9558 | 🕒 221.88s
+2025-08-07 10:44:34,369 [INFO] - Epoch 29 | Val Loss: 0.0814 | Val IoU: 0.9558 | 🕒 221.55s
+2025-08-07 10:48:16,025 [INFO] - Epoch 30 | Val Loss: 0.0833 | Val IoU: 0.9558 | 🕒 221.66s
+2025-08-07 10:48:16,025 [INFO] - 
+--- Training for DeepGlobal_CrossEntropyLoss_UNet++_mobileone_s3 complete ---
+2025-08-07 10:48:16,025 [INFO] - 📄 Time report saved at: plot/plot_DeepGlobal_CrossEntropyLoss_UNet++_mobileone_s3/training_times.txt
+2025-08-07 10:48:16,025 [INFO] - ✅ Best model saved at: model/model_DeepGlobal_CrossEntropyLoss_UNet++_mobileone_s3.pt
+2025-08-07 10:48:16,025 [INFO] - 📊 Per-epoch results saved at: plot/plot_DeepGlobal_CrossEntropyLoss_UNet++_mobileone_s3/epoch_results.csv
+2025-08-07 10:48:16,027 [INFO] - 
+Training history saved to 'plot/plot_DeepGlobal_CrossEntropyLoss_UNet++_mobileone_s3' directory.
+2025-08-07 10:48:17,141 [INFO] - Summary plot saved at: plot/plot_DeepGlobal_CrossEntropyLoss_UNet++_mobileone_s3/training_metrics_summary.png
+2025-08-07 10:48:17,277 [INFO] - 📈 Confusion matrix saved at: plot/plot_DeepGlobal_CrossEntropyLoss_UNet++_mobileone_s3/confusion_matrix.png
+2025-08-07 10:48:17,277 [INFO] - 
+============================= EXPERIMENT FINISHED ==============================
+

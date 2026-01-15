@@ -1,0 +1,47 @@
+2025-07-31 15:33:04,328 [INFO] - 
+============================ BẮT ĐẦU THÍ NGHIỆM MỚI ============================
+2025-07-31 15:33:04,328 [INFO] - Cấu hình: Massachusetts_CrossEntropyLoss_SegFormer_resnet50
+2025-07-31 15:33:04,329 [INFO] - ================================================================================
+2025-07-31 15:33:04,329 [INFO] - 🔄 Tải dữ liệu...
+2025-07-31 15:33:04,336 [INFO] - 🔧 Khởi tạo mô hình, hàm loss, và optimizer...
+2025-07-31 15:34:07,396 [INFO] - Epoch 01 | Val Loss: 0.1371 | Val IoU: 0.9053 | 🕒 62.63s
+2025-07-31 15:35:09,318 [INFO] - Epoch 02 | Val Loss: 0.1379 | Val IoU: 0.9061 | 🕒 61.92s
+2025-07-31 15:36:10,996 [INFO] - Epoch 03 | Val Loss: 0.1393 | Val IoU: 0.9058 | 🕒 61.68s
+2025-07-31 15:37:13,073 [INFO] - Epoch 04 | Val Loss: 0.1262 | Val IoU: 0.9100 | 🕒 62.08s
+2025-07-31 15:38:15,289 [INFO] - Epoch 05 | Val Loss: 0.1171 | Val IoU: 0.9100 | 🕒 62.22s
+2025-07-31 15:39:17,174 [INFO] - Epoch 06 | Val Loss: 0.1153 | Val IoU: 0.9118 | 🕒 61.88s
+2025-07-31 15:40:19,185 [INFO] - Epoch 07 | Val Loss: 0.1157 | Val IoU: 0.9126 | 🕒 62.01s
+2025-07-31 15:41:21,094 [INFO] - Epoch 08 | Val Loss: 0.1212 | Val IoU: 0.9119 | 🕒 61.91s
+2025-07-31 15:42:23,167 [INFO] - Epoch 09 | Val Loss: 0.1126 | Val IoU: 0.9154 | 🕒 62.07s
+2025-07-31 15:43:25,228 [INFO] - Epoch 10 | Val Loss: 0.1117 | Val IoU: 0.9162 | 🕒 62.06s
+2025-07-31 15:44:27,403 [INFO] - Epoch 11 | Val Loss: 0.1343 | Val IoU: 0.9156 | 🕒 62.17s
+2025-07-31 15:45:29,561 [INFO] - Epoch 12 | Val Loss: 0.1155 | Val IoU: 0.9161 | 🕒 62.16s
+2025-07-31 15:46:32,210 [INFO] - Epoch 13 | Val Loss: 0.1144 | Val IoU: 0.9204 | 🕒 62.65s
+2025-07-31 15:47:34,614 [INFO] - Epoch 14 | Val Loss: 0.1266 | Val IoU: 0.9163 | 🕒 62.40s
+2025-07-31 15:48:36,861 [INFO] - Epoch 15 | Val Loss: 0.1477 | Val IoU: 0.9095 | 🕒 62.25s
+2025-07-31 15:49:38,909 [INFO] - Epoch 16 | Val Loss: 0.1120 | Val IoU: 0.9196 | 🕒 62.05s
+2025-07-31 15:50:41,123 [INFO] - Epoch 17 | Val Loss: 0.1019 | Val IoU: 0.9245 | 🕒 62.21s
+2025-07-31 15:51:43,300 [INFO] - Epoch 18 | Val Loss: 0.1024 | Val IoU: 0.9250 | 🕒 62.18s
+2025-07-31 15:52:45,344 [INFO] - Epoch 19 | Val Loss: 0.1032 | Val IoU: 0.9248 | 🕒 62.04s
+2025-07-31 15:53:47,505 [INFO] - Epoch 20 | Val Loss: 0.1063 | Val IoU: 0.9245 | 🕒 62.16s
+2025-07-31 15:54:49,277 [INFO] - Epoch 21 | Val Loss: 0.1064 | Val IoU: 0.9250 | 🕒 61.77s
+2025-07-31 15:55:51,250 [INFO] - Epoch 22 | Val Loss: 0.1067 | Val IoU: 0.9254 | 🕒 61.97s
+2025-07-31 15:56:53,017 [INFO] - Epoch 23 | Val Loss: 0.1082 | Val IoU: 0.9251 | 🕒 61.77s
+2025-07-31 15:57:55,057 [INFO] - Epoch 24 | Val Loss: 0.1090 | Val IoU: 0.9251 | 🕒 62.04s
+2025-07-31 15:58:57,264 [INFO] - Epoch 25 | Val Loss: 0.1082 | Val IoU: 0.9251 | 🕒 62.21s
+2025-07-31 15:59:59,458 [INFO] - Epoch 26 | Val Loss: 0.1104 | Val IoU: 0.9250 | 🕒 62.19s
+2025-07-31 16:01:01,484 [INFO] - Epoch 27 | Val Loss: 0.1081 | Val IoU: 0.9249 | 🕒 62.03s
+2025-07-31 16:02:03,426 [INFO] - Epoch 28 | Val Loss: 0.1083 | Val IoU: 0.9250 | 🕒 61.94s
+2025-07-31 16:03:05,611 [INFO] - Epoch 29 | Val Loss: 0.1084 | Val IoU: 0.9248 | 🕒 62.19s
+2025-07-31 16:04:07,662 [INFO] - Epoch 30 | Val Loss: 0.1102 | Val IoU: 0.9251 | 🕒 62.05s
+2025-07-31 16:04:07,662 [INFO] - 
+--- Huấn luyện cho Massachusetts_CrossEntropyLoss_SegFormer_resnet50 hoàn tất ---
+2025-07-31 16:04:07,663 [INFO] - 📄 Báo cáo thời gian đã được lưu tại: plot/plot_Massachusetts_CrossEntropyLoss_SegFormer_resnet50\training_times.txt
+2025-07-31 16:04:07,663 [INFO] - ✅ Mô hình tốt nhất đã được lưu tại: model/model_Massachusetts_CrossEntropyLoss_SegFormer_resnet50.pt
+2025-07-31 16:04:07,663 [INFO] - 📊 Kết quả từng epoch đã được lưu tại: plot/plot_Massachusetts_CrossEntropyLoss_SegFormer_resnet50\epoch_results.csv
+2025-07-31 16:04:07,666 [INFO] - 
+Lịch sử huấn luyện đã được lưu vào thư mục 'plot/plot_Massachusetts_CrossEntropyLoss_SegFormer_resnet50'
+2025-07-31 16:04:08,418 [INFO] - Biểu đồ tổng hợp đã được lưu tại: plot/plot_Massachusetts_CrossEntropyLoss_SegFormer_resnet50\training_metrics_summary.png
+2025-07-31 16:04:08,433 [INFO] - 
+============================= KẾT THÚC THÍ NGHIỆM ==============================
+

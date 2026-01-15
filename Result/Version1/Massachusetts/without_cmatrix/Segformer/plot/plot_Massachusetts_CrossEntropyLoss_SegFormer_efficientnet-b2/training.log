@@ -1,0 +1,47 @@
+2025-08-01 09:55:45,343 [INFO] - 
+============================ BẮT ĐẦU THÍ NGHIỆM MỚI ============================
+2025-08-01 09:55:45,343 [INFO] - Cấu hình: Massachusetts_CrossEntropyLoss_SegFormer_efficientnet-b2
+2025-08-01 09:55:45,343 [INFO] - ================================================================================
+2025-08-01 09:55:45,343 [INFO] - 🔄 Tải dữ liệu...
+2025-08-01 09:55:45,346 [INFO] - 🔧 Khởi tạo mô hình, hàm loss, và optimizer...
+2025-08-01 09:56:17,137 [INFO] - Epoch 01 | Val Loss: 0.1301 | Val IoU: 0.9065 | 🕒 31.64s
+2025-08-01 09:56:49,067 [INFO] - Epoch 02 | Val Loss: 0.1226 | Val IoU: 0.9093 | 🕒 31.93s
+2025-08-01 09:57:21,875 [INFO] - Epoch 03 | Val Loss: 0.1158 | Val IoU: 0.9129 | 🕒 32.81s
+2025-08-01 09:57:55,647 [INFO] - Epoch 04 | Val Loss: 0.1148 | Val IoU: 0.9147 | 🕒 33.77s
+2025-08-01 09:58:29,210 [INFO] - Epoch 05 | Val Loss: 0.1089 | Val IoU: 0.9165 | 🕒 33.56s
+2025-08-01 09:59:04,169 [INFO] - Epoch 06 | Val Loss: 0.1071 | Val IoU: 0.9195 | 🕒 34.96s
+2025-08-01 09:59:38,667 [INFO] - Epoch 07 | Val Loss: 0.1077 | Val IoU: 0.9185 | 🕒 34.50s
+2025-08-01 10:00:11,996 [INFO] - Epoch 08 | Val Loss: 0.1104 | Val IoU: 0.9199 | 🕒 33.33s
+2025-08-01 10:00:44,119 [INFO] - Epoch 09 | Val Loss: 0.1014 | Val IoU: 0.9213 | 🕒 32.12s
+2025-08-01 10:01:15,978 [INFO] - Epoch 10 | Val Loss: 0.1036 | Val IoU: 0.9221 | 🕒 31.86s
+2025-08-01 10:01:47,824 [INFO] - Epoch 11 | Val Loss: 0.1048 | Val IoU: 0.9239 | 🕒 31.85s
+2025-08-01 10:02:19,577 [INFO] - Epoch 12 | Val Loss: 0.1041 | Val IoU: 0.9231 | 🕒 31.75s
+2025-08-01 10:02:51,362 [INFO] - Epoch 13 | Val Loss: 0.1055 | Val IoU: 0.9236 | 🕒 31.78s
+2025-08-01 10:03:23,205 [INFO] - Epoch 14 | Val Loss: 0.1051 | Val IoU: 0.9249 | 🕒 31.84s
+2025-08-01 10:03:55,232 [INFO] - Epoch 15 | Val Loss: 0.1100 | Val IoU: 0.9232 | 🕒 32.03s
+2025-08-01 10:04:27,063 [INFO] - Epoch 16 | Val Loss: 0.1031 | Val IoU: 0.9264 | 🕒 31.83s
+2025-08-01 10:04:58,863 [INFO] - Epoch 17 | Val Loss: 0.1027 | Val IoU: 0.9264 | 🕒 31.80s
+2025-08-01 10:05:30,576 [INFO] - Epoch 18 | Val Loss: 0.1024 | Val IoU: 0.9263 | 🕒 31.71s
+2025-08-01 10:06:02,418 [INFO] - Epoch 19 | Val Loss: 0.1032 | Val IoU: 0.9265 | 🕒 31.84s
+2025-08-01 10:06:34,176 [INFO] - Epoch 20 | Val Loss: 0.1040 | Val IoU: 0.9263 | 🕒 31.76s
+2025-08-01 10:07:06,129 [INFO] - Epoch 21 | Val Loss: 0.1036 | Val IoU: 0.9266 | 🕒 31.95s
+2025-08-01 10:07:38,013 [INFO] - Epoch 22 | Val Loss: 0.1039 | Val IoU: 0.9266 | 🕒 31.88s
+2025-08-01 10:08:09,747 [INFO] - Epoch 23 | Val Loss: 0.1041 | Val IoU: 0.9264 | 🕒 31.73s
+2025-08-01 10:08:44,987 [INFO] - Epoch 24 | Val Loss: 0.1041 | Val IoU: 0.9265 | 🕒 35.24s
+2025-08-01 10:09:19,281 [INFO] - Epoch 25 | Val Loss: 0.1044 | Val IoU: 0.9265 | 🕒 34.29s
+2025-08-01 10:09:55,265 [INFO] - Epoch 26 | Val Loss: 0.1044 | Val IoU: 0.9265 | 🕒 35.98s
+2025-08-01 10:10:30,641 [INFO] - Epoch 27 | Val Loss: 0.1042 | Val IoU: 0.9266 | 🕒 35.38s
+2025-08-01 10:11:04,591 [INFO] - Epoch 28 | Val Loss: 0.1043 | Val IoU: 0.9266 | 🕒 33.95s
+2025-08-01 10:11:39,377 [INFO] - Epoch 29 | Val Loss: 0.1046 | Val IoU: 0.9266 | 🕒 34.79s
+2025-08-01 10:12:15,741 [INFO] - Epoch 30 | Val Loss: 0.1040 | Val IoU: 0.9266 | 🕒 36.36s
+2025-08-01 10:12:15,741 [INFO] - 
+--- Huấn luyện cho Massachusetts_CrossEntropyLoss_SegFormer_efficientnet-b2 hoàn tất ---
+2025-08-01 10:12:15,741 [INFO] - 📄 Báo cáo thời gian đã được lưu tại: plot/plot_Massachusetts_CrossEntropyLoss_SegFormer_efficientnet-b2/training_times.txt
+2025-08-01 10:12:15,741 [INFO] - ✅ Mô hình tốt nhất đã được lưu tại: model/model_Massachusetts_CrossEntropyLoss_SegFormer_efficientnet-b2.pt
+2025-08-01 10:12:15,742 [INFO] - 📊 Kết quả từng epoch đã được lưu tại: plot/plot_Massachusetts_CrossEntropyLoss_SegFormer_efficientnet-b2/epoch_results.csv
+2025-08-01 10:12:15,743 [INFO] - 
+Lịch sử huấn luyện đã được lưu vào thư mục 'plot/plot_Massachusetts_CrossEntropyLoss_SegFormer_efficientnet-b2'
+2025-08-01 10:12:16,430 [INFO] - Biểu đồ tổng hợp đã được lưu tại: plot/plot_Massachusetts_CrossEntropyLoss_SegFormer_efficientnet-b2/training_metrics_summary.png
+2025-08-01 10:12:16,447 [INFO] - 
+============================= KẾT THÚC THÍ NGHIỆM ==============================
+
