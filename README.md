@@ -18,7 +18,7 @@ A comprehensive pipeline for training and evaluating road segmentation models on
 This project provides a complete pipeline for training and evaluating road segmentation models from satellite imagery. Designed with modularity and easy configuration through YAML files, it supports multiple model architectures and encoders.
 
 **Key Features:**
-- 🎯 Support for multiple architectures: UNet, UNet++, DeepLabV3+, FPN, SegFormer, DPT, EfficientViT-Seg
+- 🎯 Support for multiple architectures: UNet, UNet++, DeepLabV3Plus,DeepLabV3, LinkNet, DPT, MAnet, PAN, UPerNet, PSPNet, FPN, SegFormer, DPT, EfficientViT-Seg
 - 🔧 Flexible configuration via `config.yaml`
 - 📊 Track multiple metrics: IoU, F1-score, Accuracy, Dice Loss, Focal Loss
 - 💾 Automatic model checkpointing and training results
