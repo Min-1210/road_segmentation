@@ -31,23 +31,23 @@ This project provides a complete pipeline for training and evaluating road segme
 
 ### 1. Installation
 
-# Clone the repository
+Clone the repository
 ```bash
 git clone https://github.com/Min-1210/road_segmentation.git
 cd road_segmentation
 ```
 
-# Create virtual environment
+Create virtual environment
 ```bash
 python -m venv venv
 source venv/bin/activate  # Linux/macOS
 ```
-# or
+or
 ```bash
 venv\\Scripts\\activate  # Windows
 ```
 
-# Install dependencies
+Install dependencies
 ```bash
 pip install -r requirements.txt
 ```
