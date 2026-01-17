@@ -146,7 +146,6 @@ road_segmentation/
 ├── model/                   # Trained models
 └── plot/                    # Results and plots
 ```
-
 ---
 
 ## ⚙️ Advanced Configuration
@@ -233,6 +232,7 @@ model:
     model_zoo_name: "efficientvit-seg-l1-ade20k"
     pretrained_seg_weights: "/path/to/weights.pt"
 ```
+When you use EfficientViT-Seg you should add weight from [model_zoo_name](https://github.com/mit-han-lab/efficientvit/tree/master/applications/efficientvit_seg) to assets/efficientvit_seg.
 
 ```bash
 python train.py
