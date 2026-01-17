@@ -232,7 +232,7 @@ model:
     model_zoo_name: "efficientvit-seg-l1-ade20k"
     pretrained_seg_weights: "/path/to/weights.pt"
 ```
-When you use EfficientViT-Seg you should add weight from [model_zoo_name](https://github.com/mit-han-lab/efficientvit/tree/master/applications/efficientvit_seg) to assets/efficientvit_seg.
+When using EfficientViT-Seg, you should add the weights from the [model_zoo_name](https://github.com/mit-han-lab/efficientvit/tree/master/applications/efficientvit_seg) to the assets/efficientvit_seg directory.
 
 ```bash
 python train.py
