@@ -31,18 +31,24 @@ This project provides a complete pipeline for training and evaluating road segme
 
 ### 1. Installation
 
-```bash
 # Clone the repository
+```bash
 git clone https://github.com/Min-1210/road_segmentation.git
 cd road_segmentation
+```
 
 # Create virtual environment
+```bash
 python -m venv venv
 source venv/bin/activate  # Linux/macOS
+```
 # or
+```bash
 venv\\Scripts\\activate  # Windows
+```
 
 # Install dependencies
+```bash
 pip install -r requirements.txt
 ```
 
@@ -75,7 +81,7 @@ data:
   dataset_name: "TGRS_Road"  # Your dataset folder name
 
 training:
-  batch_size: 16
+  batch_size: 4 
   num_epochs: 50
 
 model:
@@ -138,7 +144,6 @@ road_segmentation/
 ├── dataset.py               # Dataset & DataLoader
 ├── train.py                 # Training script
 ├── inference.py             # Inference script
-├── test.py                  # Evaluation script
 ├── utils.py                 # Utility functions
 ├── plot.py                  # Plotting functions
 ├── requirements.txt         # Dependencies
@@ -156,7 +161,7 @@ In `config.yaml`, you can choose:
 
 ```yaml
 model:
-  name: "UNet"  # UNet, UNet++, DeepLabV3Plus, FPN, SegFormer, DPT, EfficientViT-Seg
+  name: "UNet"  # UNet, UNet++, DeepLabV3Plus, FPN, SegFormer, DPT, EfficientViT-Seg, ...
 ```
 
 ### Supported Encoders
